@@ -1,0 +1,943 @@
+{% extends 'consulting_app/base.html' %}
+{% load static %}
+
+{% block title %}All Products - Global Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white">Home</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">Products</li>
+                    </ol>
+                </nav>
+
+                <h1 class="display-4 fw-bold text-white mb-4 animate-fade-in">All Products</h1>
+                <p class="lead text-light mb-0 opacity-75">Complete solutions for regulated industries</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-4 animate-slide-up">
+            <div class="col-lg-8">
+                <h2 class="mb-3">Browse by Category</h2>
+                <p class="text-muted">Select an industry to view specialized products</p>
+            </div>
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search products...">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industry Cards -->
+        <div class="row g-4">
+            <!-- Pharma -->
+            <div class="col-lg-3 col-md-6 animate-scale-in" style="animation-delay: 0.1s">
+                <div class="card industry-filter-card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-pills fa-2x"></i>
+                        </div>
+                        <h5 class="card-title mb-2">Pharma Industry</h5>
+                        <p class="card-text small text-muted mb-3">GMP, Validation, Compliance</p>
+                        <div class="product-count mb-3">
+                            <span class="badge bg-primary">12 Products</span>
+                        </div>
+                        <a href="{% url 'pharma_industry' %}" class="btn btn-outline-primary btn-sm">
+                            View Products <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cosmetic -->
+            <div class="col-lg-3 col-md-6 animate-scale-in" style="animation-delay: 0.2s">
+                <div class="card industry-filter-card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper bg-success bg-opacity-10 text-success rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-spa fa-2x"></i>
+                        </div>
+                        <h5 class="card-title mb-2">Cosmetic Industry</h5>
+                        <p class="card-text small text-muted mb-3">PIF, Safety, Formulation</p>
+                        <div class="product-count mb-3">
+                            <span class="badge bg-success">8 Products</span>
+                        </div>
+                        <a href="{% url 'cosmetic_industry' %}" class="btn btn-outline-success btn-sm">
+                            View Products <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food -->
+            <div class="col-lg-3 col-md-6 animate-scale-in" style="animation-delay: 0.3s">
+                <div class="card industry-filter-card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper bg-warning bg-opacity-10 text-warning rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-utensils fa-2x"></i>
+                        </div>
+                        <h5 class="card-title mb-2">Food Industry</h5>
+                        <p class="card-text small text-muted mb-3">HACCP, Safety, Quality</p>
+                        <div class="product-count mb-3">
+                            <span class="badge bg-warning">10 Products</span>
+                        </div>
+                        <a href="{% url 'food_industry' %}" class="btn btn-outline-warning btn-sm">
+                            View Products <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chemical -->
+            <div class="col-lg-3 col-md-6 animate-scale-in" style="animation-delay: 0.4s">
+                <div class="card industry-filter-card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-wrapper bg-danger bg-opacity-10 text-danger rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-flask fa-2x"></i>
+                        </div>
+                        <h5 class="card-title mb-2">Chemical Industry</h5>
+                        <p class="card-text small text-muted mb-3">REACH, Safety, Compliance</p>
+                        <div class="product-count mb-3">
+                            <span class="badge bg-danger">6 Products</span>
+                        </div>
+                        <a href="{% url 'chemical_industry' %}" class="btn btn-outline-danger btn-sm">
+                            View Products <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- All Products Grid -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4 animate-fade-in">Featured Products</h2>
+        <p class="text-muted mb-5 animate-fade-in" style="animation-delay: 0.1s">Browse our complete product catalog</p>
+
+        <div class="row g-4">
+            <!-- Product 1 -->
+            <div class="col-lg-4 col-md-6 animate-slide-up" style="animation-delay: 0.1s">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h5 class="mb-0">GMP Compliance Software</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="product-icon mb-3">
+                            <i class="fas fa-laptop-code fa-3x text-primary"></i>
+                        </div>
+                        <p class="card-text mb-4 text-dark">
+                            Complete software solution for GMP compliance management, documentation, and audits.
+                        </p>
+                        <div class="product-features mb-4">
+                            <span class="badge bg-light text-dark me-1 mb-1">Document Control</span>
+                            <span class="badge bg-light text-dark me-1 mb-1">Audit Trail</span>
+                            <span class="badge bg-light text-dark mb-1">FDA Compliant</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price">
+                                <h4 class="text-primary mb-0">€2,500</h4>
+                                <small class="text-muted">per year</small>
+                            </div>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="text-primary">View Details <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="col-lg-4 col-md-6 animate-slide-up" style="animation-delay: 0.2s">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-success text-white py-3">
+                        <h5 class="mb-0">HACCP Plan Template</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="product-icon mb-3">
+                            <i class="fas fa-clipboard-check fa-3x text-success"></i>
+                        </div>
+                        <p class="card-text mb-4 text-dark">
+                            Complete HACCP plan template with all required documents, forms, and checklists.
+                        </p>
+                        <div class="product-features mb-4">
+                            <span class="badge bg-light text-dark me-1 mb-1">ISO 22000</span>
+                            <span class="badge bg-light text-dark me-1 mb-1">Templates</span>
+                            <span class="badge bg-light text-dark mb-1">Checklists</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price">
+                                <h4 class="text-success mb-0">€450</h4>
+                                <small class="text-muted">one-time purchase</small>
+                            </div>
+                            <button class="btn btn-success">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="text-success">View Details <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-lg-4 col-md-6 animate-slide-up" style="animation-delay: 0.3s">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-warning text-dark py-3">
+                        <h5 class="mb-0">REACH Compliance Tool</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="product-icon mb-3">
+                            <i class="fas fa-tools fa-3x text-warning"></i>
+                        </div>
+                        <p class="card-text mb-4 text-dark">
+                            Software tool for managing REACH compliance, registration, and safety data sheets.
+                        </p>
+                        <div class="product-features mb-4">
+                            <span class="badge bg-light text-dark me-1 mb-1">SDS Generator</span>
+                            <span class="badge bg-light text-dark me-1 mb-1">Compliance</span>
+                            <span class="badge bg-light text-dark mb-1">Reporting</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price">
+                                <h4 class="text-warning mb-0">€1,800</h4>
+                                <small class="text-muted">per year</small>
+                            </div>
+                            <button class="btn btn-warning text-white">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="text-warning">View Details <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Products -->
+        <div class="row g-4 mt-2">
+            <!-- Product 4 -->
+            <div class="col-lg-4 col-md-6 animate-slide-up" style="animation-delay: 0.4s">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-info text-white py-3">
+                        <h5 class="mb-0">PIF Template Package</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="product-icon mb-3">
+                            <i class="fas fa-file-contract fa-3x text-info"></i>
+                        </div>
+                        <p class="card-text mb-4 text-dark">
+                            Complete Product Information File template package for cosmetic products.
+                        </p>
+                        <div class="product-features mb-4">
+                            <span class="badge bg-light text-dark me-1 mb-1">Cosmetic</span>
+                            <span class="badge bg-light text-dark me-1 mb-1">EU Compliant</span>
+                            <span class="badge bg-light text-dark mb-1">Templates</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price">
+                                <h4 class="text-info mb-0">€650</h4>
+                                <small class="text-muted">one-time purchase</small>
+                            </div>
+                            <button class="btn btn-info text-white">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="text-info">View Details <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="col-lg-4 col-md-6 animate-slide-up" style="animation-delay: 0.5s">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h5 class="mb-0">Quality Manual Template</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="product-icon mb-3">
+                            <i class="fas fa-book fa-3x text-dark"></i>
+                        </div>
+                        <p class="card-text mb-4 text-dark">
+                            Comprehensive quality manual template for ISO 9001 and industry-specific standards.
+                        </p>
+                        <div class="product-features mb-4">
+                            <span class="badge bg-light text-dark me-1 mb-1">ISO 9001</span>
+                            <span class="badge bg-light text-dark me-1 mb-1">Customizable</span>
+                            <span class="badge bg-light text-dark mb-1">SOPs Included</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price">
+                                <h4 class="text-dark mb-0">€350</h4>
+                                <small class="text-muted">one-time purchase</small>
+                            </div>
+                            <button class="btn btn-dark">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="text-dark">View Details <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="col-lg-4 col-md-6 animate-slide-up" style="animation-delay: 0.6s">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-secondary text-white py-3">
+                        <h5 class="mb-0">Training Package</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="product-icon mb-3">
+                            <i class="fas fa-chalkboard-teacher fa-3x text-secondary"></i>
+                        </div>
+                        <p class="card-text mb-4 text-dark">
+                            Complete training package including materials, presentations, and certification.
+                        </p>
+                        <div class="product-features mb-4">
+                            <span class="badge bg-light text-dark me-1 mb-1">GMP Training</span>
+                            <span class="badge bg-light text-dark me-1 mb-1">Materials</span>
+                            <span class="badge bg-light text-dark mb-1">Certification</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price">
+                                <h4 class="text-secondary mb-0">€1,200</h4>
+                                <small class="text-muted">per participant</small>
+                            </div>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="text-secondary">View Details <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Comparison -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4 animate-fade-in">Package Comparison</h2>
+        <p class="text-center text-muted mb-5 animate-fade-in" style="animation-delay: 0.1s">Choose the package that fits your needs</p>
+
+        <div class="row g-4">
+            <!-- Basic Package -->
+            <div class="col-lg-4 animate-slide-up" style="animation-delay: 0.1s">
+                <div class="card pricing-card text-center h-100 border-0 shadow">
+                    <div class="card-header bg-white py-4">
+                        <h4 class="mb-2">Basic</h4>
+                        <div class="price display-4 fw-bold text-primary mb-0">€999</div>
+                        <small class="text-muted">per year</small>
+                    </div>
+                    <div class="card-body p-4">
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                10 Product Templates
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Email Support
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Basic Updates
+                            </li>
+                            <li class="mb-3 text-muted">
+                                <i class="fas fa-times text-danger me-2"></i>
+                                No Customization
+                            </li>
+                            <li class="mb-3 text-muted">
+                                <i class="fas fa-times text-danger me-2"></i>
+                                No Training
+                            </li>
+                        </ul>
+                        <button class="btn btn-outline-primary w-100">Select Basic</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Package -->
+            <div class="col-lg-4 animate-slide-up" style="animation-delay: 0.2s">
+                <div class="card pricing-card text-center h-100 border-primary border-2 shadow-lg">
+                    <div class="card-header bg-primary text-white py-4">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-50 translate-middle px-3 py-2">Most Popular</span>
+                        <h4 class="mb-2">Professional</h4>
+                        <div class="price display-4 fw-bold text-white mb-0">€2,499</div>
+                        <small class="text-white">per year</small>
+                    </div>
+                    <div class="card-body p-4">
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                All Product Templates
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Priority Support
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Customization
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                2 Training Sessions
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Monthly Updates
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Select Professional</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enterprise Package -->
+            <div class="col-lg-4 animate-slide-up" style="animation-delay: 0.3s">
+                <div class="card pricing-card text-center h-100 border-0 shadow">
+                    <div class="card-header bg-dark text-white py-4">
+                        <h4 class="mb-2">Enterprise</h4>
+                        <div class="price display-4 fw-bold text-white mb-0">€4,999</div>
+                        <small class="text-white">per year</small>
+                    </div>
+                    <div class="card-body p-4">
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Complete Suite
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                24/7 Support
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Full Customization
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Unlimited Training
+                            </li>
+                            <li class="mb-3 text-dark">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Multi-site License
+                            </li>
+                        </ul>
+                        <button class="btn btn-dark w-100">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 animate-fade-in">Frequently Asked Questions</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="accordion mb-4" id="faqAccordion1">
+                    <div class="accordion-item animate-slide-up" style="animation-delay: 0.1s">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                How do I purchase products?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-dark">
+                                You can add products to your basket and proceed to checkout. We accept credit cards, PayPal, and bank transfers.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item animate-slide-up" style="animation-delay: 0.2s">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Are products customizable?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-dark">
+                                Yes, most products can be customized. Contact us for custom requirements.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="accordion" id="faqAccordion2">
+                    <div class="accordion-item animate-slide-up" style="animation-delay: 0.3s">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                What's the delivery time?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-dark">
+                                Digital products are delivered instantly. Physical products ship within 3-5 business days.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item animate-slide-up" style="animation-delay: 0.4s">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Is technical support included?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-dark">
+                                Yes, all products include basic support. Premium support is available with Professional and Enterprise packages.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4 animate-fade-in">Need Help Choosing Products?</h2>
+        <p class="lead mb-5 opacity-90 animate-fade-in" style="animation-delay: 0.1s">Our experts are ready to help you select the right solutions for your business.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3 animate-scale-in">
+            <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-4 py-3">
+                <i class="fas fa-headset me-2"></i>Contact Sales
+            </a>
+            <a href="tel:+33123456789" class="btn btn-outline-light btn-lg px-4 py-3">
+                <i class="fas fa-phone me-2"></i>Call Now
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Animation Classes */
+    .animate-fade-in {
+        opacity: 0;
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    .animate-slide-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 0.8s ease-out forwards;
+    }
+
+    .animate-scale-in {
+        opacity: 0;
+        transform: scale(0.95);
+        animation: scaleIn 0.6s ease-out forwards;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Coherent Styling */
+    .hero-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(42, 110, 255, 0.2) 0%, rgba(10, 25, 47, 0.9) 100%);
+        z-index: 1;
+    }
+
+    .hero-section > .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .industry-filter-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid #e9ecef;
+    }
+
+    .industry-filter-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .product-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid #e9ecef;
+        overflow: hidden;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .product-card .card-header {
+        border-bottom: none;
+        transition: all 0.3s ease;
+    }
+
+    .product-card:hover .card-header {
+        transform: translateY(-2px);
+    }
+
+    .product-icon {
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-icon {
+        transform: scale(1.1);
+    }
+
+    .product-features {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .badge {
+        transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+        transform: translateY(-2px);
+    }
+
+    .pricing-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(42, 110, 255, 0.1);
+        color: var(--primary);
+    }
+
+    .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(42, 110, 255, 0.25);
+        border-color: var(--primary);
+    }
+
+    .accordion-item {
+        border: 1px solid #dee2e6;
+        margin-bottom: 10px;
+        border-radius: 8px !important;
+        overflow: hidden;
+    }
+
+    .breadcrumb {
+        background: transparent;
+    }
+
+    .breadcrumb-item a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .breadcrumb-item a:hover {
+        color: white;
+    }
+
+    .breadcrumb-item.active {
+        color: white;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Coherence de couleurs pour la lisibilité */
+    .text-muted {
+        color: #6c757d !important;
+    }
+
+    .text-dark {
+        color: #212529 !important;
+    }
+
+    .text-light {
+        color: #f8f9fa !important;
+    }
+
+    .text-white {
+        color: white !important;
+    }
+
+    /* Amélioration de la cohérence des boutons */
+    .btn-warning.text-white {
+        color: white !important;
+    }
+
+    .btn-warning:hover {
+        color: #212529 !important;
+    }
+
+    /* Ombre cohérente */
+    .shadow-sm {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    }
+
+    .shadow {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .shadow-lg {
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialisation des animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments animés
+        document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-scale-in').forEach(el => {
+            observer.observe(el);
+            el.style.animationPlayState = 'paused';
+        });
+
+        // Product card hover effects
+        const productCards = document.querySelectorAll('.product-card, .industry-filter-card, .pricing-card');
+
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.btn[class*="btn-"]:not(.btn-outline-):not([href])');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const originalText = this.innerHTML;
+                const originalClass = this.className;
+                const originalBg = this.style.backgroundColor;
+
+                // Animation d'ajout
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+
+                // Show success state
+                this.innerHTML = '<i class="fas fa-check me-1"></i> Added to Cart';
+                this.classList.remove('btn-primary', 'btn-success', 'btn-warning', 'btn-info', 'btn-dark', 'btn-secondary');
+                this.classList.add('btn-success');
+                this.disabled = true;
+
+                // Confetti animation
+                const rect = this.getBoundingClientRect();
+                createConfetti(rect.left + rect.width/2, rect.top);
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.className = originalClass;
+                    this.style.backgroundColor = originalBg;
+                    this.disabled = false;
+                }, 2000);
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('input[placeholder="Search products..."]');
+        const searchButton = searchInput?.nextElementSibling;
+
+        if (searchButton) {
+            searchButton.addEventListener('click', function() {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    // Animation de recherche
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+
+                    // Simuler la recherche
+                    highlightSearchResults(searchTerm);
+                }
+            });
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+        }
+
+        // FAQ accordion animation
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Helper functions
+        function createConfetti(x, y) {
+            const colors = ['#2a6eff', '#28a745', '#ffc107', '#17a2b8', '#343a40'];
+
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '8px';
+                confetti.style.height = '8px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.left = x + 'px';
+                confetti.style.top = y + 'px';
+                confetti.style.zIndex = '9999';
+                confetti.style.pointerEvents = 'none';
+
+                document.body.appendChild(confetti);
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 2 + Math.random() * 2;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                let posX = x;
+                let posY = y;
+                let opacity = 1;
+
+                function animate() {
+                    posX += vx;
+                    posY += vy;
+                    vy += 0.1; // gravity
+                    opacity -= 0.02;
+
+                    confetti.style.left = posX + 'px';
+                    confetti.style.top = posY + 'px';
+                    confetti.style.opacity = opacity;
+
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        document.body.removeChild(confetti);
+                    }
+                }
+
+                animate();
+            }
+        }
+
+        function highlightSearchResults(searchTerm) {
+            const productCards = document.querySelectorAll('.product-card');
+            let found = false;
+
+            productCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm.toLowerCase())) {
+                    card.style.boxShadow = '0 0 0 3px rgba(42, 110, 255, 0.3)';
+                    card.style.transform = 'translateY(-5px)';
+                    setTimeout(() => {
+                        card.style.transform = 'translateY(0)';
+                    }, 500);
+                    found = true;
+
+                    // Scroll vers le premier résultat
+                    if (!found) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                    }
+                } else {
+                    card.style.boxShadow = '';
+                }
+            });
+
+            if (!found) {
+                alert(`No products found for "${searchTerm}"`);
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,353 @@
+<!-- basket.html - Version corrigée -->
+
+{% extends "consulting_app/base.html" %}
+{% load static %}
+
+{% block title %}Panier - Global Business Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="container-fluid bg-dark text-white py-5">
+    <div class="container">
+        <h1><i class="fas fa-shopping-cart"></i> Votre Panier</h1>
+        <p class="lead">Gérez vos articles sélectionnés</p>
+    </div>
+</div>
+
+<!-- Messages Django -->
+{% if messages %}
+<div class="container mt-4">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Panier -->
+<div class="container py-5">
+    {% if basket_items %}
+    <div class="row">
+        <!-- Articles -->
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-boxes"></i>
+                        Vos Articles ({{ item_count }})
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% for item in basket_items %}
+                    <div class="basket-item mb-4 p-3 border rounded" id="item-{{ item.id }}">
+                        <div class="row align-items-center">
+                            <!-- Icône -->
+                            <div class="col-md-2 text-center">
+                                {% if item.product_type == 'template' %}
+                                <i class="fas fa-file-alt fa-3x text-primary"></i>
+                                {% elif item.product_type == 'bundle' %}
+                                <i class="fas fa-box fa-3x text-success"></i>
+                                {% else %}
+                                <i class="fas fa-shopping-bag fa-3x text-info"></i>
+                                {% endif %}
+                            </div>
+
+                            <!-- Détails -->
+                            <div class="col-md-6">
+                                <h5 class="mb-1">{{ item.name }}</h5>
+                                <p class="text-muted small mb-2">
+                                    <i class="fas fa-tag"></i>
+                                    {{ item.product_type|title }}
+                                </p>
+                                <p class="small text-muted mb-0">
+                                    {{ item.description|default:"Description non disponible"|truncatechars:50 }}
+                                </p>
+                            </div>
+
+                            <!-- Prix et quantité -->
+                            <div class="col-md-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-primary">
+                                        {{ item.price|floatformat:2 }} €
+                                    </span>
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-sm btn-outline-secondary quantity-btn"
+                                                data-action="decrease"
+                                                data-item-id="{{ item.id }}">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="mx-2 fw-bold" id="quantity-{{ item.id }}">
+                                            {{ item.quantity }}
+                                        </span>
+                                        <button class="btn btn-sm btn-outline-secondary quantity-btn"
+                                                data-action="increase"
+                                                data-item-id="{{ item.id }}">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong class="text-dark">
+                                        Total: <span id="total-{{ item.id }}">{{ item.total|floatformat:2 }}</span> €
+                                    </strong>
+                                    <button class="btn btn-sm btn-danger remove-btn"
+                                            data-id="{{ item.id }}">
+                                        <i class="fas fa-trash"></i> Supprimer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="mt-4 d-flex justify-content-between">
+                <a href="{% url 'documents' %}" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left"></i> Continuer les achats
+                </a>
+                <div>
+                    <button class="btn btn-outline-danger me-2" id="clear-basket">
+                        <i class="fas fa-trash"></i> Vider le panier
+                    </button>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">
+                        <i class="fas fa-lock"></i> Procéder au paiement
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Récapitulatif -->
+        <div class="col-lg-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="fas fa-receipt"></i> Récapitulatif</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Sous-total</span>
+                        <strong id="subtotal-display">{{ subtotal|floatformat:2 }} €</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>TVA (20%)</span>
+                        <strong id="tax-display">{{ tax|floatformat:2 }} €</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Livraison</span>
+                        <strong class="text-success">GRATUIT</strong>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="h5">Total TTC</span>
+                        <span class="h4 text-primary" id="total-display">{{ total|floatformat:2 }} €</span>
+                    </div>
+
+                    <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg w-100">
+                        <i class="fas fa-lock"></i> Procéder au paiement
+                    </a>
+
+                    <div class="mt-3 text-center">
+                        <small class="text-muted">
+                            <i class="fas fa-shield-alt"></i> Paiement sécurisé
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="card mt-3 shadow">
+                <div class="card-body text-center">
+                    <i class="fas fa-headset fa-2x text-primary mb-3"></i>
+                    <h5>Besoin d'aide ?</h5>
+                    <p class="small">Notre équipe est là pour vous</p>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-comments"></i> Nous contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- Panier vide -->
+    <div class="text-center py-5">
+        <i class="fas fa-shopping-cart fa-5x text-muted mb-4"></i>
+        <h2 class="text-muted">Votre panier est vide</h2>
+        <p class="lead mb-4">Commencez par ajouter des templates ou produits</p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'documents' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-file-alt"></i> Voir les templates
+            </a>
+            <a href="{% url 'products' %}" class="btn btn-success btn-lg">
+                <i class="fas fa-boxes"></i> Voir les produits
+            </a>
+        </div>
+
+        <!-- Liens de test -->
+        <div class="mt-5">
+            <p class="text-muted mb-3">Testez rapidement :</p>
+            <div class="d-flex justify-content-center gap-2">
+                <a href="{% url 'add_to_basket' %}?product_type=template&product_id=1&quantity=1"
+                   class="btn btn-outline-primary">
+                    Ajouter Template 1
+                </a>
+                <a href="{% url 'add_to_basket' %}?product_type=template&product_id=2&quantity=1"
+                   class="btn btn-outline-success">
+                    Ajouter Template 2
+                </a>
+                <a href="{% url 'add_to_basket' %}?product_type=template&product_id=3&quantity=2"
+                   class="btn btn-outline-warning">
+                    Ajouter Template 3 (x2)
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("📦 Page panier chargée");
+
+    // Gérer les quantités
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const itemId = this.getAttribute('data-item-id');
+            const action = this.getAttribute('data-action');
+            const quantityElement = document.getElementById(`quantity-${itemId}`);
+            let quantity = parseInt(quantityElement.textContent);
+
+            if (action === 'increase') {
+                quantity += 1;
+            } else if (action === 'decrease' && quantity > 1) {
+                quantity -= 1;
+            }
+
+            if (quantity >= 1) {
+                updateQuantity(itemId, quantity);
+            }
+        });
+    });
+
+    // Supprimer un article
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const itemId = this.getAttribute('data-id');
+            if (confirm('Supprimer cet article du panier ?')) {
+                removeItem(itemId);
+            }
+        });
+    });
+
+    // Vider le panier
+    document.getElementById('clear-basket')?.addEventListener('click', function() {
+        if (confirm('Vider complètement le panier ? Cette action est irréversible.')) {
+            clearBasket();
+        }
+    });
+
+    // Fonctions AJAX
+    function updateQuantity(itemId, quantity) {
+        fetch(`/update-basket-item/${itemId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ quantity: quantity })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Mettre à jour l'affichage
+                document.getElementById(`quantity-${itemId}`).textContent = quantity;
+                document.getElementById(`total-${itemId}`).textContent = data.item_total.toFixed(2);
+                updateTotals();
+            } else {
+                alert('Erreur: ' + data.error);
+            }
+        });
+    }
+
+    function removeItem(itemId) {
+        fetch(`/remove-basket-item/${itemId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Supprimer l'élément du DOM
+                document.getElementById(`item-${itemId}`).remove();
+                updateTotals();
+                location.reload(); // Recharger pour mettre à jour les compteurs
+            }
+        });
+    }
+
+    function clearBasket() {
+        fetch('/clear-basket/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+    }
+
+    function updateTotals() {
+        // Recalculer les totaux côté client (simplifié)
+        // En production, vous devriez recharger les données depuis le serveur
+        location.reload();
+    }
+
+    // Helper pour CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+</script>
+
+<style>
+.basket-item {
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+.basket-item:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.1);
+}
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+{% endblock %}

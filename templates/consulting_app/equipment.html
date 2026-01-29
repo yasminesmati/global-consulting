@@ -1,0 +1,957 @@
+{% extends 'consulting_app/base.html' %}
+{% load static %}
+
+{% block title %}Équipements - Global Business Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-badge">
+                <i class="fas fa-industry"></i> Équipements Industriels
+            </span>
+            <h1 class="hero-title">
+                Solutions Techniques
+                <span style="display: block;">de Haute Précision</span>
+            </h1>
+            <p class="hero-subtitle">
+                Découvrez notre catalogue d'équipements industriels neufs et d'occasion
+                pour vos projets de production.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Equipment Filters -->
+<section class="section" style="background: #f8fafc;">
+    <div class="container">
+        <div class="equipment-filters">
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--dark);">
+                <i class="fas fa-filter"></i> Rechercher un équipement
+            </h3>
+
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label for="equipment-type">Type d'équipement</label>
+                    <select id="equipment-type" class="filter-select">
+                        <option value="all">Tous les types</option>
+                        <option value="pharma">Pharmaceutique</option>
+                        <option value="cosmetic">Cosmétique</option>
+                        <option value="beverage">Boissons</option>
+                        <option value="packaging">Emballage</option>
+                        <option value="lab">Laboratoire</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="equipment-condition">État</label>
+                    <select id="equipment-condition" class="filter-select">
+                        <option value="all">Tous les états</option>
+                        <option value="new">Neuf</option>
+                        <option value="used">Occasion</option>
+                        <option value="refurbished">Reconditionné</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="equipment-price">Prix maximum</label>
+                    <select id="equipment-price" class="filter-select">
+                        <option value="all">Tous les prix</option>
+                        <option value="0-50000">0 - 50 000 €</option>
+                        <option value="50000-200000">50 000 - 200 000 €</option>
+                        <option value="200000-500000">200 000 - 500 000 €</option>
+                        <option value="500000+">500 000 € et +</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="equipment-location">Localisation</label>
+                    <select id="equipment-location" class="filter-select">
+                        <option value="all">Toutes les localisations</option>
+                        <option value="europe">Europe</option>
+                        <option value="asia">Asie</option>
+                        <option value="america">Amérique</option>
+                        <option value="africa">Afrique</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="equipment-search" placeholder="Rechercher un équipement...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Equipment Categories -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Catégories d'Équipements</h2>
+        <p class="section-subtitle" style="text-align: center; margin-bottom: 3rem;">
+            Explorez nos différentes catégories d'équipements spécialisés
+        </p>
+
+        <div class="categories-slider">
+            <div class="category-slide active" data-category="all">
+                <div class="slide-icon">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h3>Tous</h3>
+            </div>
+
+            <div class="category-slide" data-category="pharma">
+                <div class="slide-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <h3>Pharmaceutique</h3>
+            </div>
+
+            <div class="category-slide" data-category="cosmetic">
+                <div class="slide-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>Cosmétique</h3>
+            </div>
+
+            <div class="category-slide" data-category="beverage">
+                <div class="slide-icon">
+                    <i class="fas fa-wine-bottle"></i>
+                </div>
+                <h3>Boissons</h3>
+            </div>
+
+            <div class="category-slide" data-category="packaging">
+                <div class="slide-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <h3>Emballage</h3>
+            </div>
+
+            <div class="category-slide" data-category="lab">
+                <div class="slide-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3>Laboratoire</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Equipment Grid -->
+<section class="section" style="background: #f8fafc;">
+    <div class="container">
+        <div class="equipment-grid">
+            <!-- Equipment 1 -->
+            <div class="equipment-card" data-type="pharma" data-condition="used" data-price="200000-500000" data-location="europe">
+                <div class="equipment-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="equipment-badge used">Occasion</div>
+                </div>
+
+                <div class="equipment-content">
+                    <div class="equipment-header">
+                        <h3 class="equipment-title">Ligne de remplissage GMP</h3>
+                        <div class="equipment-price">250 000 €</div>
+                    </div>
+
+                    <p class="equipment-description">
+                        Ligne complète de remplissage stérile pour flacons et ampoules,
+                        conforme aux normes GMP. Capacité: 12,000 unités/heure.
+                    </p>
+
+                    <div class="equipment-specs">
+                        <div class="spec">
+                            <i class="fas fa-cogs"></i>
+                            <span>Fabricant: Bosch</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Année: 2018</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Allemagne</span>
+                        </div>
+                    </div>
+
+                    <div class="equipment-features">
+                        <span class="feature">GMP certifié</span>
+                        <span class="feature">Validation incluse</span>
+                        <span class="feature">Maintenance récente</span>
+                    </div>
+
+                    <div class="equipment-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i> Détails
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Demander info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment 2 -->
+            <div class="equipment-card" data-type="cosmetic" data-condition="new" data-price="50000-200000" data-location="asia">
+                <div class="equipment-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="equipment-badge new">Neuf</div>
+                </div>
+
+                <div class="equipment-content">
+                    <div class="equipment-header">
+                        <h3 class="equipment-title">Machine remplissage tubes</h3>
+                        <div class="equipment-price">85 000 €</div>
+                    </div>
+
+                    <p class="equipment-description">
+                        Machine automatique de remplissage et scellage de tubes cosmétiques.
+                        Capacité: 120 tubes/minute.
+                    </p>
+
+                    <div class="equipment-specs">
+                        <div class="spec">
+                            <i class="fas fa-cogs"></i>
+                            <span>Fabricant: IMA</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Année: 2023</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Italie</span>
+                        </div>
+                    </div>
+
+                    <div class="equipment-features">
+                        <span class="feature">ISO 22716</span>
+                        <span class="feature">Tubes 15-50ml</span>
+                        <span class="feature">Garantie 2 ans</span>
+                    </div>
+
+                    <div class="equipment-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i> Détails
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Demander info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment 3 -->
+            <div class="equipment-card" data-type="beverage" data-condition="refurbished" data-price="200000-500000" data-location="europe">
+                <div class="equipment-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="equipment-badge refurbished">Reconditionné</div>
+                </div>
+
+                <div class="equipment-content">
+                    <div class="equipment-header">
+                        <h3 class="equipment-title">Pasteurisateur continu</h3>
+                        <div class="equipment-price">320 000 €</div>
+                    </div>
+
+                    <p class="equipment-description">
+                        Pasteurisateur tunnel pour bouteilles PET et verre.
+                        Capacité: 20,000 bouteilles/heure.
+                    </p>
+
+                    <div class="equipment-specs">
+                        <div class="spec">
+                            <i class="fas fa-cogs"></i>
+                            <span>Fabricant: Krones</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Année: 2016</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>France</span>
+                        </div>
+                    </div>
+
+                    <div class="equipment-features">
+                        <span class="feature">Reconditionné</span>
+                        <span class="feature">Certifié CE</span>
+                        <span class="feature">Économie énergie</span>
+                    </div>
+
+                    <div class="equipment-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i> Détails
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Demander info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment 4 -->
+            <div class="equipment-card" data-type="packaging" data-condition="new" data-price="0-50000" data-location="asia">
+                <div class="equipment-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="equipment-badge new">Neuf</div>
+                </div>
+
+                <div class="equipment-content">
+                    <div class="equipment-header">
+                        <h3 class="equipment-title">Étiqueteuse automatique</h3>
+                        <div class="equipment-price">42 000 €</div>
+                    </div>
+
+                    <p class="equipment-description">
+                        Machine d'étiquetage automatique pour flacons et pots.
+                        Adaptable à différentes formes et tailles.
+                    </p>
+
+                    <div class="equipment-specs">
+                        <div class="spec">
+                            <i class="fas fa-cogs"></i>
+                            <span>Fabricant: Sleeveco</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Année: 2024</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Chine</span>
+                        </div>
+                    </div>
+
+                    <div class="equipment-features">
+                        <span class="feature">Flexible</span>
+                        <span class="feature">Haute précision</span>
+                        <span class="feature">Garantie 3 ans</span>
+                    </div>
+
+                    <div class="equipment-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i> Détails
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Demander info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment 5 -->
+            <div class="equipment-card" data-type="lab" data-condition="used" data-price="0-50000" data-location="europe">
+                <div class="equipment-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="equipment-badge used">Occasion</div>
+                </div>
+
+                <div class="equipment-content">
+                    <div class="equipment-header">
+                        <h3 class="equipment-title">HPLC Waters 2695</h3>
+                        <div class="equipment-price">28 500 €</div>
+                    </div>
+
+                    <p class="equipment-description">
+                        Chromatographe liquide haute performance avec détecteur UV.
+                        Idéal pour analyses pharmaceutiques.
+                    </p>
+
+                    <div class="equipment-specs">
+                        <div class="spec">
+                            <i class="fas fa-cogs"></i>
+                            <span>Fabricant: Waters</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Année: 2015</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Suisse</span>
+                        </div>
+                    </div>
+
+                    <div class="equipment-features">
+                        <span class="feature">Révisé</span>
+                        <span class="feature">Certificat d'étalonnage</span>
+                        <span class="feature">Formation incluse</span>
+                    </div>
+
+                    <div class="equipment-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i> Détails
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Demander info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment 6 -->
+            <div class="equipment-card" data-type="pharma" data-condition="new" data-price="500000+" data-location="america">
+                <div class="equipment-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="equipment-badge new">Neuf</div>
+                </div>
+
+                <div class="equipment-content">
+                    <div class="equipment-header">
+                        <h3 class="equipment-title">Ligne comprimés complète</h3>
+                        <div class="equipment-price">650 000 €</div>
+                    </div>
+
+                    <p class="equipment-description">
+                        Ligne complète de production de comprimés avec presse,
+                        enrobeuse et conditionnement. Capacité: 500,000 comprimés/jour.
+                    </p>
+
+                    <div class="equipment-specs">
+                        <div class="spec">
+                            <i class="fas fa-cogs"></i>
+                            <span>Fabricant: Fette</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Année: 2024</span>
+                        </div>
+                        <div class="spec">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>USA</span>
+                        </div>
+                    </div>
+
+                    <div class="equipment-features">
+                        <span class="feature">GMP FDA</span>
+                        <span class="feature">Validation complète</span>
+                        <span class="feature">Installation incluse</span>
+                    </div>
+
+                    <div class="equipment-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i> Détails
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Demander info
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <span class="page-dots">...</span>
+            <a href="#" class="page-link">8</a>
+            <a href="#" class="page-link next">
+                Suivant <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Services Included -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Notre Service Complet</h2>
+        <p class="section-subtitle" style="text-align: center; margin-bottom: 3rem;">
+            Plus qu'un simple achat, un accompagnement complet
+        </p>
+
+        <div class="services-included">
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Inspection Technique</h3>
+                    <p>Nos experts inspectent chaque équipement pour garantir sa conformité et son bon fonctionnement.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-euro-sign"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Négociation des Prix</h3>
+                    <p>Nous obtenons les meilleurs prix grâce à nos relations avec les fabricants et fournisseurs.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Logistique Internationale</h3>
+                    <p>Gestion complète du transport, de l'assurance et des formalités douanières.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Installation & Formation</h3>
+                    <p>Nos techniciens installent l'équipement et forment vos opérateurs sur site.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Équipement spécifique recherché ?</h2>
+            <p class="cta-subtitle">
+                Notre équipe peut vous trouver l'équipement parfait
+                répondant à vos besoins spécifiques.
+            </p>
+            <div class="hero-buttons">
+                <a href="{% url 'contact' %}" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Recherche personnalisée
+                </a>
+                <a href="tel:+33123456789" class="btn btn-outline">
+                    <i class="fas fa-headset"></i> Expert équipements
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Equipment Page Styles */
+    .filters-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .search-box {
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    #equipment-search {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 50px;
+        font-size: 1rem;
+        padding-right: 60px;
+        transition: var(--transition);
+    }
+
+    #equipment-search:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .search-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .search-btn:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .categories-slider {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        padding: 1rem 0;
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary) #f1f5f9;
+    }
+
+    .categories-slider::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .categories-slider::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+
+    .categories-slider::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 3px;
+    }
+
+    .category-slide {
+        flex: 0 0 auto;
+        width: 140px;
+        background: white;
+        border-radius: var(--radius);
+        padding: 1.5rem 1rem;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid transparent;
+        box-shadow: var(--shadow);
+    }
+
+    .category-slide:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .category-slide.active {
+        border-color: var(--primary);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+    }
+
+    .category-slide.active .slide-icon {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .slide-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin: 0 auto 1rem;
+    }
+
+    .category-slide h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .equipment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .equipment-card {
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        border: 1px solid #f1f5f9;
+    }
+
+    .equipment-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .equipment-image {
+        height: 200px;
+        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-placeholder {
+        font-size: 4rem;
+        color: var(--primary);
+        opacity: 0.5;
+    }
+
+    .equipment-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .equipment-badge.new {
+        background: #10b981;
+        color: white;
+    }
+
+    .equipment-badge.used {
+        background: #f59e0b;
+        color: white;
+    }
+
+    .equipment-badge.refurbished {
+        background: #8b5cf6;
+        color: white;
+    }
+
+    .equipment-content {
+        padding: 1.5rem;
+    }
+
+    .equipment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .equipment-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.4;
+        flex: 1;
+        margin-right: 1rem;
+    }
+
+    .equipment-price {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--primary);
+        white-space: nowrap;
+    }
+
+    .equipment-description {
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .equipment-specs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .equipment-specs .spec {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--gray);
+    }
+
+    .equipment-specs .spec i {
+        color: var(--primary);
+        width: 16px;
+    }
+
+    .equipment-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .equipment-features .feature {
+        background: #f1f5f9;
+        color: var(--dark);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .equipment-actions {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .equipment-actions .btn {
+        flex: 1;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .services-included {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .service-item {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .service-item .service-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .service-item h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .service-item p {
+        color: var(--gray);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .filters-row {
+            grid-template-columns: 1fr;
+        }
+
+        .categories-slider {
+            gap: 1rem;
+        }
+
+        .category-slide {
+            width: 120px;
+            padding: 1rem 0.75rem;
+        }
+
+        .equipment-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .equipment-specs {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .equipment-actions {
+            flex-direction: column;
+        }
+
+        .services-included {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Equipment filtering
+    document.addEventListener('DOMContentLoaded', function() {
+        const filters = {
+            type: document.getElementById('equipment-type'),
+            condition: document.getElementById('equipment-condition'),
+            price: document.getElementById('equipment-price'),
+            location: document.getElementById('equipment-location'),
+            search: document.getElementById('equipment-search')
+        };
+
+        const categorySlides = document.querySelectorAll('.category-slide');
+        const equipmentCards = document.querySelectorAll('.equipment-card');
+
+        function filterEquipment() {
+            const type = filters.type.value;
+            const condition = filters.condition.value;
+            const price = filters.price.value;
+            const location = filters.location.value;
+            const searchTerm = filters.search.value.toLowerCase();
+
+            equipmentCards.forEach(card => {
+                const cardType = card.getAttribute('data-type');
+                const cardCondition = card.getAttribute('data-condition');
+                const cardPrice = card.getAttribute('data-price');
+                const cardLocation = card.getAttribute('data-location');
+                const cardTitle = card.querySelector('.equipment-title').textContent.toLowerCase();
+                const cardDesc = card.querySelector('.equipment-description').textContent.toLowerCase();
+
+                const showType = type === 'all' || cardType === type;
+                const showCondition = condition === 'all' || cardCondition === condition;
+                const showPrice = price === 'all' || cardPrice === price;
+                const showLocation = location === 'all' || cardLocation === location;
+                const showSearch = searchTerm === '' ||
+                    cardTitle.includes(searchTerm) ||
+                    cardDesc.includes(searchTerm);
+
+                if (showType && showCondition && showPrice && showLocation && showSearch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add event listeners
+        filters.type.addEventListener('change', filterEquipment);
+        filters.condition.addEventListener('change', filterEquipment);
+        filters.price.addEventListener('change', filterEquipment);
+        filters.location.addEventListener('change', filterEquipment);
+        filters.search.addEventListener('input', filterEquipment);
+
+        // Category slides
+        categorySlides.forEach(slide => {
+            slide.addEventListener('click', function() {
+                // Remove active class from all slides
+                categorySlides.forEach(s => s.classList.remove('active'));
+
+                // Add active class to clicked slide
+                this.classList.add('active');
+
+                // Update equipment type filter
+                const category = this.getAttribute('data-category');
+                filters.type.value = category;
+                filterEquipment();
+            });
+        });
+
+        // Initial filter
+        filterEquipment();
+    });
+</script>
+{% endblock %}

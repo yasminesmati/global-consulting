@@ -1,0 +1,1577 @@
+{% extends 'consulting_app/base.html' %}
+{% load static %}
+
+{% block title %}Contact - Global Business Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="contact-hero">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-badge">
+                <i class="fas fa-headset"></i> Support 24/7
+            </span>
+            <h1 class="hero-title">Contactez-nous</h1>
+            <p class="hero-subtitle">
+                Notre équipe d'experts est à votre disposition pour discuter
+                de vos besoins et vous proposer des solutions personnalisées.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact-form" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Envoyer un message
+                </a>
+                <a href="tel:+213540335314" class="btn btn-outline-light">
+                    <i class="fas fa-phone-alt"></i> Appeler maintenant
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Messages Django -->
+{% if messages %}
+<div class="messages-container">
+    {% for message in messages %}
+    <div class="message message-{{ message.tags }}">
+        <i class="fas fa-{% if message.tags == 'success' %}check-circle{% else %}exclamation-circle{% endif %}"></i>
+        <span>{{ message }}</span>
+        <button type="button" class="close-message">&times;</button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Contact Info -->
+<section class="section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-card" data-aos="fade-up">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Nos bureaux</h3>
+                <p class="contact-text">Rue Habchi N°110 - 16045 Birtouta - Algérie</p>
+                <a href="#" class="contact-link">
+                    <i class="fas fa-directions"></i> Itinéraire
+                </a>
+            </div>
+
+            <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Téléphone</h3>
+                <p class="contact-text">+213 540 33 53 14<br>+213 540 33 53 14</p>
+                <a href="tel:+213540335314" class="contact-link">
+                    <i class="fas fa-phone"></i> Appeler maintenant
+                </a>
+            </div>
+
+            <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p class="contact-text">contact@globalbusinessconsulting.com<br>support@globalbusinessconsulting.com</p>
+                <a href="mailto:contact@globalbusinessconsulting.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> Envoyer email
+                </a>
+            </div>
+
+            <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Horaires</h3>
+                <p class="contact-text">Dimanche - Jeudi : 8h-19h<br>Samedi: 9h-13h</p>
+                <a href="#contact-form" class="contact-link">
+                    <i class="fas fa-calendar-alt"></i> Prendre RDV
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form & Map -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form-section" data-aos="fade-right">
+                <div class="form-header">
+                    <h2 class="section-title">Envoyez-nous un message</h2>
+                    <p class="section-subtitle">
+                        Remplissez le formulaire ci-dessous et nous vous répondrons
+                        sous 24 heures.
+                    </p>
+                </div>
+
+                <form id="contact-form" class="contact-form" method="POST" action="{% url 'contact' %}">
+                    {% csrf_token %}
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">
+                                <i class="fas fa-user"></i> Nom complet *
+                            </label>
+                            <input type="text" id="name" name="name" required
+                                   placeholder="Votre nom et prénom"
+                                   value="{{ request.POST.name|default:'' }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i> Email *
+                            </label>
+                            <input type="email" id="email" name="email" required
+                                   placeholder="votre@email.com"
+                                   value="{{ request.POST.email|default:'' }}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">
+                                <i class="fas fa-phone"></i> Téléphone
+                            </label>
+                            <input type="tel" id="phone" name="phone"
+                                   placeholder="+213 XX XX XX XX"
+                                   value="{{ request.POST.phone|default:'' }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">
+                                <i class="fas fa-building"></i> Entreprise
+                            </label>
+                            <input type="text" id="company" name="company"
+                                   placeholder="Nom de votre entreprise"
+                                   value="{{ request.POST.company|default:'' }}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service">
+                                <i class="fas fa-cogs"></i> Service demandé *
+                            </label>
+                            <div class="select-wrapper">
+                                <select id="service" name="service" required>
+                                    <option value="">Sélectionnez un service</option>
+                                    <option value="consulting" {% if request.POST.service == 'consulting' %}selected{% endif %}>Conseil stratégique</option>
+                                    <option value="equipment" {% if request.POST.service == 'equipment' %}selected{% endif %}>Équipements industriels</option>
+                                    <option value="digital" {% if request.POST.service == 'digital' %}selected{% endif %}>Transformation digitale</option>
+                                    <option value="export" {% if request.POST.service == 'export' %}selected{% endif %}>Développement international</option>
+                                    <option value="training" {% if request.POST.service == 'training' %}selected{% endif %}>Formations professionnelles</option>
+                                    <option value="other" {% if request.POST.service == 'other' %}selected{% endif %}>Autre</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">
+                                <i class="fas fa-euro-sign"></i> Budget estimé
+                            </label>
+                            <div class="select-wrapper">
+                                <select id="budget" name="budget">
+                                    <option value="">Sélectionnez une fourchette</option>
+                                    <option value="0-50000" {% if request.POST.budget == '0-50000' %}selected{% endif %}>0 - 50 000 €</option>
+                                    <option value="50000-200000" {% if request.POST.budget == '50000-200000' %}selected{% endif %}>50 000 - 200 000 €</option>
+                                    <option value="200000-500000" {% if request.POST.budget == '200000-500000' %}selected{% endif %}>200 000 - 500 000 €</option>
+                                    <option value="500000+" {% if request.POST.budget == '500000+' %}selected{% endif %}>500 000 € et +</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">
+                            <i class="fas fa-comment"></i> Message *
+                        </label>
+                        <textarea id="message" name="message" rows="5" required
+                                  placeholder="Décrivez votre projet ou votre besoin...">{{ request.POST.message|default:'' }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter" {% if request.POST.newsletter %}checked{% endif %}>
+                            <label for="newsletter">
+                                Je souhaite recevoir la newsletter et les actualités
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Envoyer le message
+                        </button>
+                        <p class="form-note">
+                            <i class="fas fa-lock"></i> Vos données sont sécurisées
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Map & Quick Contacts -->
+            <div class="contact-sidebar" data-aos="fade-left">
+                <!-- Map Section -->
+                <div class="map-section">
+                    <div class="map-header">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Visitez nos bureaux</h3>
+                    </div>
+                    <div class="map-placeholder">
+                        <div class="map-content">
+                            <div class="map-info">
+                                <h4>Global Business Consulting</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Rue Habchi N°110, Birtouta</p>
+                                <p><i class="fas fa-clock"></i> Lun-Ven: 8h-19h, Sam: 9h-13h</p>
+                            </div>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fas fa-directions"></i> Obtenir l'itinéraire
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Contacts -->
+                <div class="quick-contacts-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-users"></i> Contacts rapides</h3>
+                        <p>Contactez directement nos équipes spécialisées</p>
+                    </div>
+
+                    <div class="quick-contact-card">
+                        <div class="contact-icon-small">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Service Commercial</h4>
+                            <p><i class="fas fa-envelope"></i> commercial@globalbusinessconsulting.com</p>
+                            <p><i class="fas fa-phone"></i> +213 540 33 53 15</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-contact-card">
+                        <div class="contact-icon-small">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Support Technique</h4>
+                            <p><i class="fas fa-envelope"></i> support@globalbusinessconsulting.com</p>
+                            <p><i class="fas fa-phone"></i> +213 540 33 53 16</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-contact-card">
+                        <div class="contact-icon-small">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Équipements Industriels</h4>
+                            <p><i class="fas fa-envelope"></i> equipement@globalbusinessconsulting.com</p>
+                            <p><i class="fas fa-phone"></i> +213 540 33 53 17</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-contact-card">
+                        <div class="contact-icon-small">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Formations</h4>
+                            <p><i class="fas fa-envelope"></i> formation@globalbusinessconsulting.com</p>
+                            <p><i class="fas fa-phone"></i> +213 540 33 53 18</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">Questions fréquentes</h2>
+            <p class="section-subtitle">
+                Trouvez rapidement des réponses à vos questions
+            </p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-column" data-aos="fade-right">
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <h3><i class="fas fa-clock"></i> Quel est le délai de réponse ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>Nous nous engageons à répondre à toutes les demandes sous 24 heures ouvrées. Pour les demandes urgentes, n'hésitez pas à nous appeler directement.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <h3><i class="fas fa-comments"></i> Proposez-vous des consultations gratuites ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>Oui, nous offrons une première consultation d'une heure sans engagement pour évaluer vos besoins et vous proposer une approche personnalisée.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <h3><i class="fas fa-globe"></i> Travaillez-vous à l'international ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>Absolument ! Nous intervenons dans plus de 40 pays et pouvons gérer l'ensemble de la logistique internationale pour vos projets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-column" data-aos="fade-left">
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <h3><i class="fas fa-tools"></i> Quels sont vos horaires de support ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>Notre support technique est disponible du lundi au vendredi de 8h à 19h, et le samedi de 9h à 13h. Pour les urgences, un numéro dédié est disponible 24/7.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <h3><i class="fas fa-project-diagram"></i> Comment se déroule un projet type ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>Nous suivons un processus en 5 étapes : Diagnostic, Proposition, Validation, Mise en œuvre et Suivi. Chaque phase est transparente et validée avec vous.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <h3><i class="fas fa-file-contract"></i> Quels sont vos délais de livraison ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>Les délais varient selon la complexité du projet. Pour les équipements standards, comptez 4-6 semaines. Pour les projets sur mesure, nous établissons un planning précis lors de l'étude.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Emergency Contact -->
+<section class="emergency-section">
+    <div class="container">
+        <div class="emergency-content" data-aos="zoom-in">
+            <div class="emergency-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="emergency-text">
+                <h2>Besoin d'une intervention urgente ?</h2>
+                <p>Notre équipe d'urgence est disponible 24h/24 et 7j/7 pour les situations critiques.</p>
+            </div>
+            <div class="emergency-actions">
+                <a href="tel:+213540335319" class="btn btn-light emergency-btn">
+                    <i class="fas fa-phone-alt"></i> Urgence : 0540 33 53 19
+                </a>
+                <a href="mailto:urgence@globalbusinessconsulting.com" class="btn btn-outline-light">
+                    <i class="fas fa-envelope"></i> Email d'urgence
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Contact Page Styles */
+    :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #7c3aed;
+        --success: #10b981;
+        --danger: #ef4444;
+        --warning: #f59e0b;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --gray: #64748b;
+        --radius: 12px;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --transition: all 0.3s ease;
+    }
+
+    /* Messages Django */
+    .messages-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 400px;
+    }
+
+    .message {
+        padding: 1rem 1.5rem;
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        box-shadow: var(--shadow-lg);
+        animation: slideInRight 0.3s ease;
+        transition: opacity 0.3s ease;
+    }
+
+    .message-success {
+        background: var(--success);
+        color: white;
+    }
+
+    .message-error {
+        background: var(--danger);
+        color: white;
+    }
+
+    .message-warning {
+        background: var(--warning);
+        color: white;
+    }
+
+    .message-info {
+        background: var(--primary);
+        color: white;
+    }
+
+    .message i {
+        font-size: 1.2rem;
+    }
+
+    .message span {
+        flex: 1;
+    }
+
+    .close-message {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+
+    .close-message:hover {
+        opacity: 1;
+    }
+
+    /* Hero Section */
+    .contact-hero {
+        background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%);
+        color: white;
+        padding: 6rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920') center/cover;
+        opacity: 0.2;
+    }
+
+    .contact-hero .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: pulse 2s infinite;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: white;
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 700px;
+        margin: 0 auto 3rem;
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 1.2s ease forwards;
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        border-radius: var(--radius);
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+        border: 2px solid transparent;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--primary);
+        border-color: var(--primary);
+    }
+
+    .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .btn-outline-light {
+        background: transparent;
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline-light:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: white;
+        transform: translateY(-2px);
+    }
+
+    .btn-light {
+        background: white;
+        color: var(--danger);
+        font-weight: 700;
+    }
+
+    .btn-light:hover {
+        background: #f8fafc;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* Section Styles */
+    .section {
+        padding: 5rem 0;
+    }
+
+    .bg-light {
+        background-color: var(--light);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .contact-card {
+        background: white;
+        padding: 2.5rem 2rem;
+        border-radius: var(--radius);
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .contact-card:nth-child(1) { animation-delay: 0.1s; }
+    .contact-card:nth-child(2) { animation-delay: 0.2s; }
+    .contact-card:nth-child(3) { animation-delay: 0.3s; }
+    .contact-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .contact-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 0 auto 1.5rem;
+        transition: var(--transition);
+    }
+
+    .contact-card:hover .contact-icon {
+        transform: rotateY(180deg);
+    }
+
+    .contact-card h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 1rem;
+    }
+
+    .contact-text {
+        color: var(--gray);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        min-height: 4.5rem;
+    }
+
+    .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .contact-link:hover {
+        gap: 0.8rem;
+        color: var(--secondary);
+    }
+
+    /* Contact Form */
+    .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .contact-form-section {
+        background: white;
+        padding: 3rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        animation: fadeInRight 0.8s ease forwards;
+    }
+
+    .form-header {
+        margin-bottom: 2.5rem;
+        text-align: left;
+    }
+
+    .form-header .section-title {
+        font-size: 2rem;
+        text-align: left;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-header .section-subtitle {
+        text-align: left;
+        margin: 0;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .form-group label i {
+        color: var(--primary);
+        width: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        transition: var(--transition);
+        background: #f8fafc;
+        font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: white;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    .select-wrapper {
+        position: relative;
+    }
+
+    .select-wrapper select {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        background: #f8fafc;
+        appearance: none;
+        transition: var(--transition);
+    }
+
+    .select-wrapper i {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray);
+        pointer-events: none;
+    }
+
+    .select-wrapper select:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: white;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 120px;
+        max-height: 300px;
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        border: 2px solid #e2e8f0;
+        cursor: pointer;
+    }
+
+    .checkbox-group label {
+        margin: 0;
+        font-weight: normal;
+        cursor: pointer;
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+
+    .form-submit {
+        margin-top: 2.5rem;
+    }
+
+    .form-submit .btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .form-note {
+        text-align: center;
+        margin-top: 1rem;
+        color: var(--gray);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .form-note i {
+        color: var(--success);
+    }
+
+    /* Contact Sidebar */
+    .contact-sidebar {
+        animation: fadeInLeft 0.8s ease forwards;
+    }
+
+    .map-section {
+        background: white;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin-bottom: 2rem;
+    }
+
+    .map-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 1.5rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .map-header i {
+        font-size: 1.5rem;
+    }
+
+    .map-header h3 {
+        font-size: 1.3rem;
+        margin: 0;
+    }
+
+    .map-placeholder {
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+    }
+
+    .map-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .map-info h4 {
+        color: white;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .map-info p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .map-content .btn-outline {
+        border-color: white;
+        color: white;
+        align-self: flex-start;
+    }
+
+    .map-content .btn-outline:hover {
+        background: white;
+        color: var(--dark);
+    }
+
+    /* Quick Contacts */
+    .quick-contacts-section {
+        background: white;
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+    }
+
+    .quick-contacts-section .section-header {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
+    .quick-contacts-section .section-header h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .quick-contacts-section .section-header p {
+        color: var(--gray);
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .quick-contact-card {
+        display: flex;
+        gap: 1rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #f1f5f9;
+        transition: var(--transition);
+    }
+
+    .quick-contact-card:hover {
+        transform: translateX(5px);
+    }
+
+    .quick-contact-card:last-child {
+        border-bottom: none;
+    }
+
+    .contact-icon-small {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .contact-details h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-details p {
+        color: var(--gray);
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .contact-details i {
+        width: 16px;
+        color: var(--primary);
+    }
+
+    /* FAQ */
+    .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .faq-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .faq-item {
+        background: white;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+
+    .faq-item:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .faq-header {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: var(--transition);
+        background: #f8fafc;
+    }
+
+    .faq-header:hover {
+        background: #f1f5f9;
+    }
+
+    .faq-header h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--dark);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .faq-header h3 i {
+        color: var(--primary);
+        font-size: 1.1rem;
+    }
+
+    .faq-header i.fa-chevron-down {
+        color: var(--primary);
+        transition: var(--transition);
+    }
+
+    .faq-item.active .faq-header i.fa-chevron-down {
+        transform: rotate(180deg);
+    }
+
+    .faq-content {
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .faq-item.active .faq-content {
+        padding: 0 1.5rem 1.5rem;
+        max-height: 300px;
+    }
+
+    .faq-content p {
+        color: var(--gray);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Emergency Section */
+    .emergency-section {
+        background: linear-gradient(135deg, #dc2626, #991b1b);
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .emergency-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1920') center/cover;
+        opacity: 0.1;
+    }
+
+    .emergency-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 3rem;
+        align-items: center;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .emergency-icon {
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        animation: pulse 2s infinite;
+    }
+
+    .emergency-text {
+        color: white;
+    }
+
+    .emergency-text h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        color: white;
+    }
+
+    .emergency-text p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin: 0;
+    }
+
+    .emergency-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 250px;
+    }
+
+    .emergency-btn {
+        animation: pulse 1.5s infinite;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+
+        .emergency-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .emergency-actions {
+            min-width: auto;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .contact-wrapper {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form-section {
+            padding: 2rem;
+        }
+
+        .faq-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .hero-buttons,
+        .emergency-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .faq-header {
+            padding: 1.25rem;
+        }
+
+        .faq-header h3 {
+            font-size: 0.9rem;
+        }
+
+        .emergency-text h2 {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
+
+        .contact-form-section {
+            padding: 1.5rem;
+        }
+
+        .map-content {
+            padding: 1.5rem;
+        }
+
+        .messages-container {
+            left: 20px;
+            right: 20px;
+            max-width: none;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Contact Form Validation
+        const contactForm = document.getElementById('contact-form');
+
+        contactForm.addEventListener('submit', function(e) {
+            // Validation côté client
+            let isValid = true;
+            const requiredFields = contactForm.querySelectorAll('[required]');
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#ef4444';
+                    showNotification('error', `Le champ ${field.previousElementSibling.textContent} est obligatoire`);
+                } else {
+                    field.style.borderColor = '#e2e8f0';
+                }
+            });
+
+            // Validation email
+            const emailField = document.getElementById('email');
+            if (emailField.value && !isValidEmail(emailField.value)) {
+                isValid = false;
+                emailField.style.borderColor = '#ef4444';
+                showNotification('error', 'Veuillez entrer une adresse email valide');
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Si validation OK, ajouter un indicateur de chargement
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitBtn.disabled = true;
+
+            // Le formulaire sera soumis normalement à Django
+            return true;
+        });
+
+        // Fermer les messages Django
+        document.querySelectorAll('.close-message').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.style.opacity = '0';
+                setTimeout(() => {
+                    this.parentElement.remove();
+                }, 300);
+            });
+        });
+
+        // Auto-hide Django messages after 5 seconds
+        setTimeout(() => {
+            document.querySelectorAll('.message').forEach(msg => {
+                msg.style.opacity = '0';
+                setTimeout(() => msg.remove(), 300);
+            });
+        }, 5000);
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const header = item.querySelector('.faq-header');
+
+            header.addEventListener('click', function() {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Form validation on blur
+        const formInputs = contactForm.querySelectorAll('input, select, textarea');
+
+        formInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateField(this);
+            });
+
+            input.addEventListener('input', function() {
+                if (this.checkValidity()) {
+                    this.style.borderColor = '#10b981';
+                }
+            });
+        });
+
+        // Smooth scroll for contact form link
+        const contactFormLink = document.querySelector('a[href="#contact-form"]');
+        if (contactFormLink) {
+            contactFormLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const formSection = document.getElementById('contact-form');
+                if (formSection) {
+                    formSection.scrollIntoView({ behavior: 'smooth' });
+                    formSection.querySelector('input').focus();
+                }
+            });
+        }
+
+        // Add animation classes on scroll
+        function checkScroll() {
+            const elements = document.querySelectorAll('[data-aos]');
+
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight * 0.85);
+
+                if (isVisible) {
+                    const animation = el.getAttribute('data-aos');
+                    el.style.animation = `${animation} 0.8s ease forwards`;
+                    el.style.opacity = '1';
+                }
+            });
+        }
+
+        // Initial check
+        checkScroll();
+
+        // Check on scroll
+        window.addEventListener('scroll', checkScroll);
+
+        // Helper functions
+        function validateField(field) {
+            if (!field.checkValidity()) {
+                field.style.borderColor = '#ef4444';
+                return false;
+            } else {
+                field.style.borderColor = '#10b981';
+                return true;
+            }
+        }
+
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showNotification(type, message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+                <i class="fas fa-times close-notification"></i>
+            `;
+
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : '#ef4444'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius);
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                box-shadow: var(--shadow-lg);
+                z-index: 1001;
+                animation: slideInRight 0.3s ease;
+                max-width: 400px;
+            `;
+
+            // Add to document
+            document.body.appendChild(notification);
+
+            // Close button
+            notification.querySelector('.close-notification').addEventListener('click', () => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            });
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+    });
+</script>
+{% endblock %}

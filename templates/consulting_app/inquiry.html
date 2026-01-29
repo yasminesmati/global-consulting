@@ -1,0 +1,84 @@
+{% extends 'consulting_app/base.html' %}
+{% load static %}
+
+{% block title %}Demande de Devis - Global Consulting{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4">Demande de Devis</h1>
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Nom complet *</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="company" class="form-label">Entreprise</label>
+                                <input type="text" class="form-control" id="company">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="service" class="form-label">Service demandé *</label>
+                            <select class="form-select" id="service" required>
+                                <option value="">Sélectionnez un service</option>
+                                <option value="pharma">Pharma Industry</option>
+                                <option value="cosmetic">Cosmetic Industry</option>
+                                <option value="food">Food Industry</option>
+                                <option value="chemical">Chemical Industry</option>
+                                <option value="training">Training</option>
+                                <option value="documents">Documents Templates</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Détails de votre demande *</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="budget" class="form-label">Budget estimé (optionnel)</label>
+                            <select class="form-select" id="budget">
+                                <option value="">Sélectionnez une fourchette</option>
+                                <option value="1-5k">1 000 - 5 000 €</option>
+                                <option value="5-10k">5 000 - 10 000 €</option>
+                                <option value="10-20k">10 000 - 20 000 €</option>
+                                <option value="20k+">Plus de 20 000 €</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="newsletter">
+                                <label class="form-check-label" for="newsletter">
+                                    M'abonner à la newsletter
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Envoyer la demande
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1002 @@
+{% extends "consulting_app/base.html" %}
+{% load static %}
+
+{% block title %}Documents Templates - Global Consulting{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Document Templates Page Specific Styles */
+    .template-hero {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(139, 92, 246, 0.9));
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 0;
+    }
+
+    .template-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        animation: gridMove 20s linear infinite;
+    }
+
+    .template-card {b
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .template-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .template-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 0.7rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        font-weight: 600;
+        z-index: 2;
+    }
+
+    .template-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .category-nav {
+        position: sticky;
+        top: calc(var(--nav-height) + var(--banner-height) + 20px);
+    }
+
+    .category-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid transparent;
+    }
+
+    .category-item:hover,
+    .category-item.active {
+        background: rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
+        color: white;
+        transform: translateX(5px);
+    }
+
+    .bundle-card {
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.02) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .bundle-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    }
+
+    .bundle-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .bundle-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        z-index: 2;
+    }
+
+    .price-tag {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+    }
+
+    .template-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 1rem;
+    }
+
+    .preview-btn, .add-to-cart-btn {
+        flex: 1;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .preview-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .preview-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .add-to-cart-btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+    }
+
+    .add-to-cart-btn:hover {
+        background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .template-meta {
+        display: flex;
+        gap: 15px;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 1rem;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* Animation for adding to cart */
+    @keyframes cartPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    .cart-animation {
+        animation: cartPulse 0.5s ease-in-out;
+    }
+
+    /* Modal styles */
+    .preview-modal .modal-content {
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 100%);
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        color: white;
+    }
+
+    .preview-modal .modal-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1.5rem;
+    }
+
+    .preview-modal .modal-body {
+        padding: 1.5rem;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .category-nav {
+            position: static;
+            margin-bottom: 2rem;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+        }
+
+        .template-actions {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="template-hero">
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold text-white mb-3">Professional Document Templates</h1>
+                <p class="lead text-white mb-4 opacity-90">Ready-to-use templates for regulated industries. GMP, FDA, ISO, HACCP compliant documents.</p>
+                <div class="d-flex gap-3">
+                    <span class="badge bg-white text-dark px-3 py-2">
+                        <i class="fas fa-check-circle me-1"></i> 250+ Templates
+                    </span>
+                    <span class="badge bg-white text-dark px-3 py-2">
+                        <i class="fas fa-sync-alt me-1"></i> Monthly Updates
+                    </span>
+                    <span class="badge bg-white text-dark px-3 py-2">
+                        <i class="fas fa-language me-1"></i> Multilingual
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="text-center">
+                    <i class="fas fa-file-alt text-white" style="font-size: 8rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <div class="row">
+        <!-- Category Navigation -->
+        <div class="col-lg-3 mb-4">
+            <div class="category-nav">
+                <div class="card bg-transparent border-0">
+                    <div class="card-header bg-transparent border-0 px-0 pb-3">
+                        <h5 class="text-white mb-0">Categories</h5>
+                    </div>
+                    <div class="card-body px-0 pt-0">
+                        <nav class="nav flex-column">
+                            <a href="#quality" class="category-item active">
+                                <i class="fas fa-award"></i>
+                                <span>Quality Management</span>
+                            </a>
+                            <a href="#validation" class="category-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Validation Protocols</span>
+                            </a>
+                            <a href="#sop" class="category-item">
+                                <i class="fas fa-file-contract"></i>
+                                <span>SOPs & Procedures</span>
+                            </a>
+                            <a href="#regulatory" class="category-item">
+                                <i class="fas fa-balance-scale"></i>
+                                <span>Regulatory Compliance</span>
+                            </a>
+                            <a href="#risk" class="category-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Risk Assessment</span>
+                            </a>
+                            <a href="#audit" class="category-item">
+                                <i class="fas fa-clipboard-check"></i>
+                                <span>Audit Templates</span>
+                            </a>
+                            <a href="#training" class="category-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Training Materials</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="card bg-transparent border border-light-subtle mt-4">
+                    <div class="card-body">
+                        <h6 class="text-white mb-3">Template Library</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-light opacity-75">Total Templates</span>
+                            <span class="text-white fw-bold">250+</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-light opacity-75">Last Update</span>
+                            <span class="text-white fw-bold">Jan 2024</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-light opacity-75">Languages</span>
+                            <span class="text-white fw-bold">EN, FR, ES</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-light opacity-75">Formats</span>
+                            <span class="text-white fw-bold">Word, Excel, PDF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Templates List -->
+        <div class="col-lg-9">
+            <!-- Quality Management Templates -->
+            <div id="quality" class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-white mb-0">
+                        <i class="fas fa-award text-primary me-2"></i>Quality Management Templates
+                    </h3>
+                    <span class="badge bg-primary px-3 py-2">{{ quality_templates|length }} Templates</span>
+                </div>
+                <div class="row g-4">
+                    {% for template in quality_templates %}
+                    <div class="col-md-6">
+                        <div class="template-card p-4">
+                            <div class="template-badge">€{{ template.price }}</div>
+                            <div class="template-icon">
+                                <i class="fas fa-{{ template.icon|default:'file-alt' }}"></i>
+                            </div>
+                            <h5 class="text-white mb-2">{{ template.name }}</h5>
+                            <p class="text-light opacity-75 small mb-3">{{ template.description }}</p>
+
+                            <div class="template-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-file-word"></i>
+                                    <span>{{ template.format }}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>{{ template.pages }} pages</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-industry"></i>
+                                    <span>{{ template.industry }}</span>
+                                </div>
+                            </div>
+
+                            <div class="template-actions">
+                                <button class="preview-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#previewModal"
+                                        data-template-id="{{ template.id }}"
+                                        data-template-name="{{ template.name }}">
+                                    <i class="fas fa-eye me-1"></i> Preview
+                                </button>
+                                <button class="add-to-cart-btn"
+                                        data-template-id="{{ template.id }}"
+                                        data-template-name="{{ template.name }}"
+                                        data-template-price="{{ template.price }}">
+                                    <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+</div>
+
+                    {% empty %}
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            <i class="fas fa-info-circle me-2"></i>
+                            No quality management templates available at the moment.
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Validation Protocols -->
+            <div id="validation" class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-white mb-0">
+                        <i class="fas fa-check-circle text-success me-2"></i>Validation Protocols
+                    </h3>
+                    <span class="badge bg-success px-3 py-2">{{ validation_templates|length }} Templates</span>
+                </div>
+                <div class="row g-4">
+                    {% for template in validation_templates %}
+                    <div class="col-md-4">
+                        <div class="template-card p-3">
+                            <div class="template-badge">€{{ template.price }}</div>
+                            <h6 class="text-white mb-2">{{ template.name }}</h6>
+                            <p class="text-light opacity-75 small mb-3">{{ template.description|truncatechars:80 }}</p>
+                            <button class="add-to-cart-btn w-100"
+                                    data-template-id="{{ template.id }}"
+                                    data-template-name="{{ template.name }}"
+                                    data-template-price="{{ template.price }}">
+                                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- SOPs & Procedures -->
+            <div id="sop" class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-white mb-0">
+                        <i class="fas fa-file-contract text-warning me-2"></i>Standard Operating Procedures
+                    </h3>
+                    <span class="badge bg-warning px-3 py-2">{{ sops|length }} Templates</span>
+                </div>
+                <div class="card bg-transparent border border-light-subtle">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="border-light-subtle">Template Name</th>
+                                    <th class="border-light-subtle">Industry</th>
+                                    <th class="border-light-subtle">Format</th>
+                                    <th class="border-light-subtle">Price</th>
+                                    <th class="border-light-subtle">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sop in sops %}
+                                <tr>
+                                    <td class="text-white">{{ sop.name }}</td>
+                                    <td>
+                                        <span class="badge bg-info">{{ sop.industry }}</span>
+                                    </td>
+                                    <td class="text-light opacity-75">{{ sop.format }}</td>
+                                    <td class="text-success fw-bold">€{{ sop.price }}</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-sm btn-outline-light preview-btn"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#previewModal">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-warning add-to-cart-btn"
+                                                    data-template-id="{{ sop.id }}"
+                                                    data-template-name="{{ sop.name }}"
+                                                    data-template-price="{{ sop.price }}">
+                                                <i class="fas fa-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bundle Offers -->
+<div class="container-fluid bg-dark py-5">
+    <div class="container">
+        <h2 class="text-center text-white mb-5">Template Bundles</h2>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="bundle-card p-4 h-100">
+                    <div class="bundle-badge">Save 40%</div>
+                    <div class="text-center mb-4">
+                        <i class="fas fa-rocket template-icon"></i>
+                        <h4 class="text-white">Startup Bundle</h4>
+                    </div>
+                    <div class="text-center mb-4">
+                        <span class="price-tag">€499</span>
+                        <p class="text-light opacity-75 mb-0">One-time purchase</p>
+                    </div>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">50 Essential Templates</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Basic SOPs & Procedures</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Quality Manual Template</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-times-circle text-danger me-2"></i>
+                            <span class="text-light opacity-75">Customization Service</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-times-circle text-danger me-2"></i>
+                            <span class="text-light opacity-75">Regular Updates</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary w-100 add-to-cart-btn"
+                            data-bundle="startup"
+                            data-price="499">
+                        <i class="fas fa-shopping-cart me-2"></i> Purchase Bundle
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bundle-card p-4 h-100 position-relative">
+                    <div class="bundle-badge">Most Popular</div>
+                    <div class="text-center mb-4">
+                        <i class="fas fa-crown template-icon"></i>
+                        <h4 class="text-white">Professional Bundle</h4>
+                    </div>
+                    <div class="text-center mb-4">
+                        <span class="price-tag">€1,299</span>
+                        <p class="text-light opacity-75 mb-0">Annual license</p>
+                    </div>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">200+ Premium Templates</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Complete SOP Library</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Customization Service</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Quarterly Updates</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Priority Email Support</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-warning w-100 add-to-cart-btn"
+                            data-bundle="professional"
+                            data-price="1299">
+                        <i class="fas fa-shopping-cart me-2"></i> Purchase Bundle
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bundle-card p-4 h-100">
+                    <div class="bundle-badge">Enterprise</div>
+                    <div class="text-center mb-4">
+                        <i class="fas fa-building template-icon"></i>
+                        <h4 class="text-white">Enterprise Bundle</h4>
+                    </div>
+                    <div class="text-center mb-4">
+                        <span class="price-tag">€2,999</span>
+                        <p class="text-light opacity-75 mb-0">Annual license</p>
+                    </div>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Full Template Library</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Unlimited Customization</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Monthly Updates</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">24/7 Priority Support</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span class="text-white">Multi-site License</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-success w-100 add-to-cart-btn"
+                            data-bundle="enterprise"
+                            data-price="2999">
+                        <i class="fas fa-shopping-cart me-2"></i> Contact for Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="container py-5">
+    <h2 class="text-center text-white mb-5">Frequently Asked Questions</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item bg-transparent border-light-subtle">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-transparent text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Are templates editable?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light opacity-75">
+                            Yes, all templates are provided in editable formats (Word, Excel, PowerPoint). You can customize them to fit your specific needs.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent border-light-subtle">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Can I request custom templates?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light opacity-75">
+                            Yes, we offer custom template development services. Contact our sales team for a quote.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="accordion" id="faqAccordion2">
+                <div class="accordion-item bg-transparent border-light-subtle">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-transparent text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            What's the refund policy?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion2">
+                        <div class="accordion-body text-light opacity-75">
+                            We offer a 30-day satisfaction guarantee for all template purchases. If you're not satisfied, contact us for a full refund.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent border-light-subtle">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Are updates included?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion2">
+                        <div class="accordion-body text-light opacity-75">
+                            Updates are included with Professional and Enterprise bundles. Basic template purchases include one year of updates.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal fade preview-modal" id="previewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white">Template Preview</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center py-5">
+                    <i class="fas fa-file-pdf text-primary" style="font-size: 4rem;"></i>
+                    <h4 class="text-white mt-3" id="previewTemplateName"></h4>
+                    <p class="text-light opacity-75">Template preview coming soon...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary add-to-cart-from-preview">
+                    <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Add to cart functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add to cart buttons
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const basketCountElement = document.getElementById('basket-count');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const templateId = this.dataset.templateId || this.dataset.productId;
+                const templateName = this.dataset.templateName || this.dataset.productName;
+                const templatePrice = this.dataset.templatePrice || this.dataset.productPrice;
+                const bundle = this.dataset.bundle;
+
+                // Animation effect
+                this.classList.add('cart-animation');
+                setTimeout(() => {
+                    this.classList.remove('cart-animation');
+                }, 500);
+
+                // Send AJAX request to add to cart
+                fetch('{% url "add_to_basket" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({
+                        product_type: 'template',
+                        product_id: templateId,
+                        quantity: 1
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data); // Debug
+                    if (data.success) {
+                        // Update basket count
+                        updateBasketCount(data.basket_count);
+
+                        // Show success notification
+                        showNotification('success', `${templateName} ajouté au panier !`);
+
+                        // Update button text temporarily
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check me-1"></i> Ajouté !';
+                        this.disabled = true;
+
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.disabled = false;
+                        }, 2000);
+                    } else {
+                        showNotification('error', data.error || 'Erreur lors de l\'ajout au panier.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('error', 'Une erreur est survenue. Veuillez réessayer.');
+                });
+            });
+        });
+
+        // Preview modal
+        const previewButtons = document.querySelectorAll('.preview-btn');
+        previewButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const templateName = this.dataset.templateName;
+                const templateId = this.dataset.templateId;
+
+                document.getElementById('previewTemplateName').textContent = templateName;
+
+                // Store template info in modal for add to cart
+                const addButton = document.querySelector('.add-to-cart-from-preview');
+                if (addButton) {
+                    addButton.dataset.templateId = templateId;
+                    addButton.dataset.templateName = templateName;
+                }
+            });
+        });
+
+        // Add from preview modal
+        document.querySelector('.add-to-cart-from-preview')?.addEventListener('click', function() {
+            const templateId = this.dataset.templateId;
+            const templateName = this.dataset.templateName;
+
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('previewModal'));
+            if (modal) modal.hide();
+
+            // Simulate click on corresponding add to cart button
+            const addButton = document.querySelector(`[data-template-id="${templateId}"]`);
+            if (addButton) {
+                addButton.click();
+            }
+        });
+
+        // Category navigation smooth scroll
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Update active class
+                        document.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
+                        this.classList.add('active');
+
+                        // Smooth scroll to target
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Helper functions
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function updateBasketCount(count) {
+            // Update the basket count element in navbar
+            const basketCountElement = document.getElementById('basket-count');
+            if (basketCountElement) {
+                basketCountElement.textContent = count;
+                basketCountElement.style.display = count > 0 ? 'inline' : 'none';
+            }
+        }
+
+        function showNotification(type, message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            notification.style.cssText = `
+                top: 20px;
+                right: 20px;
+                z-index: 2000;
+                min-width: 300px;
+                background: ${type === 'success' ? '#10b981' : '#ef4444'};
+                color: white;
+                border: none;
+                border-radius: 10px;
+                padding: 1rem 1.5rem;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                animation: slideInRight 0.3s ease;
+            `;
+
+            // Add animation styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOutRight {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+
+            notification.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                    <div>${message}</div>
+                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+            // Add to body
+            document.body.appendChild(notification);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+
+            // Close button functionality
+            notification.querySelector('.btn-close').addEventListener('click', function() {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            });
+        }
+
+        // Initialize basket count
+        function loadBasketCount() {
+            fetch('{% url "get_basket_count" %}')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Basket count data:', data); // Debug
+                    if (data.count !== undefined) {
+                        updateBasketCount(data.count);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading basket count:', error);
+                });
+        }
+
+        // Load basket count on page load
+        loadBasketCount();
+
+        // Make updateBasketCount globally available
+        window.updateBasketCount = updateBasketCount;
+        window.showNotification = showNotification;
+    });
+    // Option 1: Mode AJAX avec possibilité de redirection
+function addToCartAjax(button, redirectAfter = false) {
+    const templateId = button.dataset.templateId || button.dataset.productId;
+    const templateName = button.dataset.templateName || button.dataset.productName;
+
+    // Animation
+    button.classList.add('cart-animation');
+
+    fetch('{% url "add_to_basket" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+            product_type: 'template',
+            product_id: templateId,
+            quantity: 1,
+            redirect: redirectAfter  // Nouveau paramètre
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            updateBasketCount(data.basket_count);
+            showNotification('success', data.message);
+
+            // Si redirection demandée
+            if (redirectAfter && data.redirect_url) {
+                setTimeout(() => {
+                    window.location.href = data.redirect_url;
+                }, 1500);
+            }
+        }
+    })
+    .catch(error => {
+        showNotification('error', 'Erreur lors de l\'ajout');
+    })
+    .finally(() => {
+        button.classList.remove('cart-animation');
+    });
+}
+
+</script>
+{% endblock %}

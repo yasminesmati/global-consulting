@@ -1,0 +1,151 @@
+<!-- consulting_app/templates/consulting_app/order_confirmation.html -->
+
+{% extends "consulting_app/base.html" %}
+{% load static %}
+
+{% block title %}Confirmation de commande - Global Business Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="container-fluid bg-success text-white py-5">
+    <div class="container">
+        <h1><i class="fas fa-check-circle"></i> Commande Confirmée !</h1>
+        <p class="lead">Merci pour votre commande</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow text-center">
+                <div class="card-body py-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle fa-5x text-success mb-4"></i>
+                        <h2 class="text-success">Paiement Réussi</h2>
+                        <p class="lead">Votre commande a été traitée avec succès</p>
+                    </div>
+
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3">Détails de la commande</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-2"><strong>N° de commande :</strong></p>
+                                    <h4 class="text-primary">{{ order_number }}</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-2"><strong>Date :</strong></p>
+                                    <p>{{ order_date|date:"d/m/Y H:i" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Récapitulatif -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Récapitulatif de votre commande</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for item in basket_items %}
+                            <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                <div class="text-start">
+                                    <h6 class="mb-1">{{ item.name }}</h6>
+                                    <small class="text-muted">{{ item.quantity }} x {{ item.price|floatformat:2 }} €</small>
+                                </div>
+                                <div class="text-end">
+                                    <h6 class="mb-1">{{ item.total|floatformat:2 }} €</h6>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <h5>Sous-total</h5>
+                                <h5>{{ subtotal|floatformat:2 }} €</h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5>TVA (20%)</h5>
+                                <h5>{{ tax|floatformat:2 }} €</h5>
+                            </div>
+                            <div class="d-flex justify-content-between mt-3 pt-3 border-top">
+                                <h4>Total TTC</h4>
+                                <h4 class="text-primary">{{ total|floatformat:2 }} €</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Téléchargement -->
+                    <div class="card mb-4 border-success">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="fas fa-download"></i> Téléchargement</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-3">Vos templates sont prêts à être téléchargés :</p>
+                            <div class="d-grid gap-2">
+                                <a href="#" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-file-archive"></i> Télécharger tous les templates
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="fas fa-envelope"></i> Recevoir par email
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prochaines étapes -->
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="fas fa-clipboard-list"></i> Prochaines étapes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-start">
+                                <div class="col-md-4 mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="badge bg-primary rounded-circle me-2">1</span>
+                                        <h6 class="mb-0">Email de confirmation</h6>
+                                    </div>
+                                    <p class="small text-muted">Vous recevrez un email avec vos identifiants de téléchargement.</p>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="badge bg-primary rounded-circle me-2">2</span>
+                                        <h6 class="mb-0">Support technique</h6>
+                                    </div>
+                                    <p class="small text-muted">Notre équipe est disponible pour vous aider avec vos templates.</p>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="badge bg-primary rounded-circle me-2">3</span>
+                                        <h6 class="mb-0">Mises à jour</h6>
+                                    </div>
+                                    <p class="small text-muted">Recevez des notifications pour les nouvelles versions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="mt-5">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <a href="{% url 'documents' %}" class="btn btn-outline-primary me-md-2">
+                                <i class="fas fa-shopping-cart"></i> Continuer mes achats
+                            </a>
+                            <a href="{% url 'home' %}" class="btn btn-primary">
+                                <i class="fas fa-home"></i> Retour à l'accueil
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="mt-4 pt-4 border-top">
+                        <p class="text-muted mb-2">Besoin d'aide ?</p>
+                        <a href="{% url 'contact' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-headset"></i> Contacter le support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

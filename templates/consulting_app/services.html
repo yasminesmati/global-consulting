@@ -1,0 +1,733 @@
+{% extends 'consulting_app/base.html' %}
+{% load static %}
+
+{% block title %}Services - Global Business Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-badge">
+                <i class="fas fa-concierge-bell"></i> Nos Services Premium
+            </span>
+            <h1 class="hero-title">
+                Solutions Complètes pour
+                <span style="display: block;">Votre Croissance Internationale</span>
+            </h1>
+            <p class="hero-subtitle">
+                Découvrez notre gamme complète de services conçus pour propulser
+                votre entreprise sur les marchés internationaux.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Services Detail Section -->
+<section class="section">
+    <div class="container">
+        <!-- Service 1: Formations -->
+        <div class="service-detail-card">
+            <div class="service-header">
+                <div class="service-icon-large">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h2>Formations Techniques & Managériales</h2>
+                    <p class="service-subtitle">Développez les compétences de vos équipes</p>
+                </div>
+            </div>
+
+            <div class="service-body">
+                <div class="service-columns">
+                    <div class="service-column">
+                        <h3><i class="fas fa-pills" style="color: #3498db;"></i> Pharmaceutique</h3>
+                        <ul class="service-features">
+                            <li><strong>GMP/BPF</strong> - Bonnes Pratiques de Fabrication</li>
+                            <li><strong>Validation</strong> des procédés et équipements</li>
+                            <li><strong>Documentation</strong> réglementaire FDA/EMA</li>
+                            <li><strong>Contrôle Qualité</strong> et stabilité des produits</li>
+                            <li><strong>Audits</strong> et inspections préparatoires</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-column">
+                        <h3><i class="fas fa-spa" style="color: #9b59b6;"></i> Cosmétique</h3>
+                        <ul class="service-features">
+                            <li><strong>Formulation</strong> et développement produit</li>
+                            <li><strong>Normes ISO 22716</strong> et cosmétique</li>
+                            <li><strong>Stabilité</strong> et tests d'efficacité</li>
+                            <li><strong>Réglementation</strong> internationale</li>
+                            <li><strong>Packaging</strong> et conditionnement</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-column">
+                        <h3><i class="fas fa-industry" style="color: #1abc9c;"></i> Production</h3>
+                        <ul class="service-features">
+                            <li><strong>Lean Manufacturing</strong> et optimisation</li>
+                            <li><strong>Maintenance</strong> préventive et prédictive</li>
+                            <li><strong>Sécurité</strong> industrielle</li>
+                            <li><strong>Gestion</strong> de la production</li>
+                            <li><strong>Qualité</strong> totale</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-info">
+                    <div class="info-card">
+                        <h4><i class="fas fa-users"></i> Formats Disponibles</h4>
+                        <ul>
+                            <li>Présentiel (inter ou intra-entreprise)</li>
+                            <li>Formation en ligne (e-learning)</li>
+                            <li>Formation sur site client</li>
+                            <li>Coaching individuel ou d'équipe</li>
+                            <li>Webinaires spécialisés</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h4><i class="fas fa-certificate"></i> Certifications</h4>
+                        <p>Toutes nos formations délivrent une attestation reconnue internationalement.</p>
+                        <p>Nous préparons également aux certifications professionnelles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service 2: Partenariats -->
+        <div class="service-detail-card">
+            <div class="service-header">
+                <div class="service-icon-large">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div>
+                    <h2>Partenariats Internationaux</h2>
+                    <p class="service-subtitle">Créez des alliances stratégiques mondiales</p>
+                </div>
+            </div>
+
+            <div class="service-body">
+                <div class="partnership-types">
+                    <div class="partnership-card">
+                        <div class="partnership-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>Co-production</h3>
+                        <p>Mise en place d'accords de production partagée avec des partenaires étrangers.</p>
+                        <ul>
+                            <li>Optimisation des coûts de production</li>
+                            <li>Transfert de technologie</li>
+                            <li>Accès à de nouvelles capacités</li>
+                        </ul>
+                    </div>
+
+                    <div class="partnership-card">
+                        <div class="partnership-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Distribution</h3>
+                        <p>Accords de distribution exclusive sur des marchés internationaux.</p>
+                        <ul>
+                            <li>Réseaux de distribution établis</li>
+                            <li>Connaissance des marchés locaux</li>
+                            <li>Support marketing et commercial</li>
+                        </ul>
+                    </div>
+
+                    <div class="partnership-card">
+                        <div class="partnership-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3>Transfert Technologique</h3>
+                        <p>Transfert de savoir-faire et de technologies vers vos partenaires.</p>
+                        <ul>
+                            <li>Formation des équipes</li>
+                            <li>Documentation technique complète</li>
+                            <li>Support à l'implémentation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="process-section">
+                    <h3>Notre Processus en 4 Étapes</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Analyse Stratégique</h4>
+                                <p>Évaluation de vos besoins et objectifs</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Recherche de Partenaires</h4>
+                                <p>Identification de partenaires qualifiés</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Négociation</h4>
+                                <p>Discussion des termes et conditions</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Implémentation</h4>
+                                <p>Accompagnement jusqu'à la réussite</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service 3: Équipements -->
+        <div class="service-detail-card">
+            <div class="service-header">
+                <div class="service-icon-large">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div>
+                    <h2>Achat & Vente d'Équipements</h2>
+                    <p class="service-subtitle">Solutions complètes d'approvisionnement</p>
+                </div>
+            </div>
+
+            <div class="service-body">
+                <div class="equipment-categories">
+                    <div class="category-card">
+                        <h3><i class="fas fa-pills"></i> Pharmaceutique</h3>
+                        <ul>
+                            <li>Lignes de remplissage stériles</li>
+                            <li>Étuyeuses et blisteuses</li>
+                            <li>Stérilisateurs et autoclaves</li>
+                            <li>Équipements de laboratoire</li>
+                            <li>Systèmes de purification d'eau</li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <h3><i class="fas fa-spa"></i> Cosmétique</h3>
+                        <ul>
+                            <li>Mélangeurs et homogénéiseurs</li>
+                            <li>Lignes de conditionnement</li>
+                            <li>Remplisseuses de tubes et flacons</li>
+                            <li>Étiqueteuses et capsuleuses</li>
+                            <li>Machines d'emballage</li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <h3><i class="fas fa-wine-bottle"></i> Boissons</h3>
+                        <ul>
+                            <li>Pasteurisateurs et stérilisateurs</li>
+                            <li>Remplisseuses aseptiques</li>
+                            <li>Capsuleuses et boucheuses</li>
+                            <li>Laveuses de bouteilles</li>
+                            <li>Étiqueteuses automatiques</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-included">
+                    <h3>Notre Service Complet Inclut :</h3>
+                    <div class="included-grid">
+                        <div class="included-item">
+                            <div class="included-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div>
+                                <h4>Inspection Technique</h4>
+                                <p>Vérification complète par nos experts</p>
+                            </div>
+                        </div>
+
+                        <div class="included-item">
+                            <div class="included-icon">
+                                <i class="fas fa-euro-sign"></i>
+                            </div>
+                            <div>
+                                <h4>Négociation des Prix</h4>
+                                <p>Obtention des meilleures conditions</p>
+                            </div>
+                        </div>
+
+                        <div class="included-item">
+                            <div class="included-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <div>
+                                <h4>Logistique Internationale</h4>
+                                <p>Gestion complète du transport</p>
+                            </div>
+                        </div>
+
+                        <div class="included-item">
+                            <div class="included-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h4>Installation & Formation</h4>
+                                <p>Mise en service et formation des opérateurs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service 4: Représentation -->
+        <div class="service-detail-card">
+            <div class="service-header">
+                <div class="service-icon-large">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div>
+                    <h2>Représentation Commerciale</h2>
+                    <p class="service-subtitle">Développez vos ventes à l'international</p>
+                </div>
+            </div>
+
+            <div class="service-body">
+                <div class="representation-for">
+                    <div class="for-card">
+                        <h3>Pour les Fabricants</h3>
+                        <p>Entreprises cherchant à étendre leur distribution internationale</p>
+                        <ul>
+                            <li>Accès à de nouveaux marchés</li>
+                            <li>Réseau de distribution établi</li>
+                            <li>Support commercial local</li>
+                        </ul>
+                    </div>
+
+                    <div class="for-card">
+                        <h3>Pour les Distributeurs</h3>
+                        <p>Sociétés recherchant de nouveaux produits à commercialiser</p>
+                        <ul>
+                            <li>Portefeuille produits varié</li>
+                            <li>Support technique complet</li>
+                            <li>Formation commerciale</li>
+                        </ul>
+                    </div>
+
+                    <div class="for-card">
+                        <h3>Pour les Start-ups</h3>
+                        <p>Jeunes entreprises voulant pénétrer de nouveaux marchés</p>
+                        <ul>
+                            <li>Stratégie d'entrée sur marché</li>
+                            <li>Réseau de contacts</li>
+                            <li>Support au développement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="territories-section">
+                    <h3>Zones Géographiques Couvertes</h3>
+                    <div class="territory-tags">
+                        <span class="tag">Europe</span>
+                        <span class="tag">Afrique du Nord</span>
+                        <span class="tag">Afrique de l'Ouest</span>
+                        <span class="tag">Moyen-Orient</span>
+                        <span class="tag">Asie du Sud-Est</span>
+                        <span class="tag">Amérique Latine</span>
+                    </div>
+                </div>
+
+                <div class="model-section">
+                    <h3>Modèles de Représentation</h3>
+                    <div class="model-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Commission</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Exclusif</strong></td>
+                                    <td>Représentation exclusive sur un territoire défini</td>
+                                    <td>5-10%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Non-exclusif</strong></td>
+                                    <td>Représentation partagée avec d'autres agents</td>
+                                    <td>3-7%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Par produit</strong></td>
+                                    <td>Représentation de lignes de produits spécifiques</td>
+                                    <td>4-8%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Un projet en tête ?</h2>
+            <p class="cta-subtitle">
+                Discutons de vos besoins spécifiques et créons une solution sur mesure
+                pour votre développement international.
+            </p>
+            <div class="hero-buttons">
+                <a href="{% url 'contact' %}" class="btn btn-primary">
+                    <i class="fas fa-comments"></i> Demander un devis
+                </a>
+                <a href="tel:+33123456789" class="btn btn-outline">
+                    <i class="fas fa-phone-alt"></i> 01 23 45 67 89
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Services Detail Styles */
+    .service-detail-card {
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        margin-bottom: 3rem;
+        overflow: hidden;
+        border: 1px solid #f1f5f9;
+    }
+
+    .service-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .service-icon-large {
+        font-size: 3.5rem;
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .service-header h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+
+    .service-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    .service-body {
+        padding: 2.5rem;
+    }
+
+    .service-columns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .service-column h3 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .service-features {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .service-features li {
+        padding: 0.5rem 0;
+        color: var(--gray);
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .service-features li:last-child {
+        border-bottom: none;
+    }
+
+    .service-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .info-card {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        border-left: 4px solid var(--primary);
+    }
+
+    .info-card h4 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .partnership-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .partnership-card {
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: var(--radius);
+        text-align: center;
+        transition: var(--transition);
+        border: 1px solid #e2e8f0;
+    }
+
+    .partnership-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+    }
+
+    .partnership-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .partnership-card h3 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+    }
+
+    .process-section {
+        margin-top: 3rem;
+    }
+
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .process-step {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 800;
+        flex-shrink: 0;
+    }
+
+    .equipment-categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .category-card {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        border-left: 4px solid;
+    }
+
+    .category-card:nth-child(1) {
+        border-color: #3498db;
+    }
+
+    .category-card:nth-child(2) {
+        border-color: #9b59b6;
+    }
+
+    .category-card:nth-child(3) {
+        border-color: #1abc9c;
+    }
+
+    .category-card h3 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .service-included {
+        margin-top: 2rem;
+    }
+
+    .included-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .included-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        padding: 1.5rem;
+        background: white;
+        border-radius: var(--radius);
+        border: 1px solid #e2e8f0;
+        transition: var(--transition);
+    }
+
+    .included-item:hover {
+        border-color: var(--primary);
+        box-shadow: var(--shadow);
+    }
+
+    .included-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .representation-for {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .for-card {
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: var(--radius);
+        border: 1px solid #e2e8f0;
+    }
+
+    .for-card h3 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+    }
+
+    .territories-section {
+        margin-bottom: 3rem;
+    }
+
+    .territory-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .tag {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 0.5rem 1.25rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .model-table {
+        overflow-x: auto;
+        margin-top: 1.5rem;
+    }
+
+    .model-table table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    .model-table th {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 1.2rem;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .model-table td {
+        padding: 1.2rem;
+        border-bottom: 1px solid #f1f5f9;
+        color: var(--gray);
+    }
+
+    .model-table tr:hover {
+        background: #f8fafc;
+    }
+
+    @media (max-width: 768px) {
+        .service-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        .service-columns,
+        .service-info,
+        .partnership-types,
+        .equipment-categories,
+        .included-grid,
+        .representation-for {
+            grid-template-columns: 1fr;
+        }
+
+        .process-steps {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .territory-tags {
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}

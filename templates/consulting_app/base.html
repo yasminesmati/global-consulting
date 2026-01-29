@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Global Business Consulting | Excellence in Regulatory Solutions{% endblock %}</title>
+
+    <!-- Meta SEO -->
+    <meta name="description" content="Expert consulting solutions for pharmaceutical, cosmetic, food, and chemical industries">
+    <meta name="keywords" content="GMP, FDA, HACCP, REACH, ISO, consulting, pharmaceutical, cosmetic, food, chemical">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* ============================================
+           GLOBAL BUSINESS CONSULTING - CSS ULTRA PREMIUM
+           Design Quantum avec Animations 3D et Effets Spéciaux
+        ============================================= */
+
+        :root {
+            /* Couleurs Premium */
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #8b5cf6;
+            --secondary-dark: #7c3aed;
+            --accent: #ec4899;
+            --accent-dark: #db2777;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+
+            /* Gradients Avancés */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            --gradient-light: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%);
+
+            /* Effets Visuels */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --shadow-xxl: 0 25px 50px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 50px rgba(59, 130, 246, 0.3);
+            --shadow-glow-accent: 0 0 50px rgba(236, 72, 153, 0.3);
+            --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+            /* Animations */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Dimensions */
+            --nav-height: 70px;
+            --banner-height: 50px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--darker);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            padding-top: calc(var(--nav-height) + var(--banner-height));
+        }
+
+        /* ============================================
+           EN-TÊTE FIXE - BANNIÈRE + NAVBAR
+        ============================================= */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+            width: 100%;
+        }
+
+        /* Bannière Global Business Consulting */
+        .company-banner-optimized {
+            width: 100%;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.12) 0%,
+                rgba(255, 255, 255, 0.08) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 0;
+            height: var(--banner-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-content-optimized {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner-icon-optimized {
+            font-size: 1.5rem;
+            color: #60a5fa;
+            animation: subtleFloat 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.4));
+        }
+
+        .banner-text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .banner-text-main {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #f0f9ff, #e0f2fe, #dbeafe);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: subtleShine 8s ease-in-out infinite;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-subtitle-optimized {
+            font-size: 0.7rem;
+            color: #93c5fd;
+            letter-spacing: 1px;
+            margin-top: 0.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .banner-gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at 30% 50%,
+                rgba(59, 130, 246, 0.15) 0%,
+                rgba(139, 92, 246, 0.08) 40%,
+                transparent 70%
+            );
+            animation: gradientShift 10s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-2px) rotate(1deg); }
+            66% { transform: translateY(2px) rotate(-1deg); }
+        }
+
+        @keyframes subtleShine {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        /* Navbar Ultra Premium */
+        .navbar-ultra-premium {
+            height: var(--nav-height);
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-ultra-premium.navbar-scrolled {
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.2) 0%,
+                rgba(255, 255, 255, 0.15) 100%);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* Logo Premium */
+        .navbar-brand-premium {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-brand-premium:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .brand-icon-premium {
+            color: #60a5fa;
+            font-size: 1.4rem;
+            animation: quantumGlow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.5));
+        }
+
+        @keyframes quantumGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.5));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.8));
+                transform: scale(1.1);
+            }
+        }
+
+        /* Liens de navigation Premium */
+        .nav-link-premium {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem !important;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9) !important;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+            border: 1px solid transparent;
+            margin: 0 0.1rem;
+        }
+
+        .nav-link-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent);
+            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link-premium:hover::before {
+            left: 100%;
+        }
+
+        .nav-link-premium:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow:
+                0 6px 12px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            color: white !important;
+        }
+
+        .nav-link-premium.active {
+            background: linear-gradient(135deg,
+                rgba(59, 130, 246, 0.3) 0%,
+                rgba(139, 92, 246, 0.2) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: white !important;
+            box-shadow:
+                0 6px 16px rgba(59, 130, 246, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* Indicateur animé pour les liens actifs */
+        .nav-link-premium.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 3px;
+            animation: indicatorPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes indicatorPulse {
+            0%, 100% {
+                width: 20px;
+                opacity: 1;
+            }
+            50% {
+                width: 30px;
+                opacity: 0.8;
+            }
+        }
+
+        /* Barre de recherche Premium */
+        .search-box-premium {
+            position: relative;
+            width: 180px;
+            margin-right: 0.5rem;
+        }
+
+        .search-input-premium {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.07);
+            font-size: 0.85rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input-premium:focus {
+            outline: none;
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 0 0 3px rgba(59, 130, 246, 0.15),
+                0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-icon-premium {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .search-input-premium:focus + .search-icon-premium {
+            color: #60a5fa;
+        }
+
+        /* Bouton panier Premium */
+        .basket-btn-premium {
+            background: linear-gradient(135deg,
+                rgba(59, 130, 246, 0.8) 0%,
+                rgba(139, 92, 246, 0.7) 100%);
+            color: white !important;
+            padding: 0.6rem 1.2rem !important;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 6px 16px rgba(59, 130, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .basket-btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 24px rgba(59, 130, 246, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            color: white !important;
+        }
+
+        .basket-count-premium {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            font-size: 0.65rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: quantumPulse 2s ease-in-out infinite;
+            font-weight: 700;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes quantumPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            50% {
+                transform: scale(1.2);
+                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+            }
+        }
+
+        /* Toggler button Premium */
+        .navbar-toggler-premium {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.4rem;
+            font-size: 1.2rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .navbar-toggler-premium:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Dropdowns Premium */
+        .dropdown-menu-premium {
+            border: none;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 15px;
+            padding: 0.5rem;
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 0.5rem;
+            min-width: 220px;
+            animation: dropdownAppear 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes dropdownAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .dropdown-item-premium {
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            margin: 0.15rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-item-premium:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(5px);
+            padding-left: 1.5rem;
+        }
+
+        /* Flèche dropdown animée */
+        .dropdown-arrow {
+            font-size: 0.6rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link-premium.show .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Background Animated */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            overflow: hidden;
+        }
+
+        .bg-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            animation: floatParticle 20s infinite linear;
+            opacity: 0.1;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - var(--nav-height) - var(--banner-height) - 400px);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Loading Screen Quantum */
+        .loading-global {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity var(--transition-slow), visibility var(--transition-slow);
+        }
+
+        .loader-global {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .particle-global {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            animation: quantumOrbit 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .particle-global:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0s;
+        }
+
+        .particle-global:nth-child(2) {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            animation-delay: -1s;
+            background: var(--gradient-accent);
+        }
+
+        .particle-global:nth-child(3) {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: -2s;
+        }
+
+        @keyframes quantumOrbit {
+            0% {
+                transform: translateX(-50%) rotate(0deg) translateY(50px) rotate(0deg);
+            }
+            100% {
+                transform: translateX(-50%) rotate(360deg) translateY(50px) rotate(-360deg);
+            }
+        }
+
+        /* Footer Quantum */
+        .footer-holographic {
+            background: var(--gradient-dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: auto;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-holographic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23374151' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            animation: gridMove 30s linear infinite;
+        }
+
+        @keyframes gridMove {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
+        }
+
+        /* Back to Top */
+        .back-to-top-global {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-glow);
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            transition: all var(--transition-normal);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .back-to-top-global::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left var(--transition-slow);
+        }
+
+        .back-to-top-global:hover::before {
+            left: 100%;
+        }
+
+        .back-to-top-global.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .back-to-top-global i {
+            position: relative;
+            z-index: 1;
+            animation: bounceArrow 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .navbar-brand-premium {
+                font-size: 1.2rem;
+            }
+
+            .brand-icon-premium {
+                font-size: 1.2rem;
+            }
+
+            .search-box-premium {
+                width: 160px;
+            }
+
+            .banner-text-main {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .search-box-premium {
+                width: 100%;
+                margin: 0.8rem 0;
+                order: 3;
+            }
+
+            .navbar-nav {
+                padding: 0.5rem 0;
+            }
+
+            .nav-link-premium {
+                margin: 0.25rem 0;
+                padding: 0.6rem 1rem !important;
+            }
+
+            .dropdown-menu-premium {
+                margin-top: 0;
+                border-radius: 10px;
+                background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.15) 0%,
+                    rgba(255, 255, 255, 0.1) 100%);
+                backdrop-filter: blur(30px);
+            }
+
+            .banner-text-main {
+                font-size: 1rem;
+            }
+
+            .banner-icon-optimized {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: calc(65px + 45px);
+            }
+
+            .navbar-ultra-premium {
+                height: 65px;
+            }
+
+            .company-banner-optimized {
+                height: 45px;
+            }
+
+            .banner-text-main {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+
+            .banner-subtitle-optimized {
+                font-size: 0.6rem;
+            }
+
+            .navbar-brand-premium {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .brand-icon-premium {
+                font-size: 1rem;
+            }
+
+            .back-to-top-global {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            html {
+                font-size: 14px;
+            }
+
+            .search-input-premium {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem 0.4rem 2.2rem;
+            }
+
+            .search-icon-premium {
+                font-size: 0.8rem;
+                left: 0.8rem;
+            }
+
+            .nav-link-premium {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem !important;
+            }
+
+            .basket-btn-premium {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem;
+            }
+
+            .footer-holographic {
+                padding: 3rem 0 1.5rem;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Background Animated -->
+    <div class="bg-animated" id="bgAnimated"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-global" id="loadingGlobal">
+        <div class="loader-global">
+            <div class="particle-global"></div>
+            <div class="particle-global"></div>
+            <div class="particle-global"></div>
+        </div>
+        <div class="text-light mt-3 fw-bold">GLOBAL BUSINESS CONSULTING</div>
+        <div class="text-light mt-1" style="font-size: 0.9rem;">Quantum Interface Initializing...</div>
+    </div>
+
+    <!-- En-tête fixe avec bannière et navbar -->
+    <header class="site-header">
+        <!-- Bannière Global Business Consulting -->
+        <div class="company-banner-optimized">
+            <div class="banner-content-optimized">
+                <i class="fas fa-atom banner-icon-optimized"></i>
+                <div class="banner-text-container">
+                    <span class="banner-text-main">GlobalConsulting</span>
+                    <span class="banner-subtitle-optimized">Quantum Solutions for Industry</span>
+                </div>
+            </div>
+            <div class="banner-gradient-overlay"></div>
+        </div>
+
+        <!-- Navigation Premium -->
+        <nav class="navbar navbar-ultra-premium navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand-premium" href="{% url 'home' %}">
+                    <i class="fas fa-atom brand-icon-premium"></i>
+                    <span>GBC</span>
+                </a>
+
+                <!-- Barre de recherche Premium -->
+                <div class="search-box-premium d-none d-lg-block">
+                    <i class="fas fa-search search-icon-premium"></i>
+                    <input type="text" class="search-input-premium" placeholder="Search solutions...">
+                </div>
+
+                <!-- Toggler Button Premium -->
+                <button class="navbar-toggler navbar-toggler-premium" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPremiumContent" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu Content Premium -->
+                <div class="collapse navbar-collapse" id="navbarPremiumContent">
+                    <!-- Barre de recherche sur mobile -->
+                    <div class="search-box-premium d-lg-none w-100 my-2">
+                        <i class="fas fa-search search-icon-premium"></i>
+                        <input type="text" class="search-input-premium w-100" placeholder="Search solutions...">
+                    </div>
+
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link-premium {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">
+                                <i class="fas fa-home me-1 d-lg-none"></i>
+                                <span class="d-none d-lg-inline">HOME</span>
+                                <span class="d-lg-none">Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link-premium {% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">
+                                <i class="fas fa-info-circle me-1 d-lg-none"></i>
+                                <span class="d-none d-lg-inline">ABOUT US</span>
+                                <span class="d-lg-none">About</span>
+                            </a>
+                        </li>
+
+                        <!-- PRODUCTS Dropdown Premium -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link-premium dropdown-toggle {% if 'products' in request.path or 'pharma' in request.path or 'cosmetic' in request.path or 'food' in request.path or 'chemical' in request.path %}active{% endif %}" href="#" id="productsDropdownPremium" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-boxes me-1 d-lg-none"></i>
+                                <span class="d-none d-lg-inline">PRODUCTS</span>
+                                <span class="d-lg-none">Products</span>
+                                <i class="fas fa-chevron-down ms-1 dropdown-arrow d-none d-lg-inline"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-premium" aria-labelledby="productsDropdownPremium">
+                                <li>
+                                    <a class="dropdown-item-premium {% if request.path == '/products/' %}active{% endif %}" href="{% url 'products' %}">
+                                        <i class="fas fa-th me-2"></i>
+                                        <span>All Products</span>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item-premium {% if 'pharma' in request.path %}active{% endif %}" href="{% url 'pharma_industry' %}">
+                                        <i class="fas fa-pills me-2"></i>
+                                        <span>Pharma Industry</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item-premium {% if 'cosmetic' in request.path %}active{% endif %}" href="{% url 'cosmetic_industry' %}">
+                                        <i class="fas fa-spa me-2"></i>
+                                        <span>Cosmetic Industry</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item-premium {% if 'food' in request.path %}active{% endif %}" href="{% url 'food_industry' %}">
+                                        <i class="fas fa-utensils me-2"></i>
+                                        <span>Food Industry</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item-premium {% if 'chemical' in request.path %}active{% endif %}" href="{% url 'chemical_industry' %}">
+                                        <i class="fas fa-flask me-2"></i>
+                                        <span>Chemical Industry</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- SERVICES Dropdown Premium -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link-premium dropdown-toggle {% if 'trainings' in request.path or 'documents' in request.path %}active{% endif %}" href="#" id="servicesDropdownPremium" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-cogs me-1 d-lg-none"></i>
+                                <span class="d-none d-lg-inline">SERVICES</span>
+                                <span class="d-lg-none">Services</span>
+                                <i class="fas fa-chevron-down ms-1 dropdown-arrow d-none d-lg-inline"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-premium" aria-labelledby="servicesDropdownPremium">
+                                <li>
+                                    <a class="dropdown-item-premium {% if 'trainings' in request.path %}active{% endif %}" href="{% url 'trainings' %}">
+                                        <i class="fas fa-graduation-cap me-2"></i>
+                                        <span>Professional Training</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item-premium {% if 'documents' in request.path %}active{% endif %}" href="{% url 'documents' %}">
+                                        <i class="fas fa-file-alt me-2"></i>
+                                        <span>Document Templates</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link-premium {% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">
+                                <i class="fas fa-envelope me-1 d-lg-none"></i>
+                                <span class="d-none d-lg-inline">CONTACT US</span>
+                                <span class="d-lg-none">Contact</span>
+                            </a>
+                        </li>
+
+                      <li class="nav-item">
+    <a class="nav-link-premium" href="{% url 'basket' %}">
+        <i class="fas fa-shopping-basket me-1"></i>
+        <span class="d-none d-lg-inline">PANIER</span>
+        <span class="d-lg-none">Panier</span>
+        <span id="basket-count" class="badge bg-danger rounded-pill ms-1">
+            {{ basket_count|default:0 }}
+        </span>
+    </a>
+</li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-2">
+        {% block content %}
+        <!-- Le contenu spécifique de chaque page s'affichera ici -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer Quantum -->
+    <footer class="footer-holographic">
+        <div class="container position-relative">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h3 class="text-white mb-3" style="font-size: 1.5rem; font-weight: 700;">
+                        <i class="fas fa-atom me-2"></i>
+                        Global Business Consulting
+                    </h3>
+                    <p class="mb-3" style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">
+                        Quantum solutions for pharmaceutical, cosmetic, food, and chemical industries.
+                        Experts in regulatory compliance and quality systems.
+                    </p>
+                    <div class="social-links d-flex gap-2">
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle social-btn" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle social-btn" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle social-btn" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle social-btn" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h4 class="text-white mb-3" style="font-size: 1.1rem; font-weight: 600;">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'home' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Home</a></li>
+                        <li class="mb-2"><a href="{% url 'about' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">About Us</a></li>
+                        <li class="mb-2"><a href="{% url 'products' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Products</a></li>
+                        <li class="mb-2"><a href="{% url 'trainings' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Training</a></li>
+                        <li><a href="{% url 'documents' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Templates</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="text-white mb-3" style="font-size: 1.1rem; font-weight: 600;">Industries</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'pharma_industry' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Pharmaceutical</a></li>
+                        <li class="mb-2"><a href="{% url 'cosmetic_industry' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Cosmetic</a></li>
+                        <li class="mb-2"><a href="{% url 'food_industry' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Food & Beverage</a></li>
+                        <li><a href="{% url 'chemical_industry' %}" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">Chemical</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="text-white mb-3" style="font-size: 1.1rem; font-weight: 600;">Contact Info</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">
+                                <i class="fas fa-map-marker-alt me-2"></i>
+                                Rue Habchi N°110<br>16045 Birtouta Algérie
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="tel:+213540335314" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">
+                                <i class="fas fa-phone me-2"></i>
+                                +213 540 33 53 14
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="mailto:contact@global_business_consulting.com" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">
+                                <i class="fas fa-envelope me-2"></i>
+                                contact@global_business_consulting.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-light text-decoration-none footer-link" style="font-size: 0.9rem;">
+                                <i class="fas fa-clock me-2"></i>
+                                Dim - Jeu : 9:00-20:00
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="row mt-4 pt-3 border-top border-secondary">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0" style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem;">
+                        &copy; 2026 Global Business Consulting. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">
+                        <a href="#" style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; text-decoration: none; margin-right: 1rem;" class="footer-link">
+                            Privacy Policy
+                        </a>
+                        <a href="#" style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; text-decoration: none;" class="footer-link">
+                            Terms of Service
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top-global" id="backToTopGlobal">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+            disable: 'mobile'
+        });
+
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loadingGlobal');
+
+            gsap.to(loading, {
+                opacity: 0,
+                duration: 0.8,
+                delay: 1,
+                onComplete: function() {
+                    loading.style.display = 'none';
+
+                    // Animate header on page load
+                    gsap.from('.site-header', {
+                        y: -100,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: 'power3.out'
+                    });
+                }
+            });
+        });
+
+        // Background Particles
+        function createParticles() {
+            const bg = document.getElementById('bgAnimated');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('bg-particle');
+
+                // Random properties
+                const size = Math.random() * 60 + 20;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 30;
+                const duration = Math.random() * 40 + 20;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.opacity = Math.random() * 0.1 + 0.05;
+                particle.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+
+                bg.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar-ultra-premium');
+
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+
+            // Add scrolled class for shadow
+            if (currentScroll > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTopGlobal');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            gsap.to(window, {
+                scrollTo: 0,
+                duration: 1,
+                ease: 'power3.inOut'
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input-premium');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const query = this.value.trim();
+                    if (query) {
+                        // Create a search animation
+                        gsap.to(searchInput, {
+                            scale: 0.9,
+                            duration: 0.2,
+                            yoyo: true,
+                            repeat: 1,
+                            ease: 'power2.inOut',
+                            onComplete: () => {
+                                // Redirect to search results page
+                                window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        // Footer link animations
+        const footerLinks = document.querySelectorAll('.footer-link');
+        footerLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    color: 'var(--primary-light)',
+                    duration: 0.2,
+                    ease: 'power2.out'
+                });
+            });
+
+            link.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    duration: 0.2,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Social button animations
+        const socialBtns = document.querySelectorAll('.social-btn');
+        socialBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.1,
+                    rotation: 360,
+                    duration: 0.3,
+                    ease: 'back.out(1.7)'
+                });
+            });
+
+            btn.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    rotation: 0,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Dropdown animations
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('show.bs.dropdown', function() {
+                const menu = this.querySelector('.dropdown-menu-premium');
+                gsap.fromTo(menu,
+                    { opacity: 0, scale: 0.9 },
+                    { opacity: 1, scale: 1, duration: 0.2, ease: 'power2.out' }
+                );
+            });
+        });
+
+        // Active state management for navigation
+        function updateActiveNav() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link-premium');
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+
+                // Check if this link matches current path
+                const href = link.getAttribute('href');
+                if (href === currentPath) {
+                    link.classList.add('active');
+                }
+
+                // Check for partial matches (for dropdown items)
+                if (currentPath.includes(href) && href !== '/') {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Update active nav on page load and navigation
+        document.addEventListener('DOMContentLoaded', updateActiveNav);
+        window.addEventListener('popstate', updateActiveNav);
+
+        // Hover effects for nav links
+        const navLinks = document.querySelectorAll('.nav-link-premium');
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'back.out(1.7)'
+                });
+            });
+
+            link.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Quantum console message
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('%c🌐 Global Business Consulting - Quantum Interface Active 🌐',
+                'font-size: 16px; background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899); color: white; padding: 10px; border-radius: 5px;');
+            console.log('%c✨ Advanced quantum effects initialized ✨',
+                'color: #60a5fa; font-weight: bold;');
+
+            // Initialize particle system
+            setInterval(() => {
+                createParticles();
+            }, 15000); // Add new particles every 15 seconds
+        });
+
+        // Parallax effect for background
+        gsap.to('.bg-particle', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            y: (i, target) => -ScrollTrigger.maxScroll(window) * 0.5,
+            ease: "none"
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

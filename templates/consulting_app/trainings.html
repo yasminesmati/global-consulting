@@ -1,0 +1,1432 @@
+{% extends "consulting_app/base.html" %}
+{% load static %}
+
+{% block title %}Formations Professionnelles - Global Consulting{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="training-hero">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-badge">
+                <i class="fas fa-graduation-cap"></i> Développement des Compétences
+            </span>
+            <h1 class="hero-title">Formations Professionnelles</h1>
+            <p class="hero-subtitle">
+                Développez l'expertise de vos équipes avec nos programmes de formation
+                animés par des professionnels du secteur industriel
+            </p>
+            <div class="hero-buttons">
+                <a href="#programs" class="btn btn-primary">
+                    <i class="fas fa-list-alt"></i> Voir les formations
+                </a>
+                <a href="#calendar" class="btn btn-outline-light">
+                    <i class="fas fa-calendar-alt"></i> Calendrier des sessions
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Training Programs -->
+<section id="programs" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Programmes de Formation</h2>
+            <p class="section-subtitle">
+                Formations certifiantes animées par nos experts du secteur
+            </p>
+        </div>
+
+        <div class="programs-grid">
+            <!-- GMP Training -->
+            <div class="program-card">
+                <div class="program-header">
+                    <div class="program-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="program-badge">Populaire</div>
+                </div>
+                <div class="program-content">
+                    <h3>Formation GMP</h3>
+                    <p class="program-desc">Maîtrisez les Bonnes Pratiques de Fabrication pour les industries pharmaceutique, cosmétique et alimentaire</p>
+
+                    <div class="program-details">
+                        <div class="detail">
+                            <i class="far fa-clock"></i>
+                            <span>2 jours intensifs</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-users"></i>
+                            <span>Max 15 participants</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-euro-sign"></i>
+                            <span>850€ HT/personne</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-language"></i>
+                            <span>Français/Anglais</span>
+                        </div>
+                    </div>
+
+                    <div class="program-features">
+                        <h4>Contenu du programme :</h4>
+                        <ul>
+                            <li>Exigences documentaires et traçabilité</li>
+                            <li>Procédures de contrôle qualité avancées</li>
+                            <li>Préparation et gestion des audits</li>
+                            <li>Conformité réglementaire internationale</li>
+                            <li>Validation des processus de production</li>
+                            <li>Gestion des non-conformités</li>
+                        </ul>
+                    </div>
+
+                    <div class="program-actions">
+                        <a href="{% url 'register' %}?formation=gmp" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> S'inscrire
+                        </a>
+                        <button class="btn btn-outline download-brochure" data-formation="gmp">
+                            <i class="fas fa-download"></i> Télécharger la brochure
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HACCP Training -->
+            <div class="program-card featured">
+                <div class="program-header">
+                    <div class="program-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="program-badge">Certifiante</div>
+                </div>
+                <div class="program-content">
+                    <h3>Formation HACCP Avancée</h3>
+                    <p class="program-desc">Maîtrisez la mise en œuvre complète du système HACCP pour l'industrie alimentaire</p>
+
+                    <div class="program-details">
+                        <div class="detail">
+                            <i class="far fa-clock"></i>
+                            <span>3 jours complets</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-users"></i>
+                            <span>Max 12 participants</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-euro-sign"></i>
+                            <span>1 200€ HT/personne</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-language"></i>
+                            <span>Français</span>
+                        </div>
+                    </div>
+
+                    <div class="program-features">
+                        <h4>Points couverts :</h4>
+                        <ul>
+                            <li>Analyse des dangers biologiques, chimiques et physiques</li>
+                            <li>Identification des points critiques de contrôle</li>
+                            <li>Mise en place des procédures de surveillance</li>
+                            <li>Activités de vérification et validation</li>
+                            <li>Élaboration du plan HACCP complet</li>
+                            <li>Actions correctives et préventives</li>
+                            <li>Mise à jour et maintenance du système</li>
+                        </ul>
+                    </div>
+
+                    <div class="program-actions">
+                        <a href="{% url 'register' %}?formation=haccp" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> S'inscrire
+                        </a>
+                        <button class="btn btn-outline download-brochure" data-formation="haccp">
+                            <i class="fas fa-file-alt"></i> Programme détaillé
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REACH Training -->
+            <div class="program-card">
+                <div class="program-header">
+                    <div class="program-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="program-badge">Nouveau</div>
+                </div>
+                <div class="program-content">
+                    <h3>Formation REACH & CLP</h3>
+                    <p class="program-desc">Conformité réglementaire complète pour les substances chimiques</p>
+
+                    <div class="program-details">
+                        <div class="detail">
+                            <i class="far fa-clock"></i>
+                            <span>1.5 jours intensifs</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-users"></i>
+                            <span>Max 20 participants</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-euro-sign"></i>
+                            <span>650€ HT/personne</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-language"></i>
+                            <span>Français/Anglais</span>
+                        </div>
+                    </div>
+
+                    <div class="program-features">
+                        <h4>Modules de formation :</h4>
+                        <ul>
+                            <li>Exigences d'enregistrement REACH</li>
+                            <li>Préparation des Fiches de Données de Sécurité</li>
+                            <li>Développement des scénarios d'exposition</li>
+                            <li>Stratégies de conformité avancées</li>
+                            <li>Classification et étiquetage CLP</li>
+                            <li>Communication dans la chaîne d'approvisionnement</li>
+                            <li>Mise à jour des obligations réglementaires</li>
+                        </ul>
+                    </div>
+
+                    <div class="program-actions">
+                        <a href="{% url 'register' %}?formation=reach" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> S'inscrire
+                        </a>
+                        <button class="btn btn-outline download-brochure" data-formation="reach">
+                            <i class="fas fa-download"></i> Télécharger la brochure
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Training Calendar -->
+<section id="calendar" class="section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Calendrier des Sessions</h2>
+            <p class="section-subtitle">
+                Prochaines sessions de formation programmées
+            </p>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-card">
+                <div class="calendar-header">
+                    <div class="calendar-date">
+                        <div class="date-day">15-16</div>
+                        <div class="date-month">JAN</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4>Fondamentaux GMP</h4>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Centre de Formation Paris</p>
+                    </div>
+                    <div class="calendar-status available">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Places disponibles</span>
+                    </div>
+                </div>
+                <div class="calendar-body">
+                    <p>Formation complète sur les bonnes pratiques de fabrication avec études de cas réels</p>
+                    <a href="{% url 'register' %}?formation=gmp&date=15-16-jan" class="btn btn-sm btn-primary">S'inscrire maintenant</a>
+                </div>
+            </div>
+
+            <div class="calendar-card">
+                <div class="calendar-header">
+                    <div class="calendar-date">
+                        <div class="date-day">22-24</div>
+                        <div class="date-month">JAN</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4>Implémentation HACCP</h4>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Centre de Formation Lyon</p>
+                    </div>
+                    <div class="calendar-status limited">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Places limitées</span>
+                    </div>
+                </div>
+                <div class="calendar-body">
+                    <p>Formation certifiante pour responsables qualité avec ateliers pratiques</p>
+                    <a href="{% url 'register' %}?formation=haccp&date=22-24-jan" class="btn btn-sm btn-primary">Réserver ma place</a>
+                </div>
+            </div>
+
+            <div class="calendar-card">
+                <div class="calendar-header">
+                    <div class="calendar-date">
+                        <div class="date-day">29</div>
+                        <div class="date-month">JAN</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4>Réglementation Cosmétique</h4>
+                        <p class="location"><i class="fas fa-globe"></i> Formation en ligne</p>
+                    </div>
+                    <div class="calendar-status available">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Disponible</span>
+                    </div>
+                </div>
+                <div class="calendar-body">
+                    <p>Webinaire interactif sur la réglementation cosmétique avec experts internationaux</p>
+                    <a href="{% url 'register' %}?formation=cosmetique&date=29-jan" class="btn btn-sm btn-primary">Participer au webinaire</a>
+                </div>
+            </div>
+
+            <div class="calendar-card">
+                <div class="calendar-header">
+                    <div class="calendar-date">
+                        <div class="date-day">5-6</div>
+                        <div class="date-month">FÉV</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4>Formation Auditeur Interne</h4>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Centre de Formation Lille</p>
+                    </div>
+                    <div class="calendar-status full">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Session complète</span>
+                    </div>
+                </div>
+                <div class="calendar-body">
+                    <p>Formation intensive pour devenir auditeur interne qualifié selon les normes internationales</p>
+                    <button class="btn btn-sm btn-outline join-waitlist" data-session="auditeur-fev">
+                        <i class="fas fa-user-plus"></i> Rejoindre la liste d'attente
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button class="btn btn-outline" id="fullCalendarBtn">
+                <i class="fas fa-calendar-alt"></i> Consulter le calendrier complet 2024
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Online Training Options -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Formations en Ligne</h2>
+            <p class="section-subtitle">
+                Des solutions flexibles adaptées à vos contraintes de temps et de déplacement
+            </p>
+        </div>
+
+        <div class="online-options">
+            <div class="option-card">
+                <div class="option-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="option-content">
+                    <h3>Cours en Autonomie</h3>
+                    <p>Formez-vous à votre rythme avec nos modules pré-enregistrés et ressources pédagogiques</p>
+                    <div class="option-price">À partir de 299€ HT</div>
+                    <ul class="option-features">
+                        <li>Accès 24/7 pendant 3 mois minimum</li>
+                        <li>Supports de cours téléchargeables</li>
+                        <li>Quiz et évaluations interactives</li>
+                        <li>Certificat de participation délivré</li>
+                        <li>Forum de discussion avec experts</li>
+                        <li>Mises à jour régulières du contenu</li>
+                    </ul>
+                    <button class="btn btn-outline w-100 view-catalog-btn">
+                        <i class="fas fa-book-open"></i> Voir le catalogue
+                    </button>
+                </div>
+            </div>
+
+            <div class="option-card featured">
+                <div class="option-badge">Recommandé</div>
+                <div class="option-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="option-content">
+                    <h3>Webinaires Interactifs</h3>
+                    <p>Formations en direct avec nos experts, en temps réel et avec interactivité maximale</p>
+                    <div class="option-price">À partir de 499€ HT</div>
+                    <ul class="option-features">
+                        <li>Sessions en direct avec formateurs experts</li>
+                        <li>Interaction en temps réel (Q&R, sondages)</li>
+                        <li>Support individuel personnalisé</li>
+                        <li>Certificat de formation officiel</li>
+                        <li>Enregistrement disponible 30 jours</li>
+                        <li>Exercices pratiques en groupe</li>
+                    </ul>
+                    <a href="{% url 'register' %}?formation=webinaire" class="btn btn-primary w-100">
+                        <i class="fas fa-video"></i> Découvrir les prochains webinaires
+                    </a>
+                </div>
+            </div>
+
+            <div class="option-card">
+                <div class="option-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="option-content">
+                    <h3>Classe Virtuelle Premium</h3>
+                    <p>Formation complète à distance avec accompagnement personnalisé et certification</p>
+                    <div class="option-price">À partir de 799€ HT</div>
+                    <ul class="option-features">
+                        <li>Programme de formation complet (20h+)</li>
+                        <li>Exercices pratiques et études de cas</li>
+                        <li>Accompagnement personnalisé par expert</li>
+                        <li>Certification officielle reconnue</li>
+                        <li>Accès à la communauté d'experts</li>
+                        <li>Support post-formation inclus</li>
+                    </ul>
+                    <a href="{% url 'register' %}?formation=classe-virtuelle" class="btn btn-outline w-100">
+                        <i class="fas fa-user-graduate"></i> Demander une démo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Custom Training -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="custom-training">
+            <div class="custom-content">
+                <h2 class="section-title">Formations Sur Mesure</h2>
+                <p class="section-subtitle">
+                    Besoin d'une formation adaptée aux spécificités de votre entreprise, vos processus et vos équipes ?
+                </p>
+                <div class="custom-features">
+                    <div class="feature">
+                        <i class="fas fa-cogs"></i>
+                        <div class="feature-content">
+                            <h4>Personnalisation Complète</h4>
+                            <p>Contenu adapté à vos processus, équipements et challenges spécifiques</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <div class="feature-content">
+                            <h4>Groupes Privés Exclusifs</h4>
+                            <p>Formation dédiée uniquement à vos équipes, dans vos locaux ou à distance</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-industry"></i>
+                        <div class="feature-content">
+                            <h4>Sur Site ou à Distance</h4>
+                            <p>Flexibilité totale pour l'organisation selon vos contraintes opérationnelles</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-certificate"></i>
+                        <div class="feature-content">
+                            <h4>Certification Interne</h4>
+                            <p>Développement de programmes certifiants spécifiques à votre entreprise</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'contact' %}?sujet=formation-sur-mesure" class="btn btn-primary btn-lg">
+                    <i class="fas fa-comments"></i> Demander un Devis Personnalisé
+                </a>
+            </div>
+            <div class="custom-image">
+                <div class="image-placeholder">
+                    <i class="fas fa-chart-line"></i>
+                    <p>Formation 100% adaptée<br>à vos besoins spécifiques</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Prêt à Développer l'Expertise de Vos Équipes ?</h2>
+            <p class="cta-subtitle">
+                Contactez notre département formation pour une proposition personnalisée et adaptée à vos objectifs
+            </p>
+            <div class="cta-buttons">
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-envelope"></i> Contacter le Département Formation
+                </a>
+                <a href="tel:+213540335314" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-phone-alt"></i> +213 540 33 53 14
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Notification Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white">
+            <i class="fas fa-check-circle me-2"></i>
+            <strong class="me-auto">Téléchargement réussi</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-dark text-white">
+            La brochure a été téléchargée avec succès.
+        </div>
+    </div>
+</div>
+
+<!-- PDF Viewer Modal -->
+<div class="modal fade pdf-modal" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Téléchargement de brochure</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="pdf-viewer">
+                    <iframe id="pdfFrame" src="" title="Brochure PDF"></iframe>
+                </div>
+                <div class="text-center mt-4">
+                    <p class="text-muted mb-3">Téléchargez la brochure complète pour plus de détails</p>
+                    <div class="download-options">
+                        <button class="btn btn-primary" id="downloadPdfBtn">
+                            <i class="fas fa-download"></i> Télécharger le PDF
+                        </button>
+                        <button class="btn btn-outline" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Fermer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Full Calendar Modal -->
+<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="calendarModalLabel">Calendrier complet des formations 2024</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center p-5">
+                    <i class="fas fa-calendar-alt fa-4x text-primary mb-4"></i>
+                    <h4 class="mb-3">Calendrier 2024</h4>
+                    <p class="text-muted mb-4">Téléchargez le calendrier complet au format PDF</p>
+                    <button class="btn btn-primary" id="downloadCalendarBtn">
+                        <i class="fas fa-download"></i> Télécharger le calendrier (PDF)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Catalogue Modal -->
+<div class="modal fade" id="catalogueModal" tabindex="-1" aria-labelledby="catalogueModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="catalogueModalLabel">Catalogue Formations en Ligne</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center p-5">
+                    <i class="fas fa-book-open fa-4x text-primary mb-4"></i>
+                    <h4 class="mb-3">Catalogue Complet</h4>
+                    <p class="text-muted mb-4">Découvrez tous nos programmes de formation en ligne disponibles</p>
+                    <button class="btn btn-primary" id="downloadCatalogueBtn">
+                        <i class="fas fa-download"></i> Télécharger le catalogue (PDF)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Training Page Styles - Simplified Version */
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #1d4ed8;
+    --secondary: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --dark: #0f172a;
+    --light: #f8fafc;
+}
+
+/* Hero Section */
+.training-hero {
+    background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%);
+    color: white;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.training-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Section Styles */
+.section {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Programs Grid */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.program-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.program-card.featured {
+    border: 2px solid var(--primary);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.15);
+}
+
+.program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.program-header {
+    position: relative;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.program-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.program-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.program-content {
+    padding: 30px;
+}
+
+.program-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.program-desc {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.program-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.detail i {
+    color: var(--primary);
+}
+
+.program-features h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.program-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+}
+
+.program-features li {
+    padding: 5px 0;
+    color: #64748b;
+    position: relative;
+    padding-left: 25px;
+}
+
+.program-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+}
+
+.program-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-outline-light {
+    background: transparent;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.btn-lg {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Calendar */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.calendar-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.calendar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.calendar-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.calendar-date {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.date-day {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.date-month {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.calendar-info {
+    flex: 1;
+}
+
+.calendar-info h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.location {
+    color: #64748b;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.calendar-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 50px;
+}
+
+.calendar-status.available {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.calendar-status.limited {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.calendar-status.full {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+.calendar-body {
+    padding: 20px;
+}
+
+.calendar-body p {
+    color: #64748b;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Online Options */
+.online-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.option-card {
+    background: white;
+    border-radius: 15px;
+    padding: 35px 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    text-align: center;
+}
+
+.option-card.featured {
+    border: 2px solid var(--primary);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.15);
+}
+
+.option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.option-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+}
+
+.option-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 25px;
+}
+
+.option-content h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.option-content > p {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.option-price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 25px;
+}
+
+.option-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+    text-align: left;
+}
+
+.option-features li {
+    padding: 8px 0;
+    color: #64748b;
+    position: relative;
+    padding-left: 25px;
+}
+
+.option-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+}
+
+/* Custom Training */
+.custom-training {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.custom-content {
+    padding-right: 20px;
+}
+
+.custom-content .section-title {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.custom-content .section-subtitle {
+    text-align: left;
+    margin: 0 0 40px 0;
+}
+
+.custom-features {
+    margin-bottom: 40px;
+}
+
+.feature {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.feature i {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.feature h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.feature p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.custom-image {
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.image-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.image-placeholder p {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.cta-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* PDF Viewer */
+.pdf-viewer {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+    min-height: 400px;
+}
+
+.pdf-viewer iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+.download-options {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .custom-training {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .custom-content {
+        padding-right: 0;
+    }
+
+    .custom-content .section-title,
+    .custom-content .section-subtitle {
+        text-align: center;
+    }
+
+    .custom-image {
+        height: 300px;
+        order: -1;
+    }
+
+    .programs-grid,
+    .online-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .training-hero {
+        padding: 60px 0;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons,
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .calendar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .program-details,
+    .program-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .feature {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Brochure data
+    const brochures = {
+        'gmp': {
+            title: 'Brochure Formation GMP',
+            fileName: 'Brochure_Formation_GMP_2024.pdf'
+        },
+        'haccp': {
+            title: 'Programme Détaillé Formation HACCP',
+            fileName: 'Programme_Formation_HACCP_2024.pdf'
+        },
+        'reach': {
+            title: 'Brochure Formation REACH & CLP',
+            fileName: 'Brochure_Formation_REACH_CLP_2024.pdf'
+        }
+    };
+
+    // Download brochure buttons
+    const downloadButtons = document.querySelectorAll('.download-brochure');
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const formationType = this.getAttribute('data-formation');
+            const brochure = brochures[formationType];
+
+            if (brochure) {
+                // Show toast notification
+                const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+                const toastBody = document.querySelector('#notificationToast .toast-body');
+                toastBody.textContent = `Téléchargement de "${brochure.fileName}" en cours...`;
+                toast.show();
+
+                // Simulate download
+                setTimeout(() => {
+                    toastBody.textContent = `"${brochure.fileName}" téléchargé avec succès !`;
+
+                    // Create temporary download link
+                    const link = document.createElement('a');
+                    link.href = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+                    link.download = brochure.fileName;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }, 1000);
+            }
+        });
+    });
+
+    // View catalog button
+    const viewCatalogBtn = document.querySelector('.view-catalog-btn');
+    if (viewCatalogBtn) {
+        viewCatalogBtn.addEventListener('click', function() {
+            const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+            const toastBody = document.querySelector('#notificationToast .toast-body');
+            toastBody.textContent = "Téléchargement du catalogue en cours...";
+            toast.show();
+
+            setTimeout(() => {
+                toastBody.textContent = "Catalogue téléchargé avec succès !";
+
+                const link = document.createElement('a');
+                link.href = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+                link.download = 'Catalogue_Formations_2024.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 1000);
+        });
+    }
+
+    // Full calendar button
+    const fullCalendarBtn = document.getElementById('fullCalendarBtn');
+    if (fullCalendarBtn) {
+        fullCalendarBtn.addEventListener('click', function() {
+            const calendarModal = new bootstrap.Modal(document.getElementById('calendarModal'));
+            calendarModal.show();
+        });
+    }
+
+    // Download calendar button
+    const downloadCalendarBtn = document.getElementById('downloadCalendarBtn');
+    if (downloadCalendarBtn) {
+        downloadCalendarBtn.addEventListener('click', function() {
+            const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+            const toastBody = document.querySelector('#notificationToast .toast-body');
+            toastBody.textContent = "Téléchargement du calendrier en cours...";
+            toast.show();
+
+            setTimeout(() => {
+                toastBody.textContent = "Calendrier téléchargé avec succès !";
+
+                const link = document.createElement('a');
+                link.href = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+                link.download = 'Calendrier_Formations_2024.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Close modal
+                const calendarModal = bootstrap.Modal.getInstance(document.getElementById('calendarModal'));
+                calendarModal.hide();
+            }, 1000);
+        });
+    }
+
+    // Join waitlist buttons
+    const waitlistButtons = document.querySelectorAll('.join-waitlist');
+    waitlistButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const session = this.getAttribute('data-session');
+            const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+            const toastBody = document.querySelector('#notificationToast .toast-body');
+            toastBody.textContent = `Vous avez été ajouté à la liste d'attente pour la session ${session}.`;
+            toast.show();
+        });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Hover animations for cards
+    const cards = document.querySelectorAll('.program-card, .calendar-card, .option-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Initialize Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
+{% endblock %}

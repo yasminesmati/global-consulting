@@ -1,0 +1,595 @@
+{% extends "consulting_app/base.html" %}
+{% load static %}
+
+{% block title %}Inscription - Global Consulting{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Styles spécifiques à la page d'inscription */
+    :root {
+        --primary: #3b82f6;
+        --primary-dark: #1d4ed8;
+        --secondary: #8b5cf6;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --dark: #0f172a;
+        --light: #f8fafc;
+        --radius: 12px;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-hero {
+        background: linear-gradient(135deg, var(--dark) 0%, rgba(30, 41, 59, 0.95) 100%);
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .register-card {
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .register-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .register-header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .register-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 0 auto 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn-register {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 1.1rem;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .btn-register:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+    }
+
+    .benefits-list {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+    }
+
+    .benefits-list li {
+        padding: 0.75rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--dark);
+    }
+
+    .benefits-list li i {
+        color: var(--success);
+        font-size: 1.2rem;
+    }
+
+    .notification {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        z-index: 9999;
+        min-width: 300px;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        display: none;
+        animation: slideIn 0.3s ease forwards;
+    }
+
+    .notification.success {
+        background: white;
+        border-left: 4px solid var(--success);
+    }
+
+    .notification.info {
+        background: white;
+        border-left: 4px solid var(--primary);
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .loader {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid var(--primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .formation-badge {
+        display: inline-block;
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--primary);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Notification System (cachée par défaut) -->
+<div id="notification" class="notification" style="display: none;">
+    <div class="d-flex align-items-start">
+        <div class="me-3">
+            <i id="notification-icon" class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+        </div>
+        <div>
+            <h5 id="notification-title" class="mb-1">Titre</h5>
+            <p id="notification-message" class="mb-0">Message</p>
+        </div>
+        <button type="button" class="btn-close ms-auto" onclick="hideNotification()"></button>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay">
+    <div class="loader"></div>
+</div>
+
+<!-- Hero Section -->
+<div class="register-hero">
+    <div class="container">
+        <h1 class="display-5 fw-bold mb-3">Rejoignez Global Consulting</h1>
+        <p class="lead mb-0">Accédez à nos formations exclusives et ressources professionnelles</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Formulaire d'inscription -->
+        <div class="col-lg-8">
+            <div class="register-card">
+                <div class="register-header">
+                    <div class="register-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2 class="fw-bold mb-2">Créer un Compte</h2>
+                    <p class="mb-0 opacity-90">Remplissez le formulaire ci-dessous pour vous inscrire</p>
+                </div>
+
+                <div class="p-4 p-md-5">
+                    <!-- Affichage de la formation sélectionnée -->
+                    {% if request.GET.formation %}
+                    <div class="formation-badge">
+                        <i class="fas fa-graduation-cap me-2"></i>
+                        Inscription à :
+                        {% if request.GET.formation == 'gmp' %}Formation GMP
+                        {% elif request.GET.formation == 'haccp' %}Formation HACCP
+                        {% elif request.GET.formation == 'reach' %}Formation REACH & CLP
+                        {% elif request.GET.formation == 'cosmetique' %}Réglementation Cosmétique
+                        {% elif request.GET.formation == 'webinaire' %}Webinaire Interactif
+                        {% elif request.GET.formation == 'classe-virtuelle' %}Classe Virtuelle
+                        {% elif request.GET.formation == 'sur-mesure' %}Formation Sur Mesure
+                        {% else %}{{ request.GET.formation|title }}
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <form id="registrationForm" method="POST" action="{% url 'register' %}">
+                        {% csrf_token %}
+
+                        <!-- Champ caché pour la formation -->
+                        <input type="hidden" name="formation" value="{{ request.GET.formation }}">
+                        <input type="hidden" name="session_date" value="{{ request.GET.date }}">
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label">Prénom *</label>
+                                <input type="text" name="first_name" class="form-control" required
+                                       placeholder="Votre prénom">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label">Nom *</label>
+                                <input type="text" name="last_name" class="form-control" required
+                                       placeholder="Votre nom">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label">Email Professionnel *</label>
+                                <input type="email" name="email" class="form-control" required
+                                       placeholder="exemple@entreprise.com">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label">Téléphone</label>
+                                <input type="tel" name="phone" class="form-control"
+                                       placeholder="+213 XX XX XX XX">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Entreprise / Organisation</label>
+                            <input type="text" name="company" class="form-control"
+                                   placeholder="Nom de votre entreprise">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label">Mot de passe *</label>
+                                <input type="password" name="password" class="form-control" required
+                                       placeholder="Minimum 8 caractères">
+                                <small class="text-muted">Minimum 8 caractères</small>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label">Confirmer le mot de passe *</label>
+                                <input type="password" name="confirm_password" class="form-control" required
+                                       placeholder="Retapez votre mot de passe">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Secteur d'activité *</label>
+                            <select name="industry" class="form-control" required>
+                                <option value="">Sélectionnez votre secteur</option>
+                                <option value="pharma">Pharmaceutique</option>
+                                <option value="cosmetic">Cosmétique</option>
+                                <option value="food">Agroalimentaire</option>
+                                <option value="chemical">Chimique</option>
+                                <option value="medical">Médical</option>
+                                <option value="biotech">Biotechnologie</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+
+                        <!-- Informations sur la formation (si sélectionnée) -->
+                        {% if request.GET.formation %}
+                        <div class="form-group">
+                            <label class="form-label">Informations complémentaires</label>
+                            <textarea name="additional_info" class="form-control" rows="3"
+                                      placeholder="Précisez vos attentes ou besoins spécifiques..."></textarea>
+                        </div>
+                        {% endif %}
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    J'accepte les <a href="#" class="text-decoration-none">conditions d'utilisation</a>
+                                    et la <a href="#" class="text-decoration-none">politique de confidentialité</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="newsletter" id="newsletter">
+                                <label class="form-check-label" for="newsletter">
+                                    Je souhaite recevoir les newsletters et offres spéciales
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-register">
+                            <i class="fas fa-user-plus me-2"></i> Créer mon compte
+                        </button>
+
+                        <div class="text-center mt-3">
+                            <p class="text-muted mb-0">
+                                Déjà inscrit ?
+                                <a href="#" class="text-decoration-none fw-bold" onclick="showLoginNotification()">
+                                    Connectez-vous ici
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avantages -->
+        <div class="col-lg-4 mt-5 mt-lg-0">
+            <div class="register-card h-100">
+                <div class="p-4">
+                    <h3 class="fw-bold mb-4">Avantages de l'inscription</h3>
+                    <ul class="benefits-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Accès aux formations</strong>
+                                <small class="text-muted d-block">Réservez vos places</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Templates exclusifs</strong>
+                                <small class="text-muted d-block">Documents professionnels</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Support prioritaire</strong>
+                                <small class="text-muted d-block">Assistance dédiée</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Réductions membres</strong>
+                                <small class="text-muted d-block">-10% sur les formations</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Ressources gratuites</strong>
+                                <small class="text-muted d-block">Guides et checklists</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Certifications</strong>
+                                <small class="text-muted d-block">Attestations officielles</small>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="mt-4">
+                        <h5 class="fw-bold mb-3">Besoin d'aide ?</h5>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'contact' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-envelope me-2"></i> Nous contacter
+                            </a>
+                            <a href="tel:+213540335314" class="btn btn-outline-secondary">
+                                <i class="fas fa-phone me-2"></i> +213 540 33 53 14
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Fonctions de notification
+    function showNotification(type, title, message) {
+        const notification = document.getElementById('notification');
+        const icon = document.getElementById('notification-icon');
+        const notificationTitle = document.getElementById('notification-title');
+        const notificationMessage = document.getElementById('notification-message');
+
+        // Définir le style selon le type
+        notification.className = 'notification ' + type;
+
+        // Définir l'icône selon le type
+        if (type === 'success') {
+            icon.className = 'fas fa-check-circle text-success';
+        } else if (type === 'info') {
+            icon.className = 'fas fa-info-circle text-primary';
+        } else if (type === 'warning') {
+            icon.className = 'fas fa-exclamation-triangle text-warning';
+        }
+
+        // Définir le titre et le message
+        notificationTitle.textContent = title;
+        notificationMessage.textContent = message;
+
+        // Afficher la notification
+        notification.style.display = 'block';
+
+        // Masquer automatiquement après 5 secondes
+        setTimeout(hideNotification, 5000);
+    }
+
+    function hideNotification() {
+        document.getElementById('notification').style.display = 'none';
+    }
+
+    function showLoading() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    }
+
+    function hideLoading() {
+        document.getElementById('loadingOverlay').style.display = 'none';
+    }
+
+    function showLoginNotification() {
+        showNotification('info', 'Connexion', 'La fonctionnalité de connexion sera disponible prochainement !');
+        return false;
+    }
+
+    // Gestion du formulaire
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Validation des mots de passe
+        const password = document.querySelector('input[name="password"]').value;
+        const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+
+        if (password.length < 8) {
+            showNotification('warning', 'Mot de passe trop court', 'Le mot de passe doit contenir au moins 8 caractères.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            showNotification('warning', 'Mots de passe différents', 'Les mots de passe ne correspondent pas.');
+            return;
+        }
+
+        // Afficher le chargement
+        showLoading();
+
+        // Récupérer les données du formulaire
+        const formData = new FormData(this);
+
+        // Envoyer les données via AJAX
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            hideLoading();
+
+            if (data.success) {
+                // Notification de succès
+                let successMessage = 'Votre compte a été créé avec succès !';
+
+                // Ajouter des détails sur la formation si présente
+                const formation = new URLSearchParams(window.location.search).get('formation');
+                if (formation) {
+                    successMessage += ` Vous êtes inscrit à la formation. Un email de confirmation vous a été envoyé.`;
+                }
+
+                showNotification('success', 'Inscription réussie', successMessage);
+
+                // Réinitialiser le formulaire
+                document.getElementById('registrationForm').reset();
+
+                // Rediriger après 3 secondes
+                setTimeout(() => {
+                    // Si une formation était sélectionnée, rediriger vers trainings
+                    if (formation) {
+                        window.location.href = "{% url 'trainings' %}";
+                    } else {
+                        window.location.href = "{% url 'home' %}";
+                    }
+                }, 3000);
+            } else {
+                // Afficher les erreurs
+                if (data.errors) {
+                    let errorMessage = '';
+                    for (const field in data.errors) {
+                        errorMessage += data.errors[field].join(', ') + '\n';
+                    }
+                    showNotification('warning', 'Erreur de validation', errorMessage);
+                } else if (data.error) {
+                    showNotification('warning', 'Erreur', data.error);
+                }
+            }
+        })
+        .catch(error => {
+            hideLoading();
+            showNotification('warning', 'Erreur', 'Une erreur est survenue. Veuillez réessayer.');
+            console.error('Error:', error);
+        });
+    });
+
+    // Animation des champs
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                this.parentElement.classList.remove('focused');
+            }
+        });
+    });
+
+    // Afficher une notification de bienvenue
+    window.addEventListener('load', function() {
+        const formation = new URLSearchParams(window.location.search).get('formation');
+        if (formation) {
+            setTimeout(() => {
+                showNotification('info', 'Inscription à une formation',
+                    'Vous allez vous inscrire à une formation. Remplissez le formulaire pour finaliser votre inscription.');
+            }, 1000);
+        }
+    });
+</script>
+{% endblock %}

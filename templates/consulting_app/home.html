@@ -1,0 +1,3331 @@
+{% extends "consulting_app/base.html" %}
+{% load static %}
+
+{% block title %}Global Business Consulting | Transforming Industries{% endblock %}
+
+{% block content %}
+<!-- Quantum Interface Loading -->
+<div class="quantum-loader">
+    <div class="quantum-sphere"></div>
+    <div class="quantum-pulse"></div>
+</div>
+
+<!-- Hero Section avec Effets Quantiques -->
+<section class="hero-quantum min-vh-100 d-flex align-items-center position-relative overflow-hidden">
+    <!-- Background Quantum -->
+    <div class="quantum-bg">
+        <div class="quantum-grid"></div>
+        <div class="quantum-waves"></div>
+        <div class="quantum-particles">
+            {% for i in "1234567890" %}
+            <div class="particle particle-{{ forloop.counter }}"></div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Globe Holographique 3D -->
+    <div class="holographic-globe">
+        <div class="globe-sphere">
+            <div class="globe-inner-core"></div>
+            <div class="globe-middle-layer"></div>
+            <div class="globe-outer-layer"></div>
+        </div>
+        <div class="globe-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+        </div>
+        <div class="globe-data-points">
+            {% for i in "12345" %}
+            <div class="data-point dp-{{ forloop.counter }}"></div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Main Hero Content -->
+    <div class="container position-relative z-3 py-5 mt-5">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-xl-7">
+                <!-- Animated Badge -->
+                <div class="badge-container mb-4 animate-on-scroll" data-animation="fade-up">
+                    <span class="badge-quantum">
+                        <i class="fas fa-bolt me-2"></i>
+                        <span class="badge-text">INDUSTRY LEADER SINCE 2018</span>
+                        <span class="badge-pulse"></span>
+                    </span>
+                </div>
+
+                <!-- Holographic Title -->
+                <div class="title-container mb-4 animate-on-scroll" data-animation="fade-up" data-delay="100">
+                    <h1 class="display-1 fw-bold text-white mb-3 holographic-title">
+                        <span class="holographic-text"> Expert Solutions for </span>
+                        <span class="holographic-text">
+                            <span class="holographic-text">Regulated Industries</span>
+                            <span class="holographic-reflection"></span>
+                        </span>
+                    </h1>
+                </div>
+
+                <!-- Animated Description -->
+                <div class="description-container mb-5 animate-on-scroll" data-animation="fade-up" data-delay="200">
+                    <p class="lead text-light mb-4 opacity-85" style="font-size: 1.35rem;">
+                        Specialized consulting for <span class="text-gradient">pharmaceutical</span>,
+                        <span class="text-gradient">cosmetic</span>, <span class="text-gradient">food</span>,
+                        and <span class="text-gradient">chemical</span> industries.
+                    </p>
+                    <p class="text-light opacity-75 mb-0" style="font-size: 1.1rem;">
+                        Ensuring compliance, quality, and innovation through cutting-edge solutions
+                        powered by artificial intelligence and quantum computing.
+                    </p>
+                </div>
+
+                <!-- CTA Buttons avec Effets Holographiques -->
+                <div class="cta-container mb-5 animate-on-scroll" data-animation="fade-up" data-delay="300">
+                    <div class="hero-cta d-flex flex-wrap align-items-center gap-3">
+                        <a href="{% url 'products' %}" class="btn btn-primary btn-lg px-5 py-3 quantum-btn quantum-btn-primary">
+                            <span class="btn-content">
+                                <i class="fas fa-rocket me-2 btn-icon"></i>
+                                <span class="btn-text">Explore Quantum Solutions</span>
+                            </span>
+                            <span class="btn-hologram"></span>
+                            <span class="btn-particles">
+                                <span class="particle"></span>
+                                <span class="particle"></span>
+                                <span class="particle"></span>
+                            </span>
+                        </a>
+
+                        <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg px-5 py-3 quantum-btn quantum-btn-hologram">
+                            <span class="btn-content">
+                                <i class="fas fa-calendar-check me-2 btn-icon"></i>
+                                <span class="btn-text">Free Consultation</span>
+                            </span>
+                            <span class="hologram-border"></span>
+                            <span class="hologram-glow"></span>
+                        </a>
+
+                        <!-- Trust Badge Neuromorphe -->
+                        <div class="trust-badge-neuromorphic">
+                            <div class="neuromorphic-badge">
+                                <i class="fas fa-shield-check badge-icon"></i>
+                                <div class="badge-content">
+                                    <span class="badge-title">Trusted by 500+ companies</span>
+                                    <span class="badge-subtitle">Industry Certified</span>
+                                </div>
+                                <div class="badge-sparkle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Section Quantique -->
+                <div class="stats-quantum mt-5 pt-4 animate-on-scroll" data-animation="fade-up" data-delay="400">
+                    <div class="row g-4">
+                        <div class="col-md-3 col-6">
+                            <div class="quantum-stat-card">
+                                <div class="stat-particles">
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                </div>
+                                <div class="stat-number-wrapper">
+                                    <span class="stat-number quantum-counter" data-count="500">0</span>
+                                    <span class="stat-suffix">+</span>
+                                </div>
+                                <div class="stat-label">Global Clients</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="quantum-stat-card">
+                                <div class="stat-particles">
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                </div>
+                                <div class="stat-number-wrapper">
+                                    <span class="stat-number quantum-counter" data-count="99">0</span>
+                                    <span class="stat-suffix">%</span>
+                                </div>
+                                <div class="stat-label">Success Rate</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 99%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="quantum-stat-card">
+                                <div class="stat-particles">
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                </div>
+                                <div class="stat-number-wrapper">
+                                    <span class="stat-number quantum-counter" data-count="24">0</span>
+                                    <span class="stat-suffix">/7</span>
+                                </div>
+                                <div class="stat-label">Support</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="quantum-stat-card">
+                                <div class="stat-particles">
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                </div>
+                                <div class="stat-number-wrapper">
+                                    <span class="stat-number quantum-counter" data-count="1000">0</span>
+                                    <span class="stat-suffix">+</span>
+                                </div>
+                                <div class="stat-label">Projects</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual 3D -->
+            <div class="col-lg-4 col-xl-5">
+                <div class="hero-visual-container">
+                    <div class="molecular-structure">
+                        <div class="molecule">
+                            <div class="atom center"></div>
+                            {% for i in "12345" %}
+                            <div class="atom satellite a{{ forloop.counter }}"></div>
+                            <div class="bond b{{ forloop.counter }}"></div>
+                            {% endfor %}
+                        </div>
+                        <div class="data-stream">
+                            <div class="data-point"></div>
+                            <div class="data-point"></div>
+                            <div class="data-point"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator Quantique -->
+    <div class="scroll-indicator-quantum animate-on-scroll" data-animation="fade-up" data-delay="500">
+        <div class="indicator-wrapper">
+            <div class="indicator-line"></div>
+            <div class="indicator-dot"></div>
+            <span class="indicator-text">Explore Solutions</span>
+        </div>
+    </div>
+</section>
+
+<!-- Value Added Section avec Effets Neuromorphes -->
+<section class="value-section-neuromorphic py-6 position-relative">
+    <div class="section-background">
+        <div class="neuromorphic-grid"></div>
+        <div class="energy-waves"></div>
+    </div>
+
+    <div class="container position-relative z-2">
+        <div class="section-header text-center mb-6">
+            <h2 class="display-4 fw-bold mb-3 text-white">
+                <span class="title-line d-block">Beyond Consulting</span>
+                <span class="title-accent d-block" style="color: #10b981;">Delivering Real Impact</span>
+            </h2>
+            <p class="lead text-light opacity-75">
+                We provide comprehensive solutions that transform your operations<br class="d-none d-md-block">
+                and drive measurable results through strategic implementation.
+            </p>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="fade-up" data-delay="100">
+                <div class="neu-card h-100">
+                    <div class="card-header">
+                        <div class="icon-wrapper icon-gradient-1">
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3 class="h2 fw-bold mb-3 text-dark">Regulatory Compliance</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">
+                            Stay ahead of regulations with our AI-powered compliance monitoring and real-time regulatory updates.
+                        </p>
+                        <ul class="neu-list">
+                            <li class="neu-list-item">
+                                <i class="fas fa-check-circle me-2 text-success"></i>
+                                <span class="text-dark">GMP Compliance & Validation</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-check-circle me-2 text-success"></i>
+                                <span class="text-dark">Quality Audit Automation</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-check-circle me-2 text-success"></i>
+                                <span class="text-dark">Smart Documentation Systems</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-check-circle me-2 text-success"></i>
+                                <span class="text-dark">Regulatory Intelligence</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#compliance" class="neu-btn neu-btn-primary">
+                            <span>Learn More</span>
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                    <div class="card-ripple"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="fade-up" data-delay="200">
+                <div class="neu-card h-100">
+                    <div class="card-header">
+                        <div class="icon-wrapper icon-gradient-2">
+                            <i class="fas fa-graduation-cap fa-2x"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3 class="h2 fw-bold mb-3 text-dark">Training & Certification</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">
+                            Immersive VR training programs and certified courses tailored to your industry's evolving needs.
+                        </p>
+                        <ul class="neu-list">
+                            <li class="neu-list-item">
+                                <i class="fas fa-vr-cardboard me-2 text-success"></i>
+                                <span class="text-dark">Virtual Reality GMP Training</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-certificate me-2 text-success"></i>
+                                <span class="text-dark">HACCP Digital Certification</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-robot me-2 text-success"></i>
+                                <span class="text-dark">AI-Powered Learning Systems</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-chart-network me-2 text-success"></i>
+                                <span class="text-dark">Competency Analytics</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'trainings' %}" class="neu-btn neu-btn-success">
+                            <span>View Programs</span>
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                    <div class="card-ripple"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="fade-up" data-delay="300">
+                <div class="neu-card h-100">
+                    <div class="card-header">
+                        <div class="icon-wrapper icon-gradient-3">
+                            <i class="fas fa-tools fa-2x"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3 class="h2 fw-bold mb-3 text-dark">Tools & Templates</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">
+                            Comprehensive toolkit including SOPs, validation protocols, and quality manuals with automated compliance checking.
+                        </p>
+                        <ul class="neu-list">
+                            <li class="neu-list-item">
+                                <i class="fas fa-file-code me-2 text-success"></i>
+                                <span class="text-dark">Smart SOP Generators</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-database me-2 text-success"></i>
+                                <span class="text-dark">Validation Protocol Databases</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-brain me-2 text-success"></i>
+                                <span class="text-dark">AI Quality Manuals</span>
+                            </li>
+                            <li class="neu-list-item">
+                                <i class="fas fa-chart-bar me-2 text-success"></i>
+                                <span class="text-dark">Real-time Compliance Dashboards</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'documents' %}" class="neu-btn neu-btn-warning">
+                            <span>Browse Tools</span>
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                    <div class="card-ripple"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Industries Section Holographique -->
+<section class="industries-holographic py-6 bg-dark">
+    <div class="container py-5">
+        <div class="section-header text-center mb-6 animate-on-scroll" data-animation="fade-up">
+            <div class="badge-holographic mb-4">
+                <i class="fas fa-industry me-2"></i>
+                <span>Industry Specialization</span>
+                <div class="holographic-flicker"></div>
+            </div>
+            <h2 class="display-2 fw-bold mb-3 text-white">
+                <span class="hologram-text">Targeted Industry Solutions</span>
+            </h2>
+            <p class="lead text-light opacity-75 hologram-subtitle">
+                Specialized consulting for each regulated industry with precision and expertise
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Pharma Industry -->
+            <div class="col-lg-3 col-md-6 animate-on-scroll" data-animation="fade-up" data-delay="100">
+                <div class="hologram-card holo-pharma">
+                    <div class="hologram-overlay"></div>
+                    <div class="card-inner">
+                        <div class="holo-icon">
+                            <i class="fas fa-pills"></i>
+                            <div class="icon-ring"></div>
+                        </div>
+                        <h3 class="holo-title">Pharma Industry</h3>
+                        <p class="holo-text">GMP compliance, validation, regulatory documentation with AI-powered quality systems</p>
+                        <div class="holo-features">
+                            <span class="feature">FDA Compliance</span>
+                            <span class="feature">EMA Guidelines</span>
+                            <span class="feature">ICH Standards</span>
+                        </div>
+                        <a href="{% url 'pharma_industry' %}" class="holo-btn">
+                            <span>Explore Pharma Solutions</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <div class="btn-beam"></div>
+                        </a>
+                    </div>
+                    <div class="hologram-grid"></div>
+                </div>
+            </div>
+
+            <!-- Cosmetic Industry -->
+            <div class="col-lg-3 col-md-6 animate-on-scroll" data-animation="fade-up" data-delay="200">
+                <div class="hologram-card holo-cosmetic">
+                    <div class="hologram-overlay"></div>
+                    <div class="card-inner">
+                        <div class="holo-icon">
+                            <i class="fas fa-spa"></i>
+                            <div class="icon-ring"></div>
+                        </div>
+                        <h3 class="holo-title">Cosmetic Industry</h3>
+                        <p class="holo-text">PIF development, safety assessment, compliance with EU regulations and quality standards</p>
+                        <div class="holo-features">
+                            <span class="feature">PIF Creation</span>
+                            <span class="feature">Safety Reports</span>
+                            <span class="feature">CPNP Notification</span>
+                        </div>
+                        <a href="{% url 'cosmetic_industry' %}" class="holo-btn">
+                            <span>Cosmetic Solutions</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <div class="btn-beam"></div>
+                        </a>
+                    </div>
+                    <div class="hologram-grid"></div>
+                </div>
+            </div>
+
+            <!-- Food Industry -->
+            <div class="col-lg-3 col-md-6 animate-on-scroll" data-animation="fade-up" data-delay="300">
+                <div class="hologram-card holo-food">
+                    <div class="hologram-overlay"></div>
+                    <div class="card-inner">
+                        <div class="holo-icon">
+                            <i class="fas fa-utensils"></i>
+                            <div class="icon-ring"></div>
+                        </div>
+                        <h3 class="holo-title">Food Industry</h3>
+                        <p class="holo-text">HACCP implementation, food safety, quality control with digital traceability systems</p>
+                        <div class="holo-features">
+                            <span class="feature">HACCP Plans</span>
+                            <span class="feature">Food Safety</span>
+                            <span class="feature">Quality Control</span>
+                        </div>
+                        <a href="{% url 'food_industry' %}" class="holo-btn">
+                            <span>Food Safety Solutions</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <div class="btn-beam"></div>
+                        </a>
+                    </div>
+                    <div class="hologram-grid"></div>
+                </div>
+            </div>
+
+            <!-- Chemical Industry -->
+            <div class="col-lg-3 col-md-6 animate-on-scroll" data-animation="fade-up" data-delay="400">
+                <div class="hologram-card holo-chemical">
+                    <div class="hologram-overlay"></div>
+                    <div class="card-inner">
+                        <div class="holo-icon">
+                            <i class="fas fa-flask"></i>
+                            <div class="icon-ring"></div>
+                        </div>
+                        <h3 class="holo-title">Chemical Industry</h3>
+                        <p class="holo-text">REACH compliance, safety management, risk assessment with chemical analytics</p>
+                        <div class="holo-features">
+                            <span class="feature">REACH Compliance</span>
+                            <span class="feature">Safety Data Sheets</span>
+                            <span class="feature">Risk Assessment</span>
+                        </div>
+                        <a href="{% url 'chemical_industry' %}" class="holo-btn">
+                            <span>Chemical Solutions</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <div class="btn-beam"></div>
+                        </a>
+                    </div>
+                    <div class="hologram-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industry Data Visualization -->
+        <div class="industry-visualization mt-6">
+            <div class="data-network">
+                <div class="network-node" style="top: 30%; left: 20%;" data-industry="pharma"></div>
+                <div class="network-node" style="top: 40%; left: 40%;" data-industry="cosmetic"></div>
+                <div class="network-node" style="top: 60%; left: 30%;" data-industry="food"></div>
+                <div class="network-node" style="top: 50%; left: 70%;" data-industry="chemical"></div>
+                <div class="network-center"></div>
+                <div class="data-stream stream-1"></div>
+                <div class="data-stream stream-2"></div>
+                <div class="data-stream stream-3"></div>
+                <div class="data-stream stream-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section avec Effets 3D -->
+<section class="services-3d py-6 position-relative">
+    <div class="floating-elements">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+    </div>
+
+    <div class="container position-relative z-2">
+        <div class="section-header text-center mb-6">
+            <h2 class="display-4 fw-bold mb-3 text-white">
+                <span class="title-line d-block">Advanced Digital</span>
+                <span class="title-accent d-block" style="color: #3b82f6;">Solutions</span>
+            </h2>
+            <p class="lead text-light opacity-75">
+                Leveraging cutting-edge technology to transform your business<br class="d-none d-md-block">
+                and drive innovation through digital excellence.
+            </p>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-6 animate-on-scroll" data-animation="slide-left" data-delay="100">
+                <div class="service-card-3d">
+                    <div class="card-side front">
+                        <div class="service-icon-3d">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div class="icon-halo"></div>
+                        </div>
+                        <h3 class="service-title">Professional Training</h3>
+                        <p class="service-description">
+                            Certified training programs for GMP, HACCP, REACH, and regulatory requirements
+                            with VR and AI integration.
+                        </p>
+                        <div class="service-stats">
+                            <div class="stat">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">Trained Professionals</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">98%</span>
+                                <span class="stat-label">Certification Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-side back">
+                        <h4 class="back-title">Training Features</h4>
+                        <ul class="back-features">
+                            <li>Virtual Reality Simulations</li>
+                            <li>AI-Powered Assessments</li>
+                            <li>Industry Certification</li>
+                            <li>Real-time Feedback</li>
+                        </ul>
+                        <a href="{% url 'trainings' %}" class="btn-3d">
+                            <span>Explore Training</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6 animate-on-scroll" data-animation="slide-right" data-delay="200">
+                <div class="service-card-3d">
+                    <div class="card-side front">
+                        <div class="service-icon-3d">
+                            <i class="fas fa-file-alt"></i>
+                            <div class="icon-halo"></div>
+                        </div>
+                        <h3 class="service-title">Document Templates</h3>
+                        <p class="service-description">
+                            Ready-to-use templates for SOPs, validation protocols, quality manuals
+                            with automated compliance checking.
+                        </p>
+                        <div class="service-stats">
+                            <div class="stat">
+                                <span class="stat-number">1000+</span>
+                                <span class="stat-label">Templates</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Updates</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-side back">
+                        <h4 class="back-title">Template Features</h4>
+                        <ul class="back-features">
+                            <li>AI-Powered Generation</li>
+                            <li>Real-time Compliance</li>
+                            <li>Custom Workflows</li>
+                            <li>Version Control</li>
+                        </ul>
+                        <a href="{% url 'documents' %}" class="btn-3d">
+                            <span>Browse Templates</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Holographiques -->
+<section class="testimonials-holographic py-6 bg-dark">
+    <div class="container py-5">
+        <div class="section-header text-center mb-6 animate-on-scroll" data-animation="fade-up">
+            <div class="badge-holographic mb-4">
+                <i class="fas fa-quote-left me-2"></i>
+                <span>Client Testimonials</span>
+                <div class="holographic-flicker"></div>
+            </div>
+            <h2 class="display-2 fw-bold mb-3 text-white">
+                <span class="hologram-text">Trusted by Industry Leaders</span>
+            </h2>
+            <p class="lead text-light opacity-75">
+                See what global companies say about our quantum solutions
+            </p>
+        </div>
+
+        <div class="testimonials-slider">
+            <div class="testimonial-hologram active">
+                <div class="hologram-content">
+                    <div class="client-avatar">
+                        <div class="avatar-hologram">
+                            <div class="avatar-image">JD</div>
+                            <div class="avatar-ring"></div>
+                        </div>
+                        <div class="client-info">
+                            <h4 class="client-name">Dr. John Doe</h4>
+                            <p class="client-position">CEO, PharmaTech Global</p>
+                            <div class="client-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        <p>
+                            "Global Business Consulting transformed our quality systems and helped us
+                            achieve FDA compliance within 3 months. Their quantum approach to regulatory
+                            compliance is revolutionary."
+                        </p>
+                    </div>
+                    <div class="testimonial-stats">
+                        <div class="stat">
+                            <span class="stat-value">300%</span>
+                            <span class="stat-label">Efficiency Gain</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Regulatory Issues</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hologram-grid"></div>
+            </div>
+        </div>
+
+        <!-- Company Logos Holographiques -->
+        <div class="company-logos mt-6">
+            <div class="logo-grid">
+                <div class="logo-hologram" data-company="pharmatech">
+                    <div class="logo-content">PHARMATECH</div>
+                </div>
+                <div class="logo-hologram" data-company="cosmetico">
+                    <div class="logo-content">COSMETICO</div>
+                </div>
+                <div class="logo-hologram" data-company="foodcorp">
+                    <div class="logo-content">FOODCORP</div>
+                </div>
+                <div class="logo-hologram" data-company="chemglobal">
+                    <div class="logo-content">CHEMGLOBAL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section Quantique -->
+<section class="cta-quantum py-6 position-relative overflow-hidden">
+    <!-- Background Effects -->
+    <div class="quantum-cta-bg">
+        <div class="energy-vortex"></div>
+        <div class="data-beams">
+            <div class="beam beam-1"></div>
+            <div class="beam beam-2"></div>
+            <div class="beam beam-3"></div>
+        </div>
+    </div>
+
+    <div class="container position-relative z-2 py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="cta-badge mb-4 animate-on-scroll" data-animation="fade-up">
+                    <span class="badge-quantum-glow">
+                        <i class="fas fa-rocket me-2"></i>
+                        Ready to Transform Your Industry?
+                    </span>
+                </div>
+
+                <h2 class="display-1 fw-bold text-white mb-4 animate-on-scroll" data-animation="fade-up" data-delay="100">
+                    <span class="cta-title">Start Your Quantum Journey</span>
+                </h2>
+
+                <p class="lead text-light opacity-85 mb-5 animate-on-scroll" data-animation="fade-up" data-delay="200">
+                    Join 500+ companies that have transformed their operations with our cutting-edge solutions.
+                    Schedule your free consultation today and experience the future of regulatory compliance.
+                </p>
+
+                <div class="cta-buttons d-flex flex-wrap justify-content-center gap-3 animate-on-scroll" data-animation="fade-up" data-delay="300">
+                    <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-5 py-3 quantum-btn-cta">
+                        <span class="btn-content">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            Get Free Consultation
+                        </span>
+                        <span class="btn-energy"></span>
+                    </a>
+
+                    <a href="tel:+213540335314" class="btn btn-outline-light btn-lg px-5 py-3 quantum-btn-cta-outline">
+                        <span class="btn-content">
+                            <i class="fas fa-phone me-2"></i>
+                            Call Now: +213 540 33 53 14
+                        </span>
+                        <span class="btn-pulse"></span>
+                    </a>
+                </div>
+
+                <!-- CTA Stats -->
+                <div class="cta-stats mt-5 animate-on-scroll" data-animation="fade-up" data-delay="400">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <div class="stat">
+                                <div class="stat-value">24/7</div>
+                                <div class="stat-label">Support</div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="stat">
+                                <div class="stat-value">30 min</div>
+                                <div class="stat-label">Response Time</div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="stat">
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">Confidential</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* ============================================
+       QUANTUM INTERFACE - CSS ULTRA AVANCÉ
+       Animations 3D, Holographiques et Effets Spéciaux
+    ============================================= */
+
+    /* Quantum Loader */
+    .quantum-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--darker);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    .quantum-loader.loaded {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .quantum-sphere {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        position: relative;
+        animation: quantumSpin 3s linear infinite;
+        box-shadow:
+            0 0 60px rgba(59, 130, 246, 0.7),
+            0 0 120px rgba(139, 92, 246, 0.5),
+            inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .quantum-pulse {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border: 2px solid var(--primary-light);
+        border-radius: 50%;
+        animation: quantumPulse 2s ease-out infinite;
+    }
+
+    @keyframes quantumSpin {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.2); }
+        100% { transform: rotate(360deg) scale(1); }
+    }
+
+    @keyframes quantumPulse {
+        0% {
+            transform: scale(0.5);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    /* Hero Quantum Background */
+    .quantum-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .quantum-grid {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background-image:
+            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+        transform: perspective(500px) rotateX(60deg);
+    }
+
+    .quantum-waves {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 50% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+        animation: wavesPulse 8s ease-in-out infinite;
+    }
+
+    .quantum-particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: var(--gradient-accent);
+        border-radius: 50%;
+        filter: blur(1px);
+    }
+
+    .particle-1 { top: 20%; left: 10%; animation: particleFloat 15s infinite linear; }
+    .particle-2 { top: 60%; left: 20%; animation: particleFloat 12s infinite linear reverse; }
+    .particle-3 { top: 30%; left: 70%; animation: particleFloat 18s infinite linear; }
+    .particle-4 { top: 80%; left: 40%; animation: particleFloat 14s infinite linear reverse; }
+    .particle-5 { top: 40%; left: 80%; animation: particleFloat 16s infinite linear; }
+    .particle-6 { top: 70%; left: 90%; animation: particleFloat 13s infinite linear reverse; }
+    .particle-7 { top: 10%; left: 60%; animation: particleFloat 17s infinite linear; }
+    .particle-8 { top: 90%; left: 30%; animation: particleFloat 11s infinite linear reverse; }
+    .particle-9 { top: 50%; left: 10%; animation: particleFloat 19s infinite linear; }
+    .particle-10 { top: 20%; left: 90%; animation: particleFloat 10s infinite linear reverse; }
+
+    @keyframes gridMove {
+        from { transform: perspective(500px) rotateX(60deg) translateY(0); }
+        to { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+    }
+
+    @keyframes wavesPulse {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    @keyframes particleFloat {
+        0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+        25% { transform: translate(100px, -50px) scale(1.5); opacity: 0.8; }
+        50% { transform: translate(200px, 50px) scale(1); opacity: 0.3; }
+        75% { transform: translate(100px, 100px) scale(1.5); opacity: 0.8; }
+        100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    }
+
+    /* Holographic Globe */
+    .holographic-globe {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 500px;
+        height: 500px;
+        z-index: 2;
+    }
+
+    @media (max-width: 1200px) {
+        .holographic-globe {
+            width: 400px;
+            height: 400px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .holographic-globe {
+            display: none;
+        }
+    }
+
+    .globe-sphere {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+    }
+
+    .globe-inner-core {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow:
+            inset 0 0 20px rgba(255, 255, 255, 0.5),
+            0 0 50px rgba(59, 130, 246, 0.8);
+        animation: corePulse 2s ease-in-out infinite;
+    }
+
+    .globe-middle-layer {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border: 2px solid rgba(59, 130, 246, 0.4);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: rotateLayer 15s linear infinite;
+    }
+
+    .globe-outer-layer {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: rotateLayer 20s linear infinite reverse;
+    }
+
+    .globe-rings {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .ring {
+        position: absolute;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ringOrbit 30s linear infinite;
+    }
+
+    .ring-1 { width: 300px; height: 300px; animation-delay: -10s; }
+    .ring-2 { width: 350px; height: 350px; animation-delay: -20s; }
+    .ring-3 { width: 400px; height: 400px; animation-delay: -30s; }
+
+    .globe-data-points {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .data-point {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: var(--gradient-accent);
+        border-radius: 50%;
+        filter: blur(1px);
+        animation: dataPointFloat 4s ease-in-out infinite;
+    }
+
+    .dp-1 { top: 20%; left: 20%; animation-delay: 0s; }
+    .dp-2 { top: 60%; left: 10%; animation-delay: -1s; }
+    .dp-3 { top: 30%; left: 70%; animation-delay: -2s; }
+    .dp-4 { top: 80%; left: 60%; animation-delay: -3s; }
+    .dp-5 { top: 40%; left: 40%; animation-delay: -0.5s; }
+
+    @keyframes corePulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    @keyframes rotateLayer {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes ringOrbit {
+        from { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+        50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+        to { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+    }
+
+    @keyframes dataPointFloat {
+        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+        50% { transform: translate(30px, -30px) scale(1.5); opacity: 1; }
+    }
+
+    /* Badge Quantum */
+    .badge-quantum {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: rgba(59, 130, 246, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .badge-text {
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        color: var(--primary-light);
+    }
+
+    .badge-pulse {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+        }
+        50% {
+            transform: scale(1.5);
+            box-shadow: 0 0 0 10px rgba(236, 72, 153, 0);
+        }
+    }
+
+    /* Holographic Title */
+    .holographic-title {
+        position: relative;
+    }
+
+    .title-line {
+        display: block;
+        color: white;
+        font-weight: 300;
+        margin-bottom: 0.5rem;
+    }
+
+    .title-highlight {
+        position: relative;
+        display: inline-block;
+    }
+
+    .holographic-text {
+        font-size: 4.5rem;
+        font-weight: 800;
+        background: linear-gradient(
+            90deg,
+            var(--primary-light) 0%,
+            var(--secondary) 25%,
+            var(--accent) 50%,
+            var(--secondary) 75%,
+            var(--primary-light) 100%
+        );
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: hologramShimmer 4s ease-in-out infinite;
+        position: relative;
+        z-index: 2;
+    }
+
+    .holographic-reflection {
+        position: absolute;
+        top: 0;
+        left: -10%;
+        width: 120%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 100%
+        );
+        transform: skewX(-20deg);
+        animation: reflectionMove 3s ease-in-out infinite;
+        z-index: 1;
+    }
+
+    @keyframes hologramShimmer {
+        0%, 100% { background-position: 0% center; }
+        50% { background-position: 100% center; }
+    }
+
+    @keyframes reflectionMove {
+        0%, 100% { left: -10%; }
+        50% { left: 110%; }
+    }
+
+    /* Text Gradient */
+    .text-gradient {
+        background: var(--gradient-accent);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: 600;
+    }
+
+    /* Quantum Buttons */
+    .quantum-btn {
+        position: relative;
+        overflow: hidden;
+        border: none;
+        font-weight: 600;
+        transition: all var(--transition-normal);
+        z-index: 1;
+    }
+
+    .quantum-btn-primary {
+        background: var(--gradient-primary);
+        color: white;
+        border-radius: 50px;
+    }
+
+    .quantum-btn-hologram {
+        background: transparent;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-hologram {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left var(--transition-slow);
+    }
+
+    .quantum-btn-primary:hover .btn-hologram {
+        left: 100%;
+    }
+
+    .quantum-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow:
+            0 20px 40px rgba(59, 130, 246, 0.4),
+            0 0 60px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn-particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .btn-particles .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        animation: btnParticle 1s ease-out forwards;
+    }
+
+    .quantum-btn-primary:hover .btn-particles .particle:nth-child(1) {
+        top: 20%;
+        left: 20%;
+        animation-delay: 0s;
+    }
+
+    .quantum-btn-primary:hover .btn-particles .particle:nth-child(2) {
+        top: 60%;
+        left: 60%;
+        animation-delay: 0.2s;
+    }
+
+    .quantum-btn-primary:hover .btn-particles .particle:nth-child(3) {
+        top: 40%;
+        left: 80%;
+        animation-delay: 0.4s;
+    }
+
+    @keyframes btnParticle {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(var(--tx, 20px), var(--ty, -20px)) scale(0);
+            opacity: 0;
+        }
+    }
+
+    /* Hologram Border Effect */
+    .hologram-border {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 52px;
+        background: linear-gradient(
+            45deg,
+            var(--primary-light),
+            var(--accent),
+            var(--secondary),
+            var(--primary-light)
+        );
+        background-size: 400% 400%;
+        animation: borderFlow 3s linear infinite;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+
+    .quantum-btn-hologram:hover .hologram-border {
+        opacity: 1;
+    }
+
+    .hologram-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        transition: all var(--transition-normal);
+        z-index: -2;
+    }
+
+    .quantum-btn-hologram:hover .hologram-glow {
+        width: 150%;
+        height: 150%;
+    }
+
+    @keyframes borderFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Trust Badge Neuromorphe */
+    .neuromorphic-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 1.25rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        box-shadow:
+            inset 0 2px 4px rgba(255, 255, 255, 0.05),
+            0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-icon {
+        color: var(--success);
+        font-size: 1.2rem;
+    }
+
+    .badge-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .badge-title {
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: white;
+    }
+
+    .badge-subtitle {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .badge-sparkle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 150%;
+        background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 30%,
+            transparent 70%);
+        animation: sparkleRotate 6s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes sparkleRotate {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Quantum Stats Cards */
+    .quantum-stat-card {
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.02) 100%);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .quantum-stat-card:hover {
+        transform: translateY(-15px);
+        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow:
+            0 25px 50px rgba(0, 0, 0, 0.3),
+            0 0 80px rgba(59, 130, 246, 0.15);
+    }
+
+    /* Effet de lumière sur hover */
+    .quantum-stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.05),
+            transparent);
+        transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .quantum-stat-card:hover::before {
+        left: 100%;
+    }
+
+    .stat-particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .stat-particles .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        animation: statParticle 8s linear infinite;
+    }
+
+    .quantum-stat-card:hover .stat-particles .particle:nth-child(1) {
+        top: 20%;
+        left: 20%;
+        animation-delay: 0s;
+    }
+
+    .quantum-stat-card:hover .stat-particles .particle:nth-child(2) {
+        top: 60%;
+        left: 60%;
+        animation-delay: 2s;
+    }
+
+    .quantum-stat-card:hover .stat-particles .particle:nth-child(3) {
+        top: 40%;
+        left: 80%;
+        animation-delay: 4s;
+    }
+
+    @keyframes statParticle {
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0;
+        }
+        25% {
+            transform: translate(20px, -20px) scale(1.5);
+            opacity: 1;
+        }
+        50% {
+            transform: translate(40px, 20px) scale(1);
+            opacity: 0;
+        }
+        75% {
+            transform: translate(20px, 40px) scale(1.5);
+            opacity: 1;
+        }
+    }
+
+    .stat-number-wrapper {
+        margin-bottom: 0.5rem;
+        position: relative;
+    }
+
+    .stat-number {
+        font-family: 'Poppins', sans-serif;
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1;
+        color: var(--primary-light);
+        position: relative;
+        display: inline-block;
+    }
+
+    .stat-suffix {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-light);
+        opacity: 0.8;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .stat-progress {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+        animation: progressFill 2s ease-out forwards;
+    }
+
+    @keyframes progressFill {
+        from { width: 0; }
+        to { width: var(--width); }
+    }
+
+    /* Quantum Counter Animation */
+    .quantum-counter {
+        display: inline-block;
+    }
+
+    /* Hero Visual - Molecular Structure */
+    .molecular-structure {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    .molecule {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+    }
+
+    .atom {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .atom.center {
+        width: 40px;
+        height: 40px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: atomPulse 2s ease-in-out infinite;
+    }
+
+    .atom.satellite {
+        width: 20px;
+        height: 20px;
+        animation: satelliteOrbit 6s linear infinite;
+    }
+
+    .a1 { top: 0; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+    .a2 { top: 50%; right: 0; transform: translateY(-50%); animation-delay: -1s; }
+    .a3 { bottom: 0; left: 50%; transform: translateX(-50%); animation-delay: -2s; }
+    .a4 { top: 50%; left: 0; transform: translateY(-50%); animation-delay: -3s; }
+    .a5 { top: 20%; right: 20%; animation-delay: -4s; }
+
+    .bond {
+        position: absolute;
+        background: rgba(59, 130, 246, 0.3);
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        transform-origin: 0 0;
+    }
+
+    .b1 { width: 100px; transform: rotate(0deg); }
+    .b2 { width: 100px; transform: rotate(90deg); }
+    .b3 { width: 100px; transform: rotate(180deg); }
+    .b4 { width: 100px; transform: rotate(270deg); }
+    .b5 { width: 70px; transform: rotate(45deg); }
+
+    .data-stream {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .data-stream .data-point {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+        filter: blur(2px);
+        animation: dataStream 3s linear infinite;
+    }
+
+    .data-stream .data-point:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .data-stream .data-point:nth-child(2) { top: 30%; right: 20%; animation-delay: 1s; }
+    .data-stream .data-point:nth-child(3) { bottom: 40%; left: 30%; animation-delay: 2s; }
+
+    @keyframes atomPulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    @keyframes satelliteOrbit {
+        0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+        100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+    }
+
+    @keyframes dataStream {
+        0% { transform: translate(0, 0) scale(1); opacity: 0; }
+        25% { transform: translate(100px, -50px) scale(1.5); opacity: 1; }
+        50% { transform: translate(200px, 50px) scale(1); opacity: 0; }
+        75% { transform: translate(100px, 150px) scale(1.5); opacity: 1; }
+        100% { transform: translate(0, 200px) scale(1); opacity: 0; }
+    }
+
+    /* Scroll Indicator Quantique */
+    .scroll-indicator-quantum {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+    }
+
+    .indicator-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .indicator-line {
+        width: 2px;
+        height: 60px;
+        background: linear-gradient(
+            to bottom,
+            var(--primary-light),
+            transparent
+        );
+        position: relative;
+        overflow: hidden;
+    }
+
+    .indicator-line::after {
+        content: '';
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            var(--accent),
+            transparent
+        );
+        animation: indicatorFlow 2s ease-in-out infinite;
+    }
+
+    .indicator-dot {
+        width: 12px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        animation: indicatorBounce 2s ease-in-out infinite;
+    }
+
+    .indicator-text {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: indicatorText 3s ease-in-out infinite;
+    }
+
+    @keyframes indicatorFlow {
+        0% { top: -100%; }
+        100% { top: 100%; }
+    }
+
+    @keyframes indicatorBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes indicatorText {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+    }
+
+    /* Neuromorphic Cards */
+    .neu-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow:
+            inset 0 2px 4px rgba(255, 255, 255, 0.1),
+            0 20px 40px rgba(0, 0, 0, 0.08),
+            0 8px 16px rgba(0, 0, 0, 0.04);
+        transition: all var(--transition-normal);
+    }
+
+    .neu-card:hover {
+        transform: translateY(-15px);
+        box-shadow:
+            inset 0 2px 4px rgba(255, 255, 255, 0.1),
+            0 40px 80px rgba(0, 0, 0, 0.12),
+            0 16px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .icon-wrapper {
+        width: 100px;
+        height: 100px;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        box-shadow:
+            inset 0 -2px 4px rgba(0, 0, 0, 0.1),
+            0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon-gradient-1 {
+        background: linear-gradient(135deg,
+            rgba(59, 130, 246, 0.1) 0%,
+            rgba(59, 130, 246, 0.2) 100%);
+        color: var(--primary);
+    }
+
+    .icon-gradient-2 {
+        background: linear-gradient(135deg,
+            rgba(16, 185, 129, 0.1) 0%,
+            rgba(16, 185, 129, 0.2) 100%);
+        color: var(--success);
+    }
+
+    .icon-gradient-3 {
+        background: linear-gradient(135deg,
+            rgba(245, 158, 11, 0.1) 0%,
+            rgba(245, 158, 11, 0.2) 100%);
+        color: var(--warning);
+    }
+
+    .icon-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.2) 0%,
+            transparent 70%);
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+
+    .neu-card:hover .icon-glow {
+        opacity: 1;
+    }
+
+    .neu-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .neu-list-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .neu-list-item:last-child {
+        border-bottom: none;
+    }
+
+    .neu-list-item i {
+        width: 24px;
+        color: var(--success);
+    }
+
+    .card-ripple {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: radial-gradient(circle,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 70%);
+        opacity: 0;
+        transition: all 0.6s ease;
+    }
+
+    .neu-card:hover .card-ripple {
+        width: 400px;
+        height: 400px;
+        opacity: 1;
+    }
+
+    /* Neuromorphic Buttons */
+    .neu-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: none;
+    }
+
+    .neu-btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .neu-btn-success {
+        background: linear-gradient(135deg, var(--success), var(--success-dark));
+        color: white;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .neu-btn-warning {
+        background: linear-gradient(135deg, var(--warning), var(--warning-dark));
+        color: white;
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .neu-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Holographic Cards */
+    .hologram-card {
+        position: relative;
+        height: 100%;
+        border-radius: 25px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        transition: all var(--transition-normal);
+    }
+
+    .hologram-card:hover {
+        transform: translateY(-10px);
+        box-shadow:
+            0 30px 60px rgba(0, 0, 0, 0.3),
+            0 0 100px var(--card-glow, rgba(59, 130, 246, 0.2));
+    }
+
+    .holo-pharma { --card-glow: rgba(59, 130, 246, 0.2); }
+    .holo-cosmetic { --card-glow: rgba(16, 185, 129, 0.2); }
+    .holo-food { --card-glow: rgba(245, 158, 11, 0.2); }
+    .holo-chemical { --card-glow: rgba(239, 68, 68, 0.2); }
+
+    .hologram-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            transparent,
+            rgba(255, 255, 255, 0.02),
+            transparent
+        );
+        z-index: 1;
+    }
+
+    .card-inner {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
+
+    .holo-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        position: relative;
+    }
+
+    .holo-icon i {
+        font-size: 2.5rem;
+        color: white;
+        position: relative;
+        z-index: 2;
+    }
+
+    .icon-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: iconRing 3s linear infinite;
+    }
+
+    .holo-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .holo-text {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .holo-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .feature {
+        padding: 0.25rem 0.75rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .holo-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+        transition: all var(--transition-normal);
+    }
+
+    .holo-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .btn-beam {
+        position: absolute;
+        top: 50%;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, white, transparent);
+        transform: translateY(-50%);
+        transition: left var(--transition-slow);
+    }
+
+    .holo-btn:hover .btn-beam {
+        left: 100%;
+    }
+
+    .hologram-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 30px 30px;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    @keyframes iconRing {
+        0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+        50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); }
+        100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+    }
+
+    /* Industry Visualization */
+    .industry-visualization {
+        height: 300px;
+        position: relative;
+        margin-top: 4rem;
+    }
+
+    .data-network {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .network-node {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        animation: nodePulse 2s ease-in-out infinite;
+        z-index: 2;
+    }
+
+    .network-node[data-industry="pharma"] {
+        background: var(--primary);
+        animation-delay: 0s;
+    }
+    .network-node[data-industry="cosmetic"] {
+        background: var(--success);
+        animation-delay: 0.5s;
+    }
+    .network-node[data-industry="food"] {
+        background: var(--warning);
+        animation-delay: 1s;
+    }
+    .network-node[data-industry="chemical"] {
+        background: var(--danger);
+        animation-delay: 1.5s;
+    }
+
+    .network-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-accent);
+        border-radius: 50%;
+        box-shadow: 0 0 40px rgba(236, 72, 153, 0.5);
+        animation: centerPulse 3s ease-in-out infinite;
+        z-index: 1;
+    }
+
+    .data-stream {
+        position: absolute;
+        background: linear-gradient(90deg,
+            transparent,
+            var(--stream-color, rgba(59, 130, 246, 0.5)),
+            transparent);
+        height: 2px;
+        top: var(--stream-top, 50%);
+        left: var(--stream-left, 50%);
+        width: var(--stream-width, 100px);
+        transform: rotate(var(--stream-rotate, 0deg));
+        transform-origin: 0 0;
+        animation: dataFlow 2s linear infinite;
+    }
+
+    .stream-1 {
+        --stream-color: rgba(59, 130, 246, 0.5);
+        --stream-top: 30%;
+        --stream-left: 20%;
+        --stream-width: 60%;
+        --stream-rotate: 45deg;
+    }
+    .stream-2 {
+        --stream-color: rgba(16, 185, 129, 0.5);
+        --stream-top: 40%;
+        --stream-left: 40%;
+        --stream-width: 40%;
+        --stream-rotate: 135deg;
+    }
+    .stream-3 {
+        --stream-color: rgba(245, 158, 11, 0.5);
+        --stream-top: 60%;
+        --stream-left: 30%;
+        --stream-width: 50%;
+        --stream-rotate: 225deg;
+    }
+    .stream-4 {
+        --stream-color: rgba(239, 68, 68, 0.5);
+        --stream-top: 50%;
+        --stream-left: 70%;
+        --stream-width: 30%;
+        --stream-rotate: 315deg;
+    }
+
+    @keyframes nodePulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    @keyframes centerPulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    @keyframes dataFlow {
+        0% { background-position: -100% 0; }
+        100% { background-position: 200% 0; }
+    }
+
+    /* 3D Service Cards */
+    .service-card-3d {
+        position: relative;
+        height: 400px;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+    }
+
+    .service-card-3d:hover {
+        transform: rotateY(180deg);
+    }
+
+    .card-side {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 30px;
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .front {
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(248, 250, 252, 0.95) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.1),
+            0 8px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .back {
+        background: linear-gradient(135deg,
+            var(--primary) 0%,
+            var(--secondary) 100%);
+        color: white;
+        transform: rotateY(180deg);
+    }
+
+    .service-icon-3d {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg,
+            rgba(59, 130, 246, 0.1) 0%,
+            rgba(59, 130, 246, 0.2) 100%);
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .service-icon-3d i {
+        font-size: 2.5rem;
+        color: var(--primary);
+    }
+
+    .icon-halo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 120%;
+        border: 2px solid rgba(59, 130, 246, 0.2);
+        border-radius: 30px;
+        animation: haloPulse 3s ease-in-out infinite;
+    }
+
+    .service-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 1rem;
+    }
+
+    .service-description {
+        color: var(--gray);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .service-stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: auto;
+    }
+
+    .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary);
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        color: var(--gray);
+    }
+
+    .back-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .back-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem;
+        text-align: left;
+    }
+
+    .back-features li {
+        padding: 0.5rem 0;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .btn-3d {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: white;
+        color: var(--primary);
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all var(--transition-normal);
+    }
+
+    .btn-3d:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(circle,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 70%);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+
+    .service-card-3d:hover .card-glow {
+        opacity: 1;
+    }
+
+    @keyframes haloPulse {
+        0%, 100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.5;
+        }
+        50% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 1;
+        }
+    }
+
+    /* Testimonials Holographiques */
+    .testimonial-hologram {
+        max-width: 800px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hologram-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .client-avatar {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .avatar-hologram {
+        width: 80px;
+        height: 80px;
+        position: relative;
+    }
+
+    .avatar-image {
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        position: relative;
+        z-index: 2;
+    }
+
+    .avatar-ring {
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid var(--primary-light);
+        border-radius: 50%;
+        animation: avatarRing 3s linear infinite;
+    }
+
+    .client-info h4 {
+        color: white;
+        margin-bottom: 0.25rem;
+    }
+
+    .client-position {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .client-rating {
+        color: var(--warning);
+    }
+
+    .testimonial-text {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    .testimonial-stats {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .testimonial-stats .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial-stats .stat-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary-light);
+    }
+
+    .testimonial-stats .stat-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes avatarRing {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.1); }
+        100% { transform: rotate(360deg) scale(1); }
+    }
+
+    /* Company Logos Holographiques */
+    .company-logos {
+        margin-top: 4rem;
+    }
+
+    .logo-grid {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .logo-hologram {
+        width: 150px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: all var(--transition-normal);
+    }
+
+    .logo-hologram:hover {
+        transform: translateY(-5px);
+        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    }
+
+    .logo-content {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
+    }
+
+    /* CTA Quantum */
+    .quantum-cta-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .energy-vortex {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        background: radial-gradient(circle,
+            transparent 30%,
+            rgba(59, 130, 246, 0.1) 40%,
+            rgba(139, 92, 246, 0.05) 50%,
+            transparent 60%);
+        animation: vortexSpin 20s linear infinite;
+    }
+
+    .data-beams {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .beam {
+        position: absolute;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(59, 130, 246, 0.3),
+            transparent);
+        width: 100%;
+        height: 2px;
+        top: var(--beam-top, 50%);
+        animation: beamMove 4s linear infinite;
+    }
+
+    .beam-1 { --beam-top: 30%; animation-delay: 0s; }
+    .beam-2 { --beam-top: 50%; animation-delay: 1s; }
+    .beam-3 { --beam-top: 70%; animation-delay: 2s; }
+
+    .badge-quantum-glow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .badge-quantum-glow::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg,
+            var(--primary-light),
+            var(--accent),
+            var(--secondary),
+            var(--primary-light));
+        background-size: 400% 400%;
+        border-radius: 52px;
+        animation: borderFlow 3s linear infinite;
+        z-index: -1;
+    }
+
+    .cta-title {
+        background: linear-gradient(90deg,
+            #fff 0%,
+            var(--primary-light) 50%,
+            #fff 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: textShine 3s ease-in-out infinite;
+    }
+
+    .quantum-btn-cta {
+        position: relative;
+        overflow: hidden;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        z-index: 1;
+    }
+
+    .quantum-btn-cta .btn-energy {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.2) 0%,
+            transparent 70%);
+        transition: all var(--transition-normal);
+        z-index: -1;
+    }
+
+    .quantum-btn-cta:hover .btn-energy {
+        width: 150%;
+        height: 150%;
+    }
+
+    .quantum-btn-cta-outline {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+        z-index: 1;
+    }
+
+    .quantum-btn-cta-outline .btn-pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        animation: ctaPulse 2s ease-out infinite;
+        z-index: -1;
+    }
+
+    .cta-stats {
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+    }
+
+    .cta-stats .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-stats .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: white;
+    }
+
+    .cta-stats .stat-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+    }
+
+    .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .shape {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        animation: shapeFloat 20s ease-in-out infinite;
+    }
+
+    .shape-1 {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .shape-2 {
+        width: 150px;
+        height: 150px;
+        top: 60%;
+        right: 10%;
+        animation-delay: 5s;
+    }
+
+    .shape-3 {
+        width: 80px;
+        height: 80px;
+        bottom: 30%;
+        left: 20%;
+        animation-delay: 10s;
+    }
+
+    @keyframes vortexSpin {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes beamMove {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    @keyframes ctaPulse {
+        0%, 100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 0.5;
+        }
+    }
+
+    @keyframes shapeFloat {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+            opacity: 0.5;
+        }
+        33% {
+            transform: translate(100px, -50px) rotate(120deg);
+            opacity: 0.8;
+        }
+        66% {
+            transform: translate(-50px, 100px) rotate(240deg);
+            opacity: 0.5;
+        }
+    }
+
+    /* Animation Classes */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .animate-on-scroll.animated {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Section Backgrounds */
+    .section-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .neuromorphic-grid {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: gridMove 30s linear infinite;
+    }
+
+    .energy-waves {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        animation: wavesMove 15s ease-in-out infinite;
+    }
+
+    .floating-elements {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .floating-element {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        animation: floatElement 25s ease-in-out infinite;
+    }
+
+    .element-1 {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .element-2 {
+        width: 150px;
+        height: 150px;
+        top: 60%;
+        right: 15%;
+        animation-delay: 8s;
+    }
+
+    .element-3 {
+        width: 80px;
+        height: 80px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 16s;
+    }
+
+    @keyframes wavesMove {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    @keyframes floatElement {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+            opacity: 0.3;
+        }
+        25% {
+            transform: translate(100px, -50px) rotate(90deg);
+            opacity: 0.6;
+        }
+        50% {
+            transform: translate(200px, 50px) rotate(180deg);
+            opacity: 0.3;
+        }
+        75% {
+            transform: translate(100px, 150px) rotate(270deg);
+            opacity: 0.6;
+        }
+    }
+
+    /* Badge Holographique */
+    .badge-holographic {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .holographic-flicker {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+        animation: flickerMove 3s ease-in-out infinite;
+    }
+
+    @keyframes flickerMove {
+        0%, 100% { left: -100%; }
+        50% { left: 100%; }
+    }
+
+    /* Hologram Text */
+    .hologram-text {
+        background: linear-gradient(90deg,
+            #fff 0%,
+            var(--primary-light) 33%,
+            var(--secondary) 66%,
+            #fff 100%);
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: hologramShimmer 4s ease-in-out infinite;
+    }
+
+    .hologram-subtitle {
+        animation: subtitlePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes subtitlePulse {
+        0%, 100% { opacity: 0.75; }
+        50% { opacity: 1; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .holographic-text {
+            font-size: 3.5rem;
+        }
+
+        .holographic-globe {
+            width: 400px;
+            height: 400px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .holographic-text {
+            font-size: 3rem;
+        }
+
+        .holographic-globe,
+        .molecular-structure {
+            display: none;
+        }
+
+        .hero-quantum {
+            padding-top: 80px !important;
+        }
+
+        .display-1 { font-size: 3rem; }
+        .display-2 { font-size: 2.5rem; }
+        .display-3 { font-size: 2rem; }
+
+        .hero-cta, .cta-buttons {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .hero-cta .btn, .cta-buttons .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .trust-badge-neuromorphic {
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .holographic-text {
+            font-size: 2.5rem;
+        }
+
+        .display-1 { font-size: 2.5rem; }
+        .display-2 { font-size: 2.2rem; }
+        .display-3 { font-size: 2rem; }
+
+        .stat-number {
+            font-size: 3rem;
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+        }
+
+        .service-card-3d {
+            height: 350px;
+        }
+
+        .testimonial-hologram {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .holographic-text {
+            font-size: 2rem;
+        }
+
+        .hologram-card {
+            padding: 1.5rem;
+        }
+
+        .holo-features {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature {
+            width: 100%;
+            text-align: center;
+        }
+
+        .cta-stats {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Quantum Loader
+        const quantumLoader = document.querySelector('.quantum-loader');
+        setTimeout(() => {
+            quantumLoader.classList.add('loaded');
+            setTimeout(() => {
+                quantumLoader.style.display = 'none';
+            }, 500);
+        }, 1500);
+
+        // Initialize animations on scroll
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.dataset.delay || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animated');
+                        }, parseInt(delay));
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Quantum Counters
+        function initQuantumCounters() {
+            const counters = document.querySelectorAll('.quantum-counter');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.dataset.count);
+                        const suffix = entry.target.nextElementSibling?.classList.contains('stat-suffix')
+                            ? entry.target.nextElementSibling.textContent
+                            : '';
+
+                        startQuantumCounter(entry.target, target, suffix);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            counters.forEach(counter => observer.observe(counter));
+
+            function startQuantumCounter(element, target, suffix = '') {
+                let current = 0;
+                const increment = target / 50;
+                const duration = 2000;
+                const interval = duration / 50;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target;
+                        if (suffix) {
+                            element.nextElementSibling.textContent = suffix;
+                        }
+                        clearInterval(timer);
+
+                        // Quantum effect on complete
+                        gsap.to(element, {
+                            scale: 1.5,
+                            duration: 0.3,
+                            yoyo: true,
+                            repeat: 1,
+                            ease: 'power2.out',
+                            onComplete: () => {
+                                createParticlesAround(element);
+                            }
+                        });
+                    } else {
+                        element.textContent = Math.floor(current);
+                    }
+                }, interval);
+            }
+
+            function createParticlesAround(element) {
+                const rect = element.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                for (let i = 0; i < 8; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'counter-particle';
+                    particle.style.cssText = `
+                        position: fixed;
+                        width: 4px;
+                        height: 4px;
+                        background: var(--gradient-accent);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 1000;
+                        left: ${centerX}px;
+                        top: ${centerY}px;
+                    `;
+
+                    document.body.appendChild(particle);
+
+                    const angle = (i / 8) * Math.PI * 2;
+                    const distance = 50;
+
+                    gsap.to(particle, {
+                        x: Math.cos(angle) * distance,
+                        y: Math.sin(angle) * distance,
+                        opacity: 0,
+                        scale: 0,
+                        duration: 1,
+                        ease: 'power2.out',
+                        onComplete: () => particle.remove()
+                    });
+                }
+            }
+        }
+
+        // Hologram Card Interactions
+        function initHologramCards() {
+            const hologramCards = document.querySelectorAll('.hologram-card');
+
+            hologramCards.forEach(card => {
+                card.addEventListener('mouseenter', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    this.style.setProperty('--mouse-x', `${x}px`);
+                    this.style.setProperty('--mouse-y', `${y}px`);
+
+                    gsap.to(this, {
+                        scale: 1.05,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    this.style.setProperty('--mouse-x', `${x}px`);
+                    this.style.setProperty('--mouse-y', `${y}px`);
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    gsap.to(this, {
+                        scale: 1,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+        }
+
+        // 3D Card Tilt Effect
+        function init3DCardTilt() {
+            const cards3D = document.querySelectorAll('.service-card-3d');
+
+            cards3D.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    if (!this.classList.contains('hover')) return;
+
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    const rotateX = ((centerY - y) / centerY) * 5;
+
+                    this.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+                });
+
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('hover');
+                    gsap.to(this, {
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('hover');
+                    this.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            });
+        }
+
+        // Quantum Particle System
+        function initQuantumParticles() {
+            const containers = document.querySelectorAll('.quantum-particles, .stat-particles');
+
+            containers.forEach(container => {
+                // Add more particles on hover
+                if (container.closest('.quantum-stat-card')) {
+                    const card = container.closest('.quantum-stat-card');
+                    card.addEventListener('mouseenter', function() {
+                        addParticles(container, 5);
+                    });
+                }
+            });
+
+            function addParticles(container, count) {
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+
+                    const size = Math.random() * 8 + 2;
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    const duration = Math.random() * 10 + 5;
+                    const delay = Math.random() * 5;
+
+                    particle.style.cssText = `
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${left}%;
+                        top: ${top}%;
+                        animation-duration: ${duration}s;
+                        animation-delay: ${delay}s;
+                    `;
+
+                    container.appendChild(particle);
+
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        if (particle.parentNode === container) {
+                            container.removeChild(particle);
+                        }
+                    }, duration * 1000);
+                }
+            }
+        }
+
+        // Network Visualization Animation
+        function initNetworkVisualization() {
+            const network = document.querySelector('.data-network');
+            if (!network) return;
+
+            const nodes = network.querySelectorAll('.network-node');
+            const streams = network.querySelectorAll('.data-stream');
+
+            // Animate nodes
+            nodes.forEach((node, index) => {
+                gsap.to(node, {
+                    scale: 1.2,
+                    duration: 2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'power1.inOut',
+                    delay: index * 0.5
+                });
+            });
+
+            // Animate streams
+            streams.forEach(stream => {
+                gsap.to(stream, {
+                    backgroundPosition: '200% 0',
+                    duration: 2,
+                    repeat: -1,
+                    ease: 'none'
+                });
+            });
+        }
+
+        // Initialize everything
+        initScrollAnimations();
+        initQuantumCounters();
+        initHologramCards();
+        init3DCardTilt();
+        initQuantumParticles();
+        initNetworkVisualization();
+
+        // Add scroll progress animation to indicator
+        const indicatorLine = document.querySelector('.indicator-line');
+        if (indicatorLine) {
+            window.addEventListener('scroll', function() {
+                const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                indicatorLine.style.height = `${60 - (scrollPercent * 0.6)}px`;
+
+                if (scrollPercent > 5) {
+                    document.querySelector('.scroll-indicator-quantum').style.opacity = '0';
+                } else {
+                    document.querySelector('.scroll-indicator-quantum').style.opacity = '1';
+                }
+            });
+        }
+
+        // Quantum console message
+        console.log('%c🔮 Global Business Consulting - Quantum Interface Active 🔮',
+            'font-size: 16px; background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899); color: white; padding: 10px; border-radius: 5px;');
+        console.log('%c✨ Advanced animations and effects initialized ✨',
+            'color: #60a5fa; font-weight: bold;');
+    });
+
+    // Add GSAP animations
+    if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate sections on scroll
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // Parallax effects
+        gsap.to('.quantum-grid', {
+            scrollTrigger: {
+                scrub: true
+            },
+            y: 100,
+            ease: 'none'
+        });
+    }
+</script>
+{% endblock %}

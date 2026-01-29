@@ -1,0 +1,1501 @@
+{% extends 'consulting_app/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Global Consulting{% endblock %}
+
+{% block content %}
+<style>
+/* ============================================
+   INDUSTRY PAGE CSS - REDESIGN COMPLET
+   ============================================ */
+
+/* Variables cohérentes */
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #1d4ed8;
+    --primary-light: #60a5fa;
+    --secondary: #8b5cf6;
+    --accent: #ec4899;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --dark: #0f172a;
+    --darker: #020617;
+    --light: #f8fafc;
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset et base */
+.industry-page {
+    background: var(--darker);
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 100%);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+}
+
+/* Breadcrumb */
+.breadcrumb-container {
+    margin-bottom: 2.5rem;
+}
+
+.custom-breadcrumb {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: inline-block;
+}
+
+.custom-breadcrumb .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.custom-breadcrumb .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+}
+
+.custom-breadcrumb .breadcrumb-item a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+    color: white;
+    font-weight: 500;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0.8rem;
+    font-size: 1.2rem;
+}
+
+/* Hero Content */
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.industry-icon-container {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.industry-icon-container i {
+    font-size: 3.5rem;
+    color: var(--warning);
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.3));
+}
+
+.industry-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #dbeafe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.industry-header p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+/* Industry Tags */
+.industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.industry-tag {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: var(--primary-light);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.industry-tag:hover {
+    background: rgba(59, 130, 246, 0.2);
+    transform: translateY(-2px);
+}
+
+/* CTA Card */
+.cta-side-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+}
+
+.cta-side-card h4 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.cta-side-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Main Content Layout */
+.main-content-section {
+    padding: 5rem 0;
+}
+
+/* Card Design */
+.section-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    transition: all 0.4s ease;
+    box-shadow: var(--card-shadow);
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.card-header-custom {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1.5rem 2rem;
+}
+
+.card-header-custom h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-header-custom h3 i {
+    font-size: 1.3rem;
+}
+
+.card-body-custom {
+    padding: 2rem;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.service-item-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.service-item-card:hover {
+    background: rgba(59, 130, 246, 0.05);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateX(5px);
+}
+
+.service-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--success);
+}
+
+.service-content h5 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.service-content p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card-custom {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card-custom:hover {
+    transform: translateY(-8px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.product-icon-container {
+    padding: 2rem;
+    background: rgba(59, 130, 246, 0.05);
+    text-align: center;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.product-icon-container i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+}
+
+.product-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-body h5 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.product-body p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.product-price {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.price-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    animation: pricePulse 3s ease-in-out infinite;
+}
+
+@keyframes pricePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Sidebar Cards */
+.sidebar-section {
+    margin-bottom: 2rem;
+}
+
+.sidebar-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}
+
+.sidebar-card-header {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1.25rem 1.5rem;
+}
+
+.sidebar-card-header h4 {
+    color: white;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sidebar-card-body {
+    padding: 1.5rem;
+}
+
+/* Certifications */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+}
+
+.certification-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.certification-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.certification-item i {
+    color: var(--warning);
+    font-size: 0.9rem;
+}
+
+.certification-item span {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+}
+
+/* Expert Profile */
+.expert-profile {
+    text-align: center;
+}
+
+.expert-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.expert-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.expert-info h5 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.expert-info p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.expert-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.expert-rating i {
+    color: var(--warning);
+    font-size: 0.9rem;
+}
+
+.expert-rating span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+}
+
+/* Stats */
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-item-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.stat-item-custom:hover {
+    background: rgba(59, 130, 246, 0.05);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+.stat-value {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Case Studies */
+.case-studies-section {
+    background: rgba(15, 23, 42, 0.5);
+    padding: 5rem 0;
+}
+
+.case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.case-study-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    height: 100%;
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: var(--hover-shadow);
+}
+
+.case-study-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.case-study-body {
+    padding: 1.5rem;
+}
+
+.case-study-body h5 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.case-study-body p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.case-study-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.client-name {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+}
+
+.result-badge {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary-light);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* FAQ */
+.faq-section {
+    padding: 5rem 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-accordion .accordion-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.faq-accordion .accordion-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-weight: 500;
+    padding: 1.25rem 1.5rem;
+    border: none;
+    font-size: 1rem;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+    background: rgba(59, 130, 246, 0.1);
+    color: white;
+    box-shadow: none;
+}
+
+.faq-accordion .accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+
+.faq-accordion .accordion-body {
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    line-height: 1.6;
+}
+
+/* CTA */
+.cta-section {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(139, 92, 246, 0.8) 100%);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-content h2 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn-custom-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: none;
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-custom-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+    color: white;
+}
+
+.btn-custom-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-custom-outline:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.btn-custom-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-custom-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* Toast Notification */
+.toast-custom {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+}
+
+.toast-custom .toast-header {
+    background: rgba(16, 185, 129, 0.2);
+    border-bottom: 1px solid var(--glass-border);
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .hero-content {
+        gap: 2rem;
+    }
+
+    .industry-icon-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .industry-icon-container i {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .industry-icon-container {
+        margin: 0 auto;
+    }
+
+    .industry-tags {
+        justify-content: center;
+    }
+
+    .cta-side-card {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .industry-page {
+        padding-top: 100px;
+    }
+
+    .hero-section {
+        padding: 3rem 0;
+    }
+
+    .industry-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .industry-header p {
+        font-size: 1.1rem;
+    }
+
+    .services-grid,
+    .products-grid,
+    .case-studies-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-custom-primary,
+    .btn-custom-outline {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+
+    .industry-header h1 {
+        font-size: 2rem;
+    }
+
+    .section-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-body-custom {
+        padding: 1.5rem;
+    }
+
+    .stat-item-custom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+</style>
+
+<!-- Main Content -->
+<div class="industry-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb custom-breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'products' %}">Products</a>
+                        </li>
+                        <li class="breadcrumb-item active">{{ title }}</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <div class="industry-icon-container">
+                            <i class="{{ icon }}"></i>
+                        </div>
+                        <div class="industry-header">
+                            <h1>{{ title }}</h1>
+                            <p>{{ description }}</p>
+
+                            <!-- Industry Tags -->
+                            <div class="industry-tags">
+                                <span class="industry-tag">
+                                    <i class="fas fa-certificate"></i>
+                                    GMP Certified
+                                </span>
+                                <span class="industry-tag">
+                                    <i class="fas fa-shield-alt"></i>
+                                    ISO 9001
+                                </span>
+                                <span class="industry-tag">
+                                    <i class="fas fa-globe"></i>
+                                    International
+                                </span>
+                                <span class="industry-tag">
+                                    <i class="fas fa-bolt"></i>
+                                    Fast Delivery
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="cta-side-card">
+                        <h4>Ready to Start?</h4>
+                        <p>Get a free consultation and personalized quote within 24 hours</p>
+                        <a href="{% url 'contact' %}?industry={{ title|lower }}" class="btn btn-custom-primary w-100">
+                            <i class="fas fa-rocket me-2"></i>
+                            Start Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content-section">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Left Column - Main Content -->
+                <div class="col-lg-8">
+                    <!-- Services Card -->
+                    <div class="section-card">
+                        <div class="card-header-custom">
+                            <h3>
+                                <i class="fas fa-cogs"></i>
+                                Our Services
+                            </h3>
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="services-grid">
+                                {% for service in services %}
+                                <div class="service-item-card">
+                                    <div class="service-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="service-content">
+                                        <h5>{{ service }}</h5>
+                                        <p>Complete professional solution for your business needs</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Card -->
+                    <div class="section-card">
+                        <div class="card-header-custom" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.15) 100%);">
+                            <h3>
+                                <i class="fas fa-box-open"></i>
+                                Available Products
+                            </h3>
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="products-grid">
+                                {% for product in products %}
+                                <div class="product-card-custom">
+                                    <div class="product-icon-container">
+                                        <i class="fas fa-cube"></i>
+                                    </div>
+                                    <div class="product-body">
+                                        <h5>{{ product.name }}</h5>
+                                        <p>{{ product.description }}</p>
+                                        <div class="product-price">
+                                            <span class="price-tag">{{ product.price }}</span>
+                                        </div>
+                                        <button class="btn btn-custom-secondary add-to-basket"
+                                                data-product="{{ product.name }}"
+                                                data-price="{{ product.price }}">
+                                            <i class="fas fa-cart-plus me-2"></i>
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Certifications -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-card">
+                            <div class="sidebar-card-header">
+                                <h4>
+                                    <i class="fas fa-award"></i>
+                                    Certifications
+                                </h4>
+                            </div>
+                            <div class="sidebar-card-body">
+                                <div class="certifications-grid">
+                                    {% for cert in certifications %}
+                                    <div class="certification-item">
+                                        <i class="fas fa-certificate"></i>
+                                        <span>{{ cert }}</span>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expert Contact -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-card">
+                            <div class="sidebar-card-header" style="background: rgba(14, 165, 233, 0.1);">
+                                <h4>
+                                    <i class="fas fa-headset"></i>
+                                    {{ title }} Expert
+                                </h4>
+                            </div>
+                            <div class="sidebar-card-body">
+                                <div class="expert-profile">
+                                    <div class="expert-avatar">
+                                        <img src="https://ui-avatars.com/api/?name=Expert+{{ title }}&background=3b82f6&color=fff&bold=true" alt="Expert">
+                                    </div>
+                                    <div class="expert-info">
+                                        <h5>Dr. Jean Dupont</h5>
+                                        <p>Senior Industry Consultant</p>
+                                        <div class="expert-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>4.8/5</span>
+                                        </div>
+                                    </div>
+                                    <div class="expert-actions">
+                                        <a href="tel:+213540335314" class="btn btn-custom-secondary w-100 mb-2">
+                                            <i class="fas fa-phone me-2"></i>
+                                            Call Expert
+                                        </a>
+                                        <a href="{% url 'contact' %}?industry={{ title|lower }}" class="btn btn-custom-primary w-100">
+                                            <i class="fas fa-envelope me-2"></i>
+                                            Request Quote
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-card">
+                            <div class="sidebar-card-header" style="background: rgba(15, 23, 42, 0.5);">
+                                <h4>
+                                    <i class="fas fa-chart-line"></i>
+                                    Statistics
+                                </h4>
+                            </div>
+                            <div class="sidebar-card-body">
+                                <div class="stats-container">
+                                    <div class="stat-item-custom">
+                                        <span class="stat-label">Projects Completed</span>
+                                        <span class="stat-value">150+</span>
+                                    </div>
+                                    <div class="stat-item-custom">
+                                        <span class="stat-label">Client Satisfaction</span>
+                                        <span class="stat-value">98%</span>
+                                    </div>
+                                    <div class="stat-item-custom">
+                                        <span class="stat-label">Avg. Delivery Time</span>
+                                        <span class="stat-value">30 Days</span>
+                                    </div>
+                                    <div class="stat-item-custom">
+                                        <span class="stat-label">Technical Support</span>
+                                        <span class="stat-value">24/7</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-white mb-3">Case Studies</h2>
+                <p class="text-muted">Real success stories from our valued clients</p>
+            </div>
+
+            <div class="case-studies-grid">
+                <!-- Case Study 1 -->
+                <div class="case-study-card">
+                    <div class="case-study-body">
+                        <span class="case-study-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--success);">
+                            Success Story
+                        </span>
+                        <h5>Production Optimization</h5>
+                        <p>Increased productivity by 40% for a leading pharmaceutical laboratory through process optimization and automation.</p>
+                        <div class="case-study-footer">
+                            <span class="client-name">Client: PharmaTech Inc.</span>
+                            <span class="result-badge">+40% Productivity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="case-study-card">
+                    <div class="case-study-body">
+                        <span class="case-study-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--warning);">
+                            Certification
+                        </span>
+                        <h5>FDA Certification</h5>
+                        <p>Obtained FDA certification in record time of 6 months for a new pharmaceutical product.</p>
+                        <div class="case-study-footer">
+                            <span class="client-name">Client: BioMed Solutions</span>
+                            <span class="result-badge">FDA Approved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 -->
+                <div class="case-study-card">
+                    <div class="case-study-body">
+                        <span class="case-study-badge" style="background: rgba(14, 165, 233, 0.2); color: var(--primary-light);">
+                            Automation
+                        </span>
+                        <h5>Complete Automation</h5>
+                        <p>Implemented an automated quality control system reducing human errors by 90% and increasing efficiency.</p>
+                        <div class="case-study-footer">
+                            <span class="client-name">Client: CosmeticLux</span>
+                            <span class="result-badge">-90% Errors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-white mb-3">Frequently Asked Questions</h2>
+                <p class="text-muted">Find answers to common questions about our services</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="accordion faq-accordion" id="faqAccordion">
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                What are the implementation deadlines?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Implementation deadlines typically range from 2 to 12 weeks, depending on project complexity and scope. We provide a detailed timeline during the initial consultation phase and maintain regular progress updates throughout the project.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Do you offer post-implementation support?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we provide comprehensive post-implementation support including 24/7 technical assistance, regular software updates, and continuous training for 12 months. We also offer ongoing maintenance packages for long-term support.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Can solutions be customized to our specific needs?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Absolutely! All our solutions are designed to be fully customizable according to your specific requirements and existing business processes. We work closely with your team to ensure the solution integrates seamlessly with your operations.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Industry?</h2>
+                <p>Contact us today for a free consultation and personalized quote tailored to your business needs</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'contact' %}?industry={{ title|lower }}" class="btn btn-custom-primary">
+                        <i class="fas fa-file-invoice-dollar me-2"></i>
+                        Request a Quote
+                    </a>
+                    <a href="tel:+213540335314" class="btn btn-custom-outline">
+                        <i class="fas fa-phone me-2"></i>
+                        Call Us Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Notification Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notificationToast" class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="fas fa-check-circle me-2"></i>
+            <strong class="me-auto">Success</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Product added to cart successfully!
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate hero section
+    gsap.from('.hero-content', {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        ease: 'power3.out'
+    });
+
+    // Animate cards on scroll
+    gsap.utils.toArray('.section-card, .sidebar-card, .case-study-card').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.6,
+            delay: index * 0.1,
+            ease: 'power2.out'
+        });
+    });
+
+    // Add to basket functionality
+    const addToBasketButtons = document.querySelectorAll('.add-to-basket');
+
+    addToBasketButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const product = this.getAttribute('data-product');
+            const price = this.getAttribute('data-price');
+
+            // Store original content
+            const originalHTML = this.innerHTML;
+            const originalClasses = this.className;
+
+            // Animate button
+            gsap.to(this, {
+                scale: 0.95,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 1,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    // Change button appearance
+                    this.innerHTML = '<i class="fas fa-check me-2"></i>Added!';
+                    this.className = 'btn btn-success w-100';
+
+                    // Create particle effect
+                    createParticleEffect(this);
+
+                    // Show notification
+                    const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+                    toast.show();
+
+                    // Update basket count
+                    updateBasketCount();
+
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalHTML;
+                        this.className = originalClasses;
+                    }, 2000);
+
+                    // Log to console
+                    console.log(`Product added: ${product}, Price: ${price}`);
+                }
+            });
+        });
+    });
+
+    // Create particle effect
+    function createParticleEffect(element) {
+        const rect = element.getBoundingClientRect();
+        const particleCount = 6;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 8px;
+                height: 8px;
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 10000;
+                left: ${rect.left + rect.width / 2}px;
+                top: ${rect.top + rect.height / 2}px;
+                box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            `;
+
+            document.body.appendChild(particle);
+
+            const angle = (Math.PI * 2 * i) / particleCount;
+            const distance = 25 + Math.random() * 15;
+
+            gsap.to(particle, {
+                x: Math.cos(angle) * distance,
+                y: Math.sin(angle) * distance,
+                opacity: 0,
+                scale: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                onComplete: () => particle.remove()
+            });
+        }
+    }
+
+    // Update basket count
+    function updateBasketCount() {
+        const basketCountElement = document.getElementById('basket-count');
+        if (basketCountElement) {
+            let currentCount = parseInt(basketCountElement.textContent) || 0;
+            currentCount++;
+            basketCountElement.textContent = currentCount;
+
+            // Animate the count update
+            gsap.to(basketCountElement, {
+                scale: 1.4,
+                duration: 0.2,
+                yoyo: true,
+                repeat: 1,
+                ease: 'power2.inOut'
+            });
+        }
+    }
+
+    // Hover animations for cards
+    const cards = document.querySelectorAll('.section-card, .sidebar-card, .case-study-card, .service-item-card, .product-card-custom');
+
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                y: -5,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    });
+
+    // Animate stats on hover
+    const statItems = document.querySelectorAll('.stat-item-custom');
+
+    statItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            gsap.to(item.querySelector('.stat-value'), {
+                scale: 1.2,
+                duration: 0.2,
+                ease: 'back.out(1.7)'
+            });
+        });
+
+        item.addEventListener('mouseleave', () => {
+            gsap.to(item.querySelector('.stat-value'), {
+                scale: 1,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
+    });
+
+    // Smooth scroll for FAQ accordion
+    const faqButtons = document.querySelectorAll('.accordion-button');
+
+    faqButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            gsap.to(window, {
+                duration: 0.8,
+                scrollTo: {
+                    y: this,
+                    offsetY: 100
+                },
+                ease: 'power3.inOut'
+            });
+        });
+    });
+
+    // Initialize tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Parallax effect for hero section
+    gsap.to('.hero-section', {
+        scrollTrigger: {
+            trigger: '.hero-section',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        },
+        y: 80
+    });
+
+    // Animate industry icon on hover
+    const industryIcon = document.querySelector('.industry-icon-container');
+    if (industryIcon) {
+        industryIcon.addEventListener('mouseenter', () => {
+            gsap.to(industryIcon, {
+                rotation: 360,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+    }
+
+    // Initialize scroll animations for service items
+    const serviceItems = document.querySelectorAll('.service-item-card');
+
+    serviceItems.forEach((item, index) => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 90%'
+            },
+            x: -30,
+            opacity: 0,
+            duration: 0.5,
+            delay: index * 0.05,
+            ease: 'power2.out'
+        });
+    });
+
+    // Price tag animation
+    const priceTags = document.querySelectorAll('.price-tag');
+
+    priceTags.forEach(tag => {
+        setInterval(() => {
+            gsap.to(tag, {
+                scale: 1.1,
+                duration: 0.3,
+                yoyo: true,
+                repeat: 1,
+                ease: 'power2.inOut'
+            });
+        }, 3000);
+    });
+
+    // Console message
+    console.log('%c✨ Industry Page - Quantum Design Active ✨',
+        'font-size: 14px; background: linear-gradient(90deg, #3b82f6, #8b5cf6); color: white; padding: 8px; border-radius: 5px;');
+});
+</script>
+{% endblock %}
