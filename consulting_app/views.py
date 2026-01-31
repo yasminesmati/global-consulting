@@ -1,130 +1,70 @@
+import json
+import uuid
+from datetime import datetime
+from decimal import Decimal
+
 import pdfkit
-from django.shortcuts import render
-from django.template.loader import render_to_string
-
-from .models import Inquiry, SimpleInvoice  # Assurez-vous que cet import est en haut du fichier
-from django.http import JsonResponse, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
-from django.core.mail import send_mail
 from django.conf import settings
-from django.shortcuts import render, redirect
-from django.utils import timezone
-import json
-from .models import BasketItem, Product, DocumentTemplate, TrainingCourse, Service, Order, OrderItem
-import uuid
-from decimal import Decimal
-from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
-from django.db.models import Sum  # AJOUTEZ CETTE LIGNE
-from .models import DocumentTemplate, TemplateCategory  # AJOUTEZ CES IMPORTS
-
-from django.db.models import Sum
-from decimal import Decimal
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.db.models import Sum
+from django.http import HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.utils import timezone
-from decimal import Decimal
-import json
-import uuid
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+
 from .models import BasketItem, Order, OrderItem
-
-def basket_view(request):
-    """Affiche le panier - CORRECTION"""
-    # 1. FORCER la création de session
-    if not request.session.session_key:
-        request.session.create()
-        request.session.save()  # IMPORTANT: sauvegarder la session
-
-    session_key = request.session.session_key
-    print(f"🔍 DEBUG: Session key: {session_key}")
-
-    # 2. Récupérer les articles AVEC session_key exacte
-    basket_items = BasketItem.objects.filter(session_key=session_key)
-    print(f"🔍 DEBUG: Articles trouvés: {basket_items.count()}")
-
-    # 3. Afficher chaque article pour déboguer
-    for item in basket_items:
-        print(f"🔍 DEBUG: Article - ID:{item.id}, Nom:{item.name}, Prix:{item.price}, Qté:{item.quantity}")
-
-    # 4. Si panier vide, créer un article de démo
-    if not basket_items.exists():
-        print("⚠️  Panier vide, création d'article démo...")
-        demo_item = BasketItem.objects.create(
-            session_key=session_key,
-            product_type='template',
-            product_id=999,
-            name='Quality Manual Template (Démo)',
-            price=Decimal('199.99'),
-            quantity=1,
-            description='Template de démonstration - Ajoutez des vrais articles depuis la page documents'
-        )
-        basket_items = BasketItem.objects.filter(session_key=session_key)
-
-    # 5. Calcul des totaux
-    subtotal = Decimal('0.00')
-    item_count = 0
-
-    for item in basket_items:
-        try:
-            item_total = item.price * Decimal(str(item.quantity))
-            subtotal += item_total
-            item_count += item.quantity
-        except:
-            subtotal += item.price * 1
-
-    tax = subtotal * Decimal('0.20')
-    shipping = Decimal('0.00')
-    total = subtotal + tax + shipping
-
-    print(f"📊 DEBUG: Sous-total: {subtotal}, TVA: {tax}, Total: {total}")
-
-    # 6. Passer au template
-    context = {
-        'basket_items': basket_items,  # Les objets directement
-        'subtotal': subtotal,
-        'tax': tax,
-        'shipping': shipping,
-        'total': total,
-        'item_count': item_count,
-    }
-
-    return render(request, 'consulting_app/basket.html', context)
+from .models import DocumentTemplate, TemplateCategory  # AJOUTEZ CES IMPORTS
+from .models import Inquiry, SimpleInvoice  # Assurez-vous que cet import est en haut du fichier
 
 
 @require_POST
+@csrf_exempt
 def add_to_basket(request):
-    """Ajoute un article au panier - CORRIGÉ"""
+    """Ajoute un article au panier - VERSION FONCTIONNELLE"""
     try:
-        data = json.loads(request.body)
-        product_type = data.get('product_type', 'template')
-        product_id = data.get('product_id')
+        print("🎯 [ADD_TO_BASKET] Début")
 
-        print(f"🎯 DEBUG add_to_basket: type={product_type}, id={product_id}")
-
-        # CRÉER la session si elle n'existe pas
+        # FORCER la création de session si elle n'existe pas
         if not request.session.session_key:
+            print("🔑 Création de nouvelle session")
             request.session.create()
-            request.session.save()  # TRÈS IMPORTANT
+            request.session.save()
 
         session_key = request.session.session_key
-        print(f"🎯 DEBUG: Session key: {session_key}")
+        print(f"🔑 Session ID: {session_key}")
 
-        # Chercher le produit dans la base
-        product_name = "Template"
-        product_price = Decimal('99.99')
+        # Récupérer les données
+        product_type = request.POST.get('product_type', 'template')
+        product_id = request.POST.get('product_id', '1')
 
-        if product_type == 'template':
-            try:
-                template = DocumentTemplate.objects.get(id=product_id)
-                product_name = template.name
-                product_price = template.price
-            except:
-                product_name = f"Template #{product_id}"
-                product_price = Decimal('99.99')
+        print(f"📦 Produit: type={product_type}, id={product_id}")
+
+        # Créer des données de test
+        product_data = {
+            'template': {
+                'name': 'Template Qualité Premium',
+                'price': Decimal('149.99'),
+                'description': 'Template complet pour système de management qualité ISO 9001'
+            },
+            'service': {
+                'name': 'Audit GMP Complète',
+                'price': Decimal('999.99'),
+                'description': 'Audit des bonnes pratiques de fabrication'
+            },
+            'training': {
+                'name': 'Formation HACCP Avancée',
+                'price': Decimal('299.99'),
+                'description': 'Formation certifiante aux principes HACCP'
+            }
+        }
+
+        # Sélectionner les données
+        data = product_data.get(product_type, product_data['template'])
 
         # Vérifier si l'article existe déjà
         existing_item = BasketItem.objects.filter(
@@ -134,38 +74,223 @@ def add_to_basket(request):
         ).first()
 
         if existing_item:
+            # Augmenter la quantité
             existing_item.quantity += 1
             existing_item.save()
-            print(f"✅ Article existant mis à jour: {existing_item.name}")
+            print(f"✅ Quantité augmentée: {existing_item.name}")
         else:
             # Créer un nouvel article
-            new_item = BasketItem.objects.create(
+            BasketItem.objects.create(
                 session_key=session_key,
                 product_type=product_type,
                 product_id=product_id,
-                name=product_name,
-                price=product_price,
-                quantity=1
+                name=data['name'],
+                price=data['price'],
+                quantity=1,
+                description=data['description']
             )
-            print(f"✅ Nouvel article créé: {new_item.name}")
+            print(f"✅ Nouvel article créé: {data['name']}")
 
         # Compter les articles
         basket_count = BasketItem.objects.filter(
             session_key=session_key
-        ).aggregate(
-            total=Sum('quantity')
-        )['total'] or 0
+        ).aggregate(total=Sum('quantity'))['total'] or 0
 
-        print(f"📦 Total articles dans le panier: {basket_count}")
+        print(f"📊 Total panier: {basket_count} articles")
+        print("🎯 [ADD_TO_BASKET] Fin - SUCCÈS")
+
+        messages.success(request, f"✅ {data['name']} ajouté au panier !")
+        return redirect('basket')
+
+    except Exception as e:
+        print(f"❌ [ADD_TO_BASKET] ERREUR: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        messages.error(request, f"Erreur: {str(e)}")
+        return redirect('basket')
+
+
+def basket_view(request):
+    """Affiche le panier - VERSION FONCTIONNELLE"""
+    print("🛒 [BASKET_VIEW] Début")
+
+    # FORCER la création de session
+    if not request.session.session_key:
+        print("🔑 Création session")
+        request.session.create()
+        request.session.save()
+
+    session_key = request.session.session_key
+    print(f"🔑 Session ID: {session_key}")
+
+    # Récupérer les articles
+    basket_items = BasketItem.objects.filter(session_key=session_key)
+    print(f"📦 Articles trouvés: {basket_items.count()}")
+
+    # Afficher chaque article (debug)
+    for idx, item in enumerate(basket_items):
+        print(f"  {idx + 1}. {item.name} x{item.quantity} = {item.price * item.quantity}€")
+
+    # Calculer les totaux
+    subtotal = Decimal('0.00')
+    item_count = 0
+
+    for item in basket_items:
+        item_total = item.price * item.quantity
+        subtotal += item_total
+        item_count += item.quantity
+
+    tax = subtotal * Decimal('0.20')
+    total = subtotal + tax
+
+    print(f"💰 Sous-total: {subtotal}€")
+    print(f"💰 TVA: {tax}€")
+    print(f"💰 Total: {total}€")
+    print(f"📊 Nombre d'articles: {item_count}")
+    print("🛒 [BASKET_VIEW] Fin")
+
+    context = {
+        'basket_items': basket_items,
+        'subtotal': subtotal,
+        'tax': tax,
+        'total': total,
+        'item_count': item_count,
+    }
+
+    return render(request, 'consulting_app/basket.html', context)
+
+
+@require_POST
+@csrf_exempt
+def update_basket_item(request, item_id):
+    """Met à jour la quantité d'un article"""
+    try:
+        print(f"🔄 [UPDATE_ITEM] ID: {item_id}")
+
+        # Lire les données JSON
+        data = json.loads(request.body)
+        quantity = int(data.get('quantity', 1))
+
+        print(f"📈 Nouvelle quantité: {quantity}")
+
+        # Trouver l'article
+        try:
+            item = BasketItem.objects.get(id=item_id)
+            print(f"✅ Article trouvé: {item.name}")
+        except BasketItem.DoesNotExist:
+            print(f"❌ Article {item_id} non trouvé")
+            return JsonResponse({
+                'success': False,
+                'error': 'Article non trouvé'
+            })
+
+        # Vérifier la session
+        session_key = request.session.session_key
+        if item.session_key != session_key:
+            print("⚠️  Session différente")
+
+        # Mettre à jour la quantité
+        item.quantity = quantity
+        item.save()
+        print(f"✅ Quantité mise à jour")
+
+        # Recalculer les totaux
+        basket_items = BasketItem.objects.filter(session_key=item.session_key)
+        subtotal = Decimal('0.00')
+        item_count = 0
+
+        for basket_item in basket_items:
+            subtotal += basket_item.price * basket_item.quantity
+            item_count += basket_item.quantity
+
+        tax = subtotal * Decimal('0.20')
+        total = subtotal + tax
+
+        print(f"💰 Nouveaux totaux: sous-total={subtotal}, total={total}")
 
         return JsonResponse({
             'success': True,
-            'message': 'Article ajouté!',
-            'basket_count': basket_count
+            'item_total': float(item.price * item.quantity),
+            'subtotal': float(subtotal),
+            'tax': float(tax),
+            'total': float(total),
+            'item_count': item_count
         })
 
     except Exception as e:
-        print(f"❌ ERREUR add_to_basket: {str(e)}")
+        print(f"❌ [UPDATE_ITEM] ERREUR: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        })
+
+
+@require_POST
+@csrf_exempt
+def remove_basket_item(request, item_id):
+    """Supprime un article du panier - VERSION FONCTIONNELLE"""
+    try:
+        print(f"🗑️ [REMOVE_ITEM] ID: {item_id}")
+
+        # Vérifier la session
+        if not request.session.session_key:
+            print("❌ Pas de session")
+            return JsonResponse({
+                'success': False,
+                'error': 'Pas de session active'
+            })
+
+        # Trouver l'article
+        try:
+            item = BasketItem.objects.get(id=item_id)
+            print(f"✅ Article trouvé: {item.name}")
+        except BasketItem.DoesNotExist:
+            print(f"❌ Article {item_id} non trouvé")
+            return JsonResponse({
+                'success': False,
+                'error': 'Article non trouvé'
+            })
+
+        # Vérifier que l'article appartient à la session
+        session_key = request.session.session_key
+        if item.session_key != session_key:
+            print(f"⚠️  Session article: {item.session_key}")
+            print(f"⚠️  Session requête: {session_key}")
+
+        # Sauvegarder les infos avant suppression
+        item_name = item.name
+        item_session = item.session_key
+
+        # Supprimer l'article
+        item.delete()
+        print(f"✅ Article '{item_name}' supprimé")
+
+        # Recalculer les totaux
+        basket_items = BasketItem.objects.filter(session_key=item_session)
+        subtotal = Decimal('0.00')
+        item_count = 0
+
+        for basket_item in basket_items:
+            subtotal += basket_item.price * basket_item.quantity
+            item_count += basket_item.quantity
+
+        tax = subtotal * Decimal('0.20')
+        total = subtotal + tax
+
+        print(f"💰 Nouveaux totaux: sous-total={subtotal}, total={total}")
+        print(f"📊 Nombre d'articles restants: {item_count}")
+
+        return JsonResponse({
+            'success': True,
+            'message': f'"{item_name}" supprimé',
+            'subtotal': float(subtotal),
+            'tax': float(tax),
+            'total': float(total),
+            'item_count': item_count
+        })
+
+    except Exception as e:
+        print(f"❌ [REMOVE_ITEM] ERREUR: {str(e)}")
         import traceback
         traceback.print_exc()
         return JsonResponse({
@@ -173,87 +298,81 @@ def add_to_basket(request):
             'error': str(e)
         })
 
-@require_POST
-def update_basket_item(request, item_id):
-    """Met à jour la quantité d'un article"""
-    try:
-        data = json.loads(request.body)
-        quantity = int(data.get('quantity', 1))
-
-        if quantity < 1:
-            return JsonResponse({
-                'success': False,
-                'error': 'La quantité doit être au moins 1'
-            })
-
-        item = BasketItem.objects.get(id=item_id, session_key=request.session.session_key)
-        item.quantity = quantity
-        item.save()
-
-        return JsonResponse({
-            'success': True,
-            'item_total': float(item.total),
-            'item_price': float(item.price)
-        })
-
-    except BasketItem.DoesNotExist:
-        return JsonResponse({
-            'success': False,
-            'error': 'Article non trouvé'
-        })
-    except Exception as e:
-        return JsonResponse({
-            'success': False,
-            'error': str(e)
-        })
-
 
 @require_POST
-def remove_basket_item(request, item_id):
-    """Supprime un article du panier"""
-    try:
-        item = BasketItem.objects.get(id=item_id, session_key=request.session.session_key)
-        item.delete()
-
-        return JsonResponse({
-            'success': True,
-            'message': 'Article supprimé'
-        })
-
-    except BasketItem.DoesNotExist:
-        return JsonResponse({
-            'success': False,
-            'error': 'Article non trouvé'
-        })
-
-
-@require_POST
+@csrf_exempt
 def clear_basket(request):
     """Vide complètement le panier"""
     try:
-        BasketItem.objects.filter(session_key=request.session.session_key).delete()
+        print("🧹 [CLEAR_BASKET] Début")
+
+        # Vérifier la session
+        if not request.session.session_key:
+            print("❌ Pas de session")
+            return JsonResponse({
+                'success': False,
+                'error': 'Pas de session active'
+            })
+
+        session_key = request.session.session_key
+        print(f"🔑 Session ID: {session_key}")
+
+        # Compter avant suppression
+        item_count = BasketItem.objects.filter(session_key=session_key).count()
+        print(f"🗑️  Articles à supprimer: {item_count}")
+
+        # Supprimer tous les articles
+        deleted_count, _ = BasketItem.objects.filter(session_key=session_key).delete()
+        print(f"✅ {deleted_count} articles supprimés")
 
         return JsonResponse({
             'success': True,
-            'message': 'Panier vidé'
+            'message': f'{deleted_count} articles supprimés',
+            'deleted_count': deleted_count
         })
 
     except Exception as e:
+        print(f"❌ [CLEAR_BASKET] ERREUR: {str(e)}")
         return JsonResponse({
             'success': False,
             'error': str(e)
         })
 
 
-# Vue pour le checkout
+def get_basket_count(request):
+    """Retourne le nombre d'articles dans le panier"""
+    try:
+        print("🔢 [GET_BASKET_COUNT]")
+
+        if not request.session.session_key:
+            print("⚠️  Pas de session, retourne 0")
+            return JsonResponse({'count': 0})
+
+        session_key = request.session.session_key
+
+        basket_count = BasketItem.objects.filter(
+            session_key=session_key
+        ).aggregate(
+            total=Sum('quantity')
+        )['total'] or 0
+
+        print(f"📦 Compteur panier: {basket_count}")
+
+        return JsonResponse({'count': basket_count})
+
+    except Exception as e:
+        print(f"❌ [GET_BASKET_COUNT] ERREUR: {str(e)}")
+        return JsonResponse({'count': 0})
 
 
 def checkout_view(request):
-    """Page de paiement simplifiée"""
-    # S'assurer qu'une session existe
+    """Page de paiement"""
+    print("💳 [CHECKOUT_VIEW] Début")
+
+    # Vérifier la session
     if not request.session.session_key:
-        request.session.create()
-        request.session.save()
+        messages.warning(request, "Votre session a expiré")
+        return redirect('basket')
 
     session_key = request.session.session_key
     basket_items = BasketItem.objects.filter(session_key=session_key)
@@ -265,60 +384,66 @@ def checkout_view(request):
     # Calculer les totaux
     subtotal = Decimal('0.00')
     for item in basket_items:
-        subtotal += item.total
+        subtotal += item.price * item.quantity
 
     tax = subtotal * Decimal('0.20')
     total = subtotal + tax
 
-    # Si formulaire soumis, créer la facture
+    # Si formulaire soumis
     if request.method == 'POST':
         try:
-            # Préparer les données des articles pour JSON
-            items_list = []
-            for item in basket_items:
-                items_list.append({
-                    'name': item.name,
-                    'price': str(item.price),
-                    'quantity': item.quantity,
-                    'total': str(item.total)
-                })
+            print("💳 Traitement paiement...")
 
-            # Générer un numéro de facture
-            invoice_number = f"FACT-{timezone.now().strftime('%Y%m%d')}-{str(uuid.uuid4())[:6].upper()}"
+            # Créer un numéro de commande
+            order_number = f"CMD-{datetime.now().strftime('%Y%m%d')}-{str(uuid.uuid4())[:6].upper()}"
 
-            # Créer la facture
-            invoice = SimpleInvoice.objects.create(
-                invoice_number=invoice_number,
+            # Créer la commande
+            order = Order.objects.create(
+                order_number=order_number,
                 session_key=session_key,
-                client_name=f"{request.POST.get('first_name', '')} {request.POST.get('last_name', '')}",
-                client_email=request.POST.get('email', ''),
-                client_company=request.POST.get('company', ''),
-                client_address=request.POST.get('address', ''),
-                client_city=request.POST.get('city', ''),
-                client_country=request.POST.get('country', 'FR'),
+                customer_name=request.POST.get('name', 'Client'),
+                customer_email=request.POST.get('email', ''),
+                customer_phone=request.POST.get('phone', ''),
+                customer_company=request.POST.get('company', ''),
                 subtotal=subtotal,
+                shipping=Decimal('0.00'),
                 tax=tax,
                 total=total,
-                items_json=json.dumps(items_list),
-                payment_method=request.POST.get('payment_method', 'card')
+                shipping_method='digital',
+                payment_method=request.POST.get('payment_method', 'card'),
+                payment_status='paid',
+                status='processing'
             )
+
+            # Créer les articles de commande
+            for item in basket_items:
+                OrderItem.objects.create(
+                    order=order,
+                    product_type=item.product_type,
+                    product_id=item.product_id,
+                    name=item.name,
+                    price=item.price,
+                    quantity=item.quantity
+                )
 
             # Vider le panier
             basket_items.delete()
 
-            # Stocker l'ID de la facture dans la session
-            request.session['last_invoice_id'] = invoice.id
+            # Stocker l'ID de la commande dans la session
+            request.session['last_order_id'] = order.id
             request.session.modified = True
 
-            messages.success(request, f"Paiement réussi ! Facture {invoice_number} générée.")
+            print(f"✅ Commande créée: {order_number}")
+            messages.success(request, f"Paiement réussi ! Commande #{order_number}")
             return redirect('payment_success')
 
         except Exception as e:
-            print(f"Erreur: {str(e)}")
-            messages.error(request, "Erreur lors du paiement")
+            print(f"❌ Erreur paiement: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            messages.error(request, f"Erreur: {str(e)}")
             return redirect('checkout')
 
-    # GET request - afficher le formulaire
     context = {
         'basket_items': basket_items,
         'subtotal': subtotal,
@@ -330,32 +455,19 @@ def checkout_view(request):
 
 
 def payment_success(request):
-    """Page de succès du paiement avec option de téléchargement"""
-    invoice_id = request.session.get('last_invoice_id')
+    """Page de succès du paiement"""
+    order_id = request.session.get('last_order_id')
 
-    if not invoice_id:
-        messages.warning(request, "Aucune facture trouvée")
-        return redirect('home')
+    if order_id:
+        try:
+            order = Order.objects.get(id=order_id)
+            context = {'order': order}
+        except Order.DoesNotExist:
+            context = {'order': None}
+    else:
+        context = {'order': None}
 
-    try:
-        invoice = SimpleInvoice.objects.get(id=invoice_id)
-
-        # Charger les articles depuis JSON
-        items = invoice.items
-
-        context = {
-            'invoice': invoice,
-            'items': items,
-            'invoice_date': invoice.created_at,
-        }
-
-        return render(request, 'consulting_app/payment_success.html', context)
-
-    except SimpleInvoice.DoesNotExist:
-        messages.warning(request, "Facture introuvable")
-        return redirect('home')
-
-
+    return render(request, 'consulting_app/payment_success.html', context)
 def download_invoice(request, invoice_id):
     """Télécharger la facture en PDF"""
     try:

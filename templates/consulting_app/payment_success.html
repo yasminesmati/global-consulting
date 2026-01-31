@@ -1,90 +1,121 @@
+<!-- checkout.html -->
 {% extends "consulting_app/base.html" %}
 {% load static %}
 
-{% block title %}Paiement Réussi - Global Business Consulting{% endblock %}
+{% block title %}Paiement - Global Business Consulting{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <!-- Message de succès -->
-            <div class="card border-success shadow mb-4">
-                <div class="card-header bg-success text-white">
-                    <h3 class="mb-0"><i class="fas fa-check-circle"></i> Paiement Réussi !</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">💳 Paiement Sécurisé</h1>
+
+            {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
                 </div>
-                <div class="card-body text-center py-5">
-                    <div class="mb-4">
-                        <i class="fas fa-check-circle fa-5x text-success"></i>
-                    </div>
-
-                    <h4 class="mb-3">Merci pour votre achat !</h4>
-                    <p class="lead mb-4">Votre paiement a été traité avec succès.</p>
-
-                    <div class="alert alert-info">
-                        <h5><i class="fas fa-receipt"></i> Facture : {{ invoice.invoice_number }}</h5>
-                        <p class="mb-1">Date : {{ invoice_date|date:"d/m/Y H:i" }}</p>
-                        <p class="mb-1">Montant total : <strong>{{ invoice.total|floatformat:2 }} €</strong></p>
-                    </div>
-
-                    <!-- Boutons d'action -->
-                    <div class="d-grid gap-2 d-md-block mt-4">
-                        <a href="{% url 'download_invoice' invoice.id %}" class="btn btn-primary btn-lg">
-                            <i class="fas fa-download"></i> Télécharger la Facture (PDF)
-                        </a>
-
-                        <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg ms-2">
-                            <i class="fas fa-home"></i> Retour à l'accueil
-                        </a>
-                    </div>
-
-                    <div class="mt-5">
-                        <h6><i class="fas fa-envelope"></i> Un email de confirmation vous a été envoyé</h6>
-                        <p class="text-muted small">Vérifiez votre boîte de réception (et vos spams)</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
+            {% endif %}
 
-            <!-- Récapitulatif rapide -->
-            <div class="card shadow">
-                <div class="card-header bg-light">
-                    <h5 class="mb-0"><i class="fas fa-list"></i> Récapitulatif</h5>
+            <div class="row">
+                <!-- Récapitulatif de la commande -->
+                <div class="col-md-7 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Récapitulatif de votre commande</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Produit</th>
+                                        <th class="text-center">Quantité</th>
+                                        <th class="text-end">Prix</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in basket_items %}
+                                    <tr>
+                                        <td>{{ item.name }}</td>
+                                        <td class="text-center">{{ item.quantity }}</td>
+                                        <td class="text-end">{{ item.price|floatformat:2 }} €</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2"><strong>Sous-total</strong></td>
+                                        <td class="text-end">{{ subtotal|floatformat:2 }} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><strong>TVA (20%)</strong></td>
+                                        <td class="text-end">{{ tax|floatformat:2 }} €</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td colspan="2"><h5 class="mb-0">Total à payer</h5></td>
+                                        <td class="text-end"><h4 class="text-primary mb-0">{{ total|floatformat:2 }} €</h4></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Produit</th>
-                                    <th class="text-end">Prix unitaire</th>
-                                    <th class="text-end">Quantité</th>
-                                    <th class="text-end">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in items %}
-                                <tr>
-                                    <td>{{ item.name }}</td>
-                                    <td class="text-end">{{ item.price }} €</td>
-                                    <td class="text-end">{{ item.quantity }}</td>
-                                    <td class="text-end">{{ item.total }} €</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="3" class="text-end"><strong>Sous-total :</strong></td>
-                                    <td class="text-end">{{ invoice.subtotal|floatformat:2 }} €</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" class="text-end"><strong>TVA (20%) :</strong></td>
-                                    <td class="text-end">{{ invoice.tax|floatformat:2 }} €</td>
-                                </tr>
-                                <tr class="table-success">
-                                    <td colspan="3" class="text-end"><strong>Total TTC :</strong></td>
-                                    <td class="text-end"><strong>{{ invoice.total|floatformat:2 }} €</strong></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+
+                <!-- Formulaire de paiement -->
+                <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Informations de paiement</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nom complet *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="payment_method" class="form-label">Méthode de paiement *</label>
+                                    <select class="form-select" id="payment_method" name="payment_method" required>
+                                        <option value="card">Carte bancaire</option>
+                                        <option value="paypal">PayPal</option>
+                                        <option value="transfer">Virement bancaire</option>
+                                    </select>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    <small>
+                                        <i class="fas fa-info-circle"></i>
+                                        Ceci est une démonstration. Aucun paiement réel ne sera effectué.
+                                    </small>
+                                </div>
+
+                                <button type="submit" class="btn btn-success btn-lg w-100 py-3">
+                                    <i class="fas fa-lock"></i> Confirmer le paiement
+                                </button>
+                            </form>
+
+                            <div class="text-center mt-4">
+                                <p class="text-muted small mb-2">
+                                    <i class="fas fa-shield-alt"></i> Paiement 100% sécurisé
+                                </p>
+                                <div>
+                                    <i class="fab fa-cc-visa fa-2x text-primary mx-2"></i>
+                                    <i class="fab fa-cc-mastercard fa-2x text-primary mx-2"></i>
+                                    <i class="fab fa-cc-paypal fa-2x text-primary mx-2"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
